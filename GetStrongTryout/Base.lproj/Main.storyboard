@@ -659,6 +659,9 @@
                             <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="tUp-TA-x8F">
                                 <rect key="frame" x="141" y="449" width="39" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <action selector="updateScreen:" destination="6cO-O6-DxT" eventType="valueChanged" id="X8W-DP-Tgg"/>
+                                </connections>
                             </pageControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>

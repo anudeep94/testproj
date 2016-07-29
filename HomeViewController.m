@@ -39,21 +39,20 @@ BOOL buttonCurrentStatus;
     //For PageController
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    
     CGRect newFrame=self.view.frame ;
     newFrame.size.height =newFrame.size.height - 50;
     
-    
-    
     self.pageController.dataSource=self;
     [self.pageController.view setFrame: newFrame];
-    //self.pageController.view.backgroundColor=[UIColor redColor];
+    
     AppChildViewController *initalViewController =[self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObjects:initalViewController, nil];
     [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
-    [self.pageController didMoveToParentViewController:self];
+//    [self.pageController didMoveToParentViewController:self];
     
     [self.view bringSubviewToFront:self.pageControl];
     [self.pageControl setNumberOfPages:3];
@@ -66,6 +65,11 @@ BOOL buttonCurrentStatus;
     
     
 }
+
+- (IBAction)updateScreen:(id)sender {
+  
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -119,9 +123,7 @@ BOOL buttonCurrentStatus;
     
     NSUInteger index = [(AppChildViewController *)viewController index];
     
-    
     index++;
-    
     
     if (index == 3) {
         return nil;
@@ -130,21 +132,6 @@ BOOL buttonCurrentStatus;
     return [self viewControllerAtIndex:index];
     
 }
-
-//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
-//{
-//    return currentIndex;
-//}
-
-//- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-//    // The number of items reflected in the page indicator.
-//    return 3;
-//}
-//
-//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-//    // The selected item reflected in the page indicator.
-//    return 0;
-//}
 
 - (IBAction)changeState:(UIButton*)sender
 {
@@ -167,6 +154,12 @@ BOOL buttonCurrentStatus;
             //[self performSomeAction:sender];
         }   
     }
+}
+#pragma mark - UIScrollViewDelegate methods
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
+    uint page = sender.contentOffset.x / 960;
+    [self.pageControl setCurrentPage:page];
 }
 
 @end
