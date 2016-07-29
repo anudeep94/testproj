@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8448AB521D45F8A900486EA2 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448AB511D45F8A900486EA2 /* TableViewCell.m */; };
+		844D13A61D49D1E200F22B52 /* AppChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844D13A51D49D1E200F22B52 /* AppChildViewController.m */; };
+		84B2F8BF1D3F3BFA004D6B95 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */; };
+		84B2F8C51D3F3DDA004D6B95 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */; };
 		84F769011D2E559000DEF5FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769001D2E559000DEF5FC /* main.m */; };
 		84F769041D2E559000DEF5FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769031D2E559000DEF5FC /* AppDelegate.m */; };
 		84F769071D2E559000DEF5FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769061D2E559000DEF5FC /* ViewController.m */; };
@@ -14,9 +18,27 @@
 		84F7690D1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84F7690B1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld */; };
 		84F7690F1D2E559000DEF5FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F7690E1D2E559000DEF5FC /* Assets.xcassets */; };
 		84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F769101D2E559000DEF5FC /* LaunchScreen.storyboard */; };
+		84F7691B1D2E5CA700DEF5FC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */; };
+		84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */; };
+		84F769211D2E6AC800DEF5FC /* OTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769201D2E6AC800DEF5FC /* OTPViewController.m */; };
+		84F9398F1D34E84B0053C9EA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9398E1D34E84B0053C9EA /* HomeViewController.m */; };
+		84FBBE6C1D422C6F00CF1A31 /* ChallengeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE6B1D422C6F00CF1A31 /* ChallengeViewController.m */; };
+		84FBBE6F1D422C9B00CF1A31 /* AttendanceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE6E1D422C9B00CF1A31 /* AttendanceViewController.m */; };
+		84FBBE721D422CC400CF1A31 /* CheatdaysViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE711D422CC400CF1A31 /* CheatdaysViewController.m */; };
+		84FBBE751D422CF000CF1A31 /* WorkoutTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE741D422CF000CF1A31 /* WorkoutTipsViewController.m */; };
+		84FBBE781D422D1B00CF1A31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE771D422D1B00CF1A31 /* ProfileViewController.m */; };
+		84FC1AFE1D3E39840074F765 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FC1AFD1D3E39840074F765 /* menu.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8448AB501D45F8A900486EA2 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ../TableViewCell.h; sourceTree = "<group>"; };
+		8448AB511D45F8A900486EA2 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ../TableViewCell.m; sourceTree = "<group>"; };
+		844D13A41D49D1E200F22B52 /* AppChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppChildViewController.h; sourceTree = "<group>"; };
+		844D13A51D49D1E200F22B52 /* AppChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppChildViewController.m; sourceTree = "<group>"; };
+		84B2F8BD1D3F3BFA004D6B95 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SWRevealViewController.h; path = ../../../Downloads/SidebarDemoTemplate/SidebarDemo/SWRevealViewController.h; sourceTree = "<group>"; };
+		84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ../../../Downloads/SidebarDemoTemplate/SidebarDemo/SWRevealViewController.m; sourceTree = "<group>"; };
+		84B2F8C31D3F3DDA004D6B95 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarViewController.h; path = ../SidebarViewController.h; sourceTree = "<group>"; };
+		84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarViewController.m; path = ../SidebarViewController.m; sourceTree = "<group>"; };
 		84F768FC1D2E559000DEF5FC /* GetStrongTryout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStrongTryout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F769001D2E559000DEF5FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84F769021D2E559000DEF5FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -28,6 +50,25 @@
 		84F7690E1D2E559000DEF5FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F769111D2E559000DEF5FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F769131D2E559000DEF5FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		84F769191D2E5CA700DEF5FC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		84F7691C1D2E5CBD00DEF5FC /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = ../SignupViewController.h; sourceTree = "<group>"; };
+		84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
+		84F7691F1D2E6AC800DEF5FC /* OTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTPViewController.h; path = ../OTPViewController.h; sourceTree = "<group>"; };
+		84F769201D2E6AC800DEF5FC /* OTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTPViewController.m; path = ../OTPViewController.m; sourceTree = "<group>"; };
+		84F9398D1D34E84B0053C9EA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
+		84F9398E1D34E84B0053C9EA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
+		84FBBE6A1D422C6F00CF1A31 /* ChallengeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChallengeViewController.h; path = ../ChallengeViewController.h; sourceTree = "<group>"; };
+		84FBBE6B1D422C6F00CF1A31 /* ChallengeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChallengeViewController.m; path = ../ChallengeViewController.m; sourceTree = "<group>"; };
+		84FBBE6D1D422C9B00CF1A31 /* AttendanceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AttendanceViewController.h; path = ../AttendanceViewController.h; sourceTree = "<group>"; };
+		84FBBE6E1D422C9B00CF1A31 /* AttendanceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AttendanceViewController.m; path = ../AttendanceViewController.m; sourceTree = "<group>"; };
+		84FBBE701D422CC400CF1A31 /* CheatdaysViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CheatdaysViewController.h; path = ../CheatdaysViewController.h; sourceTree = "<group>"; };
+		84FBBE711D422CC400CF1A31 /* CheatdaysViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CheatdaysViewController.m; path = ../CheatdaysViewController.m; sourceTree = "<group>"; };
+		84FBBE731D422CF000CF1A31 /* WorkoutTipsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WorkoutTipsViewController.h; path = ../WorkoutTipsViewController.h; sourceTree = "<group>"; };
+		84FBBE741D422CF000CF1A31 /* WorkoutTipsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WorkoutTipsViewController.m; path = ../WorkoutTipsViewController.m; sourceTree = "<group>"; };
+		84FBBE761D422D1B00CF1A31 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
+		84FBBE771D422D1B00CF1A31 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
+		84FC1AFD1D3E39840074F765 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../../Downloads/SidebarDemoTemplate/SidebarDemo/menu.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +82,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8448AB491D45D55F00486EA2 /* Initial */ = {
+			isa = PBXGroup;
+			children = (
+				84F769191D2E5CA700DEF5FC /* LoginViewController.h */,
+				84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */,
+				84F7691C1D2E5CBD00DEF5FC /* SignupViewController.h */,
+				84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */,
+				84F7691F1D2E6AC800DEF5FC /* OTPViewController.h */,
+				84F769201D2E6AC800DEF5FC /* OTPViewController.m */,
+			);
+			name = Initial;
+			sourceTree = "<group>";
+		};
+		84B2F8BC1D3F3BB5004D6B95 /* SWRevealViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84B2F8BD1D3F3BFA004D6B95 /* SWRevealViewController.h */,
+				84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */,
+			);
+			name = SWRevealViewController;
+			sourceTree = "<group>";
+		};
 		84F768F31D2E559000DEF5FC = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +123,35 @@
 		84F768FE1D2E559000DEF5FC /* GetStrongTryout */ = {
 			isa = PBXGroup;
 			children = (
+				8448AB491D45D55F00486EA2 /* Initial */,
 				84F769021D2E559000DEF5FC /* AppDelegate.h */,
 				84F769031D2E559000DEF5FC /* AppDelegate.m */,
+				84F769081D2E559000DEF5FC /* Main.storyboard */,
 				84F769051D2E559000DEF5FC /* ViewController.h */,
 				84F769061D2E559000DEF5FC /* ViewController.m */,
-				84F769081D2E559000DEF5FC /* Main.storyboard */,
+				84F9398D1D34E84B0053C9EA /* HomeViewController.h */,
+				84F9398E1D34E84B0053C9EA /* HomeViewController.m */,
+				84B2F8C31D3F3DDA004D6B95 /* SidebarViewController.h */,
+				84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */,
+				84FBBE6A1D422C6F00CF1A31 /* ChallengeViewController.h */,
+				84FBBE6B1D422C6F00CF1A31 /* ChallengeViewController.m */,
+				84FBBE6D1D422C9B00CF1A31 /* AttendanceViewController.h */,
+				84FBBE6E1D422C9B00CF1A31 /* AttendanceViewController.m */,
+				84FBBE701D422CC400CF1A31 /* CheatdaysViewController.h */,
+				84FBBE711D422CC400CF1A31 /* CheatdaysViewController.m */,
+				84FBBE731D422CF000CF1A31 /* WorkoutTipsViewController.h */,
+				84FBBE741D422CF000CF1A31 /* WorkoutTipsViewController.m */,
+				84FBBE761D422D1B00CF1A31 /* ProfileViewController.h */,
+				84FBBE771D422D1B00CF1A31 /* ProfileViewController.m */,
+				8448AB501D45F8A900486EA2 /* TableViewCell.h */,
+				8448AB511D45F8A900486EA2 /* TableViewCell.m */,
+				844D13A41D49D1E200F22B52 /* AppChildViewController.h */,
+				844D13A51D49D1E200F22B52 /* AppChildViewController.m */,
 				84F7690E1D2E559000DEF5FC /* Assets.xcassets */,
 				84F769101D2E559000DEF5FC /* LaunchScreen.storyboard */,
 				84F769131D2E559000DEF5FC /* Info.plist */,
 				84F7690B1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld */,
+				84B2F8BC1D3F3BB5004D6B95 /* SWRevealViewController */,
 				84F768FF1D2E559000DEF5FC /* Supporting Files */,
 			);
 			path = GetStrongTryout;
@@ -78,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				84F769001D2E559000DEF5FC /* main.m */,
+				84FC1AFD1D3E39840074F765 /* menu.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -139,6 +223,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FC1AFE1D3E39840074F765 /* menu.png in Resources */,
 				84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */,
 				84F7690F1D2E559000DEF5FC /* Assets.xcassets in Resources */,
 				84F7690A1D2E559000DEF5FC /* Main.storyboard in Resources */,
@@ -152,10 +237,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84F769211D2E6AC800DEF5FC /* OTPViewController.m in Sources */,
+				84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */,
 				84F7690D1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld in Sources */,
+				84FBBE6C1D422C6F00CF1A31 /* ChallengeViewController.m in Sources */,
+				84FBBE781D422D1B00CF1A31 /* ProfileViewController.m in Sources */,
+				84FBBE751D422CF000CF1A31 /* WorkoutTipsViewController.m in Sources */,
 				84F769071D2E559000DEF5FC /* ViewController.m in Sources */,
 				84F769041D2E559000DEF5FC /* AppDelegate.m in Sources */,
+				84FBBE721D422CC400CF1A31 /* CheatdaysViewController.m in Sources */,
+				84B2F8C51D3F3DDA004D6B95 /* SidebarViewController.m in Sources */,
+				84B2F8BF1D3F3BFA004D6B95 /* SWRevealViewController.m in Sources */,
+				844D13A61D49D1E200F22B52 /* AppChildViewController.m in Sources */,
 				84F769011D2E559000DEF5FC /* main.m in Sources */,
+				84F7691B1D2E5CA700DEF5FC /* LoginViewController.m in Sources */,
+				8448AB521D45F8A900486EA2 /* TableViewCell.m in Sources */,
+				84F9398F1D34E84B0053C9EA /* HomeViewController.m in Sources */,
+				84FBBE6F1D422C9B00CF1A31 /* AttendanceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,6 +366,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GetStrongTryout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.GetStrongTryout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -279,6 +378,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = GetStrongTryout/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.GetStrongTryout;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -304,6 +404,7 @@
 				84F769181D2E559000DEF5FC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

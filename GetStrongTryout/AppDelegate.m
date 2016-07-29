@@ -7,8 +7,10 @@
 //
 
 #import "AppDelegate.h"
+//#import "LoginViewController.h"
 
-@interface AppDelegate ()
+
+@interface AppDelegate () <UINavigationControllerDelegate>
 
 @end
 
@@ -17,6 +19,18 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"]) {
+        
+        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
+        
+        [self.window setRootViewController:vC];
+    }
+    // pagecontrol dot color change
+    UIPageControl *pageControl = [UIPageControl appearance];
+    pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.839 green:0.851 blue:0.863 alpha:1.00];
+    pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.404 green:0.867 blue:0.510 alpha:1.00];
     return YES;
 }
 
