@@ -11,6 +11,7 @@
 		844D13A61D49D1E200F22B52 /* AppChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844D13A51D49D1E200F22B52 /* AppChildViewController.m */; };
 		84B2F8BF1D3F3BFA004D6B95 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */; };
 		84B2F8C51D3F3DDA004D6B95 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */; };
+		84E6AE9B1D4B2748006368F9 /* KL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E6AE9A1D4B2748006368F9 /* KL.jpg */; };
 		84F769011D2E559000DEF5FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769001D2E559000DEF5FC /* main.m */; };
 		84F769041D2E559000DEF5FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769031D2E559000DEF5FC /* AppDelegate.m */; };
 		84F769071D2E559000DEF5FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769061D2E559000DEF5FC /* ViewController.m */; };
@@ -39,6 +40,7 @@
 		84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ../../../Downloads/SidebarDemoTemplate/SidebarDemo/SWRevealViewController.m; sourceTree = "<group>"; };
 		84B2F8C31D3F3DDA004D6B95 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarViewController.h; path = ../SidebarViewController.h; sourceTree = "<group>"; };
 		84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarViewController.m; path = ../SidebarViewController.m; sourceTree = "<group>"; };
+		84E6AE9A1D4B2748006368F9 /* KL.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = KL.jpg; sourceTree = "<group>"; };
 		84F768FC1D2E559000DEF5FC /* GetStrongTryout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStrongTryout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F769001D2E559000DEF5FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84F769021D2E559000DEF5FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				84F769001D2E559000DEF5FC /* main.m */,
+				84E6AE9A1D4B2748006368F9 /* KL.jpg */,
 				84FC1AFD1D3E39840074F765 /* menu.png */,
 			);
 			name = "Supporting Files";
@@ -223,6 +226,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84E6AE9B1D4B2748006368F9 /* KL.jpg in Resources */,
 				84FC1AFE1D3E39840074F765 /* menu.png in Resources */,
 				84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */,
 				84F7690F1D2E559000DEF5FC /* Assets.xcassets in Resources */,

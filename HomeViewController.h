@@ -14,4 +14,5 @@
 @property (weak, nonatomic) IBOutlet UIButton *mulButton;
 
 @property (strong, nonatomic) UIPageViewController *pageController;
+@property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
 @end

@@ -656,8 +656,12 @@
                                     <action selector="onePress:" destination="6cO-O6-DxT" eventType="touchUpInside" id="XIk-zR-kDv"/>
                                 </connections>
                             </button>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" id="tUp-TA-x8F">
+                                <rect key="frame" x="141" y="449" width="39" height="37"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </pageControl>
                         </subviews>
-                        <color key="backgroundColor" red="0.12559797677347695" green="0.50284276832460728" blue="0.035655694932107157" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" title="Yatramantra" id="uog-t9-X88">
                         <barButtonItem key="leftBarButtonItem" image="menu icon" id="6pn-af-M68"/>
@@ -670,6 +674,7 @@
                     <connections>
                         <outlet property="mulButton" destination="1aU-Dk-MxQ" id="Eog-A9-Bxw"/>
                         <outlet property="oneButton" destination="Q8Y-Ml-oQY" id="ke4-V0-SpT"/>
+                        <outlet property="pageControl" destination="tUp-TA-x8F" id="aH1-bq-Gig"/>
                         <outlet property="sidebarButton" destination="6pn-af-M68" id="ePy-hz-Hmt"/>
                         <segue destination="dQ3-eH-KaF" kind="push" identifier="oneSegue" id="Yan-3v-Lnk"/>
                         <segue destination="IgY-ge-qbS" kind="push" identifier="mulSegue" id="gHR-Wu-Pct"/>
@@ -717,32 +722,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="wHO-F8-HYO">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Screen#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dLW-6V-4Td">
-                                <rect key="frame" x="119" y="112" width="82" height="34"/>
+                                <rect key="frame" x="119" y="67" width="82" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is a textlabel test for the iOS application for Yatramantra" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="YcD-0g-bAp">
-                                <rect key="frame" x="62" y="373" width="196" height="89"/>
+                                <rect key="frame" x="62" y="391" width="196" height="89"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.96774193549999998" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="GD8-A4-Qv7">
-                                <rect key="frame" x="131" y="340" width="58" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <rect key="frame" x="131" y="351" width="58" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.14373813239228964" green="0.55521924083769636" blue="0.025872467123598718" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10710328014184398" colorSpace="calibratedRGB"/>
                     </view>
                     <connections>
+                        <outlet property="bgImageView" destination="wHO-F8-HYO" id="3Hf-hl-jP3"/>
+                        <outlet property="descriptLabel" destination="YcD-0g-bAp" id="3gd-zP-ABy"/>
                         <outlet property="screenNumber" destination="dLW-6V-4Td" id="e2z-RY-gQX"/>
+                        <outlet property="titleLabel" destination="GD8-A4-Qv7" id="27e-VP-Xg5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0r7-hV-bBd" userLabel="First Responder" sceneMemberID="firstResponder"/>

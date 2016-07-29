@@ -11,7 +11,7 @@
 #import "SWRevealViewController.h"
 #import "AppChildViewController.h"
 
-@interface HomeViewController ()
+@interface HomeViewController ()<UIPageViewControllerDelegate>
 
 @end
 
@@ -39,9 +39,10 @@ BOOL buttonCurrentStatus;
     //For PageController
     
     self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
-    CGRect newFrame;
-    newFrame=self.view.frame ;
+    CGRect newFrame=self.view.frame ;
     newFrame.size.height =newFrame.size.height - 50;
+    
+    
     
     self.pageController.dataSource=self;
     [self.pageController.view setFrame: newFrame];
@@ -54,8 +55,17 @@ BOOL buttonCurrentStatus;
     [[self view] addSubview:[self.pageController view]];
     [self.pageController didMoveToParentViewController:self];
     
+    [self.view bringSubviewToFront:self.pageControl];
+    [self.pageControl setNumberOfPages:3];
+//    [self.view bringSubviewToFront:self.pageController.view];
+    //page control indicator postion change
+    
+//    self.pageController = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50)]; // your position
+//    
+//    [self.view addSubview: self.pageController];
+    
+    
 }
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -68,6 +78,9 @@ BOOL buttonCurrentStatus;
     [appDelegate.window setRootViewController:vC];
     
 }
+
+
+
 
 - (IBAction)onePress:(id)sender {
     [self performSegueWithIdentifier:@"oneSegue" sender:nil];
@@ -97,7 +110,7 @@ BOOL buttonCurrentStatus;
     }
     
     index--;
-    
+    [self.pageControl setCurrentPage:index];
     return [self viewControllerAtIndex:index];
     
 }
@@ -109,23 +122,30 @@ BOOL buttonCurrentStatus;
     
     index++;
     
+    
     if (index == 3) {
         return nil;
     }
-    
+    [self.pageControl setCurrentPage:index];
     return [self viewControllerAtIndex:index];
     
 }
 
-- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
-    // The number of items reflected in the page indicator.
-    return 3;
-}
+//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController
+//{
+//    return currentIndex;
+//}
 
-- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
-    // The selected item reflected in the page indicator.
-    return 0;
-}
+//- (NSInteger)presentationCountForPageViewController:(UIPageViewController *)pageViewController {
+//    // The number of items reflected in the page indicator.
+//    return 3;
+//}
+//
+//- (NSInteger)presentationIndexForPageViewController:(UIPageViewController *)pageViewController {
+//    // The selected item reflected in the page indicator.
+//    return 0;
+//}
+
 - (IBAction)changeState:(UIButton*)sender
 {
     /* if we have multiple buttons, then we can
