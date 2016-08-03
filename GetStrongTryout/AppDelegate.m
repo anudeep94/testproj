@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+@import GooglePlacePicker;
 //#import "LoginViewController.h"
 
 
@@ -31,6 +32,10 @@
     UIPageControl *pageControl = [UIPageControl appearance];
     pageControl.pageIndicatorTintColor = [UIColor colorWithRed:0.839 green:0.851 blue:0.863 alpha:1.00];
     pageControl.currentPageIndicatorTintColor = [UIColor colorWithRed:0.404 green:0.867 blue:0.510 alpha:1.00];
+    
+    //Google Place Picker API Key
+    [GMSPlacesClient provideAPIKey:@"AIzaSyDP0AL3kU8pFkAYe-T_pNLp_qAQjoAcPrU"];
+    
     
     return YES;
 }

@@ -17,7 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.screenNumber.text= [NSString stringWithFormat:@"Screen#%ld",(long)self.index ];
+    self.screenNumber.text= [NSString stringWithFormat:@"Screen#%ld",(long)self.index+1 ];
     
     
     CGRect screenBounds = [[UIScreen mainScreen] bounds];

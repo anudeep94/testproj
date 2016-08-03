@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    menuItems = @[@"username",@"home",@"logout"];
+    menuItems = @[@"username",@"location",@"home",@"logout"];
 //    menuItems[1]=@[@"home"];
 //    menuItems[2]=@[@"logout"];
     self.tableView1.delegate= self;
@@ -55,7 +55,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     
-    return 8;
+    return 10;
     
 }
 //- (void)setHighlighted:(BOOL)highlighted animated:(BOOL)animated
@@ -79,7 +79,12 @@
         cellIdentifier=@"username";
         cell=[_tableView1 dequeueReusableCellWithIdentifier:cellIdentifier];
     }
-    else if (indexPath.row < 7)
+    else if (indexPath.row == 1)
+    {
+        cellIdentifier=@"location";
+        cell=[_tableView1 dequeueReusableCellWithIdentifier:cellIdentifier];
+    }
+    else if (indexPath.row < 9)
     {
         cellIdentifier=@"home";
         cell=[_tableView1 dequeueReusableCellWithIdentifier:cellIdentifier];
@@ -99,43 +104,52 @@
             {
                 break;
             }
-            case 2:
-                {taggedLabel.text = @"Challenges";
+                case 2:
+            {
+                break;
+            }
+            case 3:
+                {taggedLabel.text = @"My Trips";
                 taggedImageView.backgroundColor= [UIColor blackColor];
                 break;
                 }
-            case 3:{
-                taggedLabel.text = @"Attendance";
+            case 4:{
+                taggedLabel.text = @"Pay Now";
                 taggedImageView.backgroundColor= [UIColor grayColor];
                 break;
             }
-            case 4:{
-                taggedLabel.text = @"Cheat Days";
+            case 5:{
+                taggedLabel.text = @"My Account";
                 taggedImageView.backgroundColor= [UIColor redColor];
                 break;
             }
-            case 5:{
-                taggedLabel.text = @"WorkOut Tips";
+            case 6:{
+                taggedLabel.text = @"Support";
                 taggedImageView.backgroundColor= [UIColor blueColor];
                 break;
             }
-            case 6:
+            case 7:
             {
-                taggedLabel.text = @"Profile";
+                taggedLabel.text = @"About";
                 taggedImageView.backgroundColor= [UIColor magentaColor];
                 break;
+            }
+            case 8:
+            {
+                taggedLabel.text = @"Contact";
+                taggedImageView.backgroundColor= [UIColor brownColor];
             }
             default:
                 break;
         }
     }
-  if (indexPath.row ==7) {
+  if (indexPath.row ==9) {
         cellIdentifier=@"logout";
         }
   if (nil == cell)
         {
          cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"logout"];
-        [[cell textLabel] setText:@"Logout"];
+        [[cell textLabel] setText:@"LogOut"];
         }
 
     
@@ -156,27 +170,34 @@
     switch (indexPath.row)
     {
         case 1:{
+            break;
+        }
+        case 2:{
             [self performSegueWithIdentifier:@"homeSegue" sender:nil];
             break;
         }
-            case 2:
+            case 3:
         {
-            [self performSegueWithIdentifier:@"chalSegue" sender:nil];break;
-        }
-        case 3:{
-            [self performSegueWithIdentifier:@"attSegue" sender:nil];break;
+            [self performSegueWithIdentifier:@"tripSegue" sender:nil];break;
         }
         case 4:{
-            [self performSegueWithIdentifier:@"cheatSegue" sender:nil];break;
+            [self performSegueWithIdentifier:@"paySegue" sender:nil];break;
         }
         case 5:{
-        [self performSegueWithIdentifier:@"tipSegue" sender:nil];break;
+            [self performSegueWithIdentifier:@"accSegue" sender:nil];break;
         }
-        case 6:
+        case 6:{
+        [self performSegueWithIdentifier:@"supportSegue" sender:nil];break;
+        }
+        case 7:
         {
-        [self performSegueWithIdentifier:@"proSegue" sender:nil];break;
+        [self performSegueWithIdentifier:@"aboutSegue" sender:nil];break;
         }
-            case 7:
+            
+            case 8:
+        {[self performSegueWithIdentifier:@"conSegue" sender:nil];break;}
+            
+            case 9:
         {
             [[NSUserDefaults standardUserDefaults] setBool:NO forKey: @"isLogin"];
             UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

@@ -11,7 +11,9 @@
 #import "SWRevealViewController.h"
 #import "AppChildViewController.h"
 
-@interface HomeViewController ()<UIPageViewControllerDelegate>
+@interface HomeViewController ()<UIPageViewControllerDelegate> {
+    NSInteger currentIndex;
+}
 
 @end
 
@@ -21,6 +23,10 @@ BOOL buttonCurrentStatus;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    currentIndex = 0;
+    
+    
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:0.404 green:0.867 blue:0.510 alpha:1.00];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName : [UIColor whiteColor]}];
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
@@ -38,33 +44,43 @@ BOOL buttonCurrentStatus;
     
     //For PageController
     
-    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    _pageTitles = @[@"God's Own Country", @"Paradise on Earth", @"Garden City"];
     
     CGRect newFrame=self.view.frame ;
     newFrame.size.height =newFrame.size.height - 50;
     
-    self.pageController.dataSource=self;
-    [self.pageController.view setFrame: newFrame];
-    
     AppChildViewController *initalViewController =[self viewControllerAtIndex:0];
     NSArray *viewControllers = [NSArray arrayWithObjects:initalViewController, nil];
-    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    
+    self.pageController = [[UIPageViewController alloc] initWithTransitionStyle:UIPageViewControllerTransitionStyleScroll navigationOrientation:UIPageViewControllerNavigationOrientationHorizontal options:nil];
+    self.pageController.dataSource=self;
+    self.pageController.delegate = self;
+    [self.pageController.view setFrame: newFrame];
+    [self.pageController setViewControllers:viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     
     [self addChildViewController:self.pageController];
     [[self view] addSubview:[self.pageController view]];
-//    [self.pageController didMoveToParentViewController:self];
+    [self.pageController didMoveToParentViewController:self];
     
     [self.view bringSubviewToFront:self.pageControl];
     [self.pageControl setNumberOfPages:3];
-//    [self.view bringSubviewToFront:self.pageController.view];
-    //page control indicator postion change
-    
-//    self.pageController = [[UIPageControl alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50)]; // your position
-//    
-//    [self.view addSubview: self.pageController];
-    
-    
 }
+
+
+- (AppChildViewController *)viewControllerAtIndex:(NSUInteger)index
+{
+    if (([self.pageTitles count] == 0) || (index >= [self.pageTitles count])) {
+        return nil;
+    }
+    
+    // Create a new view controller and pass suitable data.
+    AppChildViewController *pageContentViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AppChildViewController"];
+    pageContentViewController.titleLabel = self.pageTitles[index];
+    pageContentViewController.index = index;
+    
+    return pageContentViewController;
+}
+
 
 - (IBAction)updateScreen:(id)sender {
   
@@ -83,9 +99,6 @@ BOOL buttonCurrentStatus;
     
 }
 
-
-
-
 - (IBAction)onePress:(id)sender {
     [self performSegueWithIdentifier:@"oneSegue" sender:nil];
 }
@@ -93,42 +106,38 @@ BOOL buttonCurrentStatus;
     [self performSegueWithIdentifier:@"mulSegue" sender:nil];
 }
 
-- (AppChildViewController *)viewControllerAtIndex:(NSUInteger)index {
-    
-//    AppChildViewController *childViewController = [[AppChildViewController alloc] initWithNibName:@"AppChildViewController" bundle:nil];
-    
-    
-    AppChildViewController *childViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"AppChildViewController"];
-    childViewController.index = index;
-    
-    return childViewController;
-    
-}
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     
-    NSUInteger index = [(AppChildViewController *)viewController index];
     
-    if (index == 0) {
+    NSUInteger index = [(AppChildViewController*)viewController index];
+    
+    if ((index == 0) || (index == NSNotFound)) {
         return nil;
     }
     
     index--;
-    [self.pageControl setCurrentPage:index];
-    return [self viewControllerAtIndex:index];
+//    [self.pageControl setCurrentPage:index];
     
+    return [self viewControllerAtIndex:index];
+
 }
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController {
     
     NSUInteger index = [(AppChildViewController *)viewController index];
     
-    index++;
     
-    if (index == 3) {
+    if (index == NSNotFound) {
         return nil;
     }
-    [self.pageControl setCurrentPage:index];
+    
+    index++;
+    
+    if (index == [self.pageTitles count]) {
+        return nil;
+    }
+//    [self.pageControl setCurrentPage:index];
     return [self viewControllerAtIndex:index];
     
 }
@@ -155,11 +164,19 @@ BOOL buttonCurrentStatus;
         }   
     }
 }
-#pragma mark - UIScrollViewDelegate methods
 
-- (void)scrollViewDidEndDecelerating:(UIScrollView *)sender {
-    uint page = sender.contentOffset.x / 960;
-    [self.pageControl setCurrentPage:page];
+-(void)pageViewController:(UIPageViewController *)pageViewController willTransitionToViewControllers:(NSArray<UIViewController *> *)pendingViewControllers
+{
+    AppChildViewController *vc = (AppChildViewController*)[pendingViewControllers objectAtIndex:0];
+    
+    self.pageControl.currentPage = vc.index;
 }
+
+//-(void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray<UIViewController *> *)previousViewControllers transitionCompleted:(BOOL)completed
+//{
+//    AppChildViewController *vc = (AppChildViewController*)[previousViewControllers objectAtIndex:0];
+//    
+//    NSLog(@"%ld",vc.index);
+//}
 
 @end
