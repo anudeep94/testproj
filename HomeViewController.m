@@ -117,6 +117,7 @@ BOOL buttonCurrentStatus;
     }
     
     index--;
+    
 //    [self.pageControl setCurrentPage:index];
     
     return [self viewControllerAtIndex:index];
