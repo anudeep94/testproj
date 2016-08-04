@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 @import GooglePlacePicker;
+@import GoogleMaps;
 //#import "LoginViewController.h"
 
 
@@ -35,6 +36,7 @@
     
     //Google Place Picker API Key
     [GMSPlacesClient provideAPIKey:@"AIzaSyDP0AL3kU8pFkAYe-T_pNLp_qAQjoAcPrU"];
+    [GMSServices provideAPIKey:@"AIzaSyDP0AL3kU8pFkAYe-T_pNLp_qAQjoAcPrU"];
     
     
     return YES;

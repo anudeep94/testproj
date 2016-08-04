@@ -7,18 +7,23 @@
 //
 
 #import "OnedayTripViewController.h"
-#define CURRENTPOSTION @"Kochi"
-#define DESTINATION @"Alleppey"
+@import GooglePlacePicker;
+#import <GooglePlaces/GooglePlaces.h>
+#import "WhereToMapviewViewController.h"
 
-@interface OnedayTripViewController ()
+@interface OnedayTripViewController ()<GMSAutocompleteViewControllerDelegate>
 
 @end
 int flag=1;
 int lim=0;
+int tagFlag=0;
 
 
 
 @implementation OnedayTripViewController
+GMSPlacePicker *_placePicker;
+NSString *pickedPlace;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -55,9 +60,31 @@ int lim=0;
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)pressPlan:(id)sender {
-    
-    
+    if (tagFlag>1) {
+        [self performSegueWithIdentifier:@"exploreSegue" sender:nil];
+    }
+    else{
+                   UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Alert"
+                                                            message:@"Did not select Preferd Places!"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"OK"
+                                                  otherButtonTitles:nil];
+            [alert show];
+            
+        }
 }
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+
+    if([segue.identifier isEqualToString:@"exploreSegue"]){
+        UINavigationController *navController = segue.destinationViewController;
+        WhereToMapviewViewController *controller =[navController childViewControllers].firstObject;
+        controller.toPlace=_toPlace;
+        controller.fromPlace=_fromPlace;
+    }
+}
+
+
 - (IBAction)travelModeNxt:(id)sender {
     //UIImage *img3 = [UIImage imageNamed:@"Car Filled-50.png"];
     UIImage *img4 = [UIImage imageNamed:@"Train Filled-50.png"];
@@ -108,15 +135,69 @@ int lim=0;
     }
 
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction)startPressed:(id)sender {
+    
+    GMSAutocompleteViewController *acController = [[GMSAutocompleteViewController alloc] init];
+    acController.delegate = self;
+    acController.view.tag=_fromButton.tag;
+    [self presentViewController:acController animated:YES completion:nil];
 }
-*/
+
+
+// Handle the user's selection.
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didAutocompleteWithPlace:(GMSPlace *)place {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // Do something with the selected place.
+    pickedPlace= place.name;
+    if(viewController.view.tag ==121){
+        [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
+        _fromPlace=place.name;
+        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
+        _fromCoordinates.coordinate.longitude = place.coordinate.longitude ;
+
+        
+    }
+    if(viewController.view.tag ==122){
+        [_toButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
+        _toPlace=place.name;
+        _toCoordinates.coordinate.latitude = place.coordinate.latitude ;
+        _toCoordinates.coordinate.longitude = place.coordinate.longitude;
+        
+    }
+}
+
+
+
+
+- (void)viewController:(GMSAutocompleteViewController *)viewController
+didFailAutocompleteWithError:(NSError *)error {
+    [self dismissViewControllerAnimated:YES completion:nil];
+    // TODO: handle the error.
+    NSLog(@"Error: %@", [error description]);
+}
+
+// User canceled the operation.
+- (void)wasCancelled:(GMSAutocompleteViewController *)viewController {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+// Turn the network activity indicator on and off again.
+- (void)didRequestAutocompletePredictions:(GMSAutocompleteViewController *)viewController {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+}
+
+
+- (IBAction)destPressed:(id)sender {
+    
+    
+    GMSAutocompleteViewController *aCController = [[GMSAutocompleteViewController alloc] init];
+    aCController.delegate = self;
+    aCController.view.tag=_toButton.tag;
+    [self presentViewController:aCController animated:YES completion:nil];
+}
+
+
+
 
 @end
