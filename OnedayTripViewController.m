@@ -82,6 +82,10 @@ NSString *pickedPlace;
         WhereToMapviewViewController *controller =[navController childViewControllers].firstObject;
         controller.toPlace=_toPlace;
         controller.fromPlace=_fromPlace;
+        //controller.toSnippet=__
+        controller.toLocation=_location2;
+        controller.fromLocation=_location;
+        
     }
 }
 
@@ -154,16 +158,19 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     if(viewController.view.tag ==121){
         [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _fromPlace=place.name;
-        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
-        _fromCoordinates.coordinate.longitude = place.coordinate.longitude ;
+        //_fromSnippet=place.snippet;
+//        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
+//        _fromCoordinates.coordinate.longitude = place.coordinate.longitude ;
+        _location = [[CLLocation alloc] initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
 
         
     }
     if(viewController.view.tag ==122){
         [_toButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _toPlace=place.name;
-        _toCoordinates.coordinate.latitude = place.coordinate.latitude ;
-        _toCoordinates.coordinate.longitude = place.coordinate.longitude;
+//        _toCoordinates.coordinate.latitude = place.coordinate.latitude ;
+//        _toCoordinates.coordinate.longitude = place.coordinate.longitude;
+        _location2 = [[CLLocation alloc] initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
         
     }
 }

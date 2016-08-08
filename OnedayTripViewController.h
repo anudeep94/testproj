@@ -30,6 +30,8 @@
 @property(nonatomic)NSString *toPlace;
 @property(nonatomic) NSString *fromSnippet;
 @property(nonatomic)NSString *toSnippet;
-@property (nonatomic)CLLocation* fromCoordinates;
-@property (nonatomic)CLLocation* toCoordinates;
+//@property (nonatomic)CLLocation* fromCoordinates;
+//@property (nonatomic)CLLocation* toCoordinates;
+@property (nonatomic)CLLocation *location;
+@property (nonatomic)CLLocation *location2;
 @end

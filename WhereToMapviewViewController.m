@@ -21,16 +21,18 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
-                                                            longitude:151.20
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:_fromLocation.coordinate.latitude
+                                                            longitude:_fromLocation.coordinate.longitude
                                                                  zoom:6];
+    
+    
     mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];
     mapView.myLocationEnabled = YES;
     self.view = mapView;
     
     // Creates a marker in the center of the map.
     GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(-33.86, 151.20);
+    marker.position = CLLocationCoordinate2DMake(_fromLocation.coordinate.latitude, _fromLocation.coordinate.longitude);
     marker.title = _fromPlace;
     marker.snippet = _fromPlace;
     marker.map = mapView;

@@ -16,6 +16,10 @@
 
 @property(nonatomic) NSString *fromPlace;
 @property(nonatomic)NSString *toPlace;
+@property (nonatomic)CLLocation *fromLocation;
+@property (nonatomic)CLLocation *toLocation;
+@property(nonatomic) NSString *fromSnippet;
+@property(nonatomic)NSString *toSnippet;
 
 
 @end
