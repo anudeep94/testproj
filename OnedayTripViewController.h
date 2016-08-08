@@ -20,6 +20,11 @@
 @property (weak, nonatomic) IBOutlet UIImageView *modImage;
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
 @property (weak, nonatomic) IBOutlet UIButton *toButton;
+@property (weak, nonatomic) IBOutlet UIButton *calenderButton;
+
+@property (nonatomic) UIBarButtonItem *rightBtn;
+@property (nonatomic) UIDatePicker *datePicker;
+@property (nonatomic, retain) UIToolbar *keyboardToolbar;
 
 @property(nonatomic) NSString *fromPlace;
 @property(nonatomic)NSString *toPlace;

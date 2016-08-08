@@ -21,7 +21,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 
-    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:-33.86
+    GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:
                                                             longitude:151.20
                                                                  zoom:6];
     mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];

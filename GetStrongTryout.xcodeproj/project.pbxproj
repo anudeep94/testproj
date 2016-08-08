@@ -16,6 +16,7 @@
 		848F0B601D4C8D8100F62845 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848F0B5F1D4C8D8100F62845 /* ContactViewController.m */; };
 		84B2F8BF1D3F3BFA004D6B95 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */; };
 		84B2F8C51D3F3DDA004D6B95 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */; };
+		84BAB2F41D54518E00D25C56 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BAB2F31D54518E00D25C56 /* Calendar-50.png */; };
 		84E078001D51BE90001C6105 /* OnedayTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */; };
 		84E078021D51D03E001C6105 /* Circled Right 2-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E078011D51D03E001C6105 /* Circled Right 2-50.png */; };
 		84E6AE9B1D4B2748006368F9 /* KL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E6AE9A1D4B2748006368F9 /* KL.jpg */; };
@@ -79,6 +80,7 @@
 		84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SWRevealViewController.m; path = ../../../Downloads/SidebarDemoTemplate/SidebarDemo/SWRevealViewController.m; sourceTree = "<group>"; };
 		84B2F8C31D3F3DDA004D6B95 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarViewController.h; path = ../SidebarViewController.h; sourceTree = "<group>"; };
 		84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarViewController.m; path = ../SidebarViewController.m; sourceTree = "<group>"; };
+		84BAB2F31D54518E00D25C56 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Calendar-50.png"; path = "../../../Downloads/Calendar-50.png"; sourceTree = "<group>"; };
 		84E077FE1D51BE90001C6105 /* OnedayTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnedayTripViewController.h; path = ../OnedayTripViewController.h; sourceTree = "<group>"; };
 		84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnedayTripViewController.m; path = ../OnedayTripViewController.m; sourceTree = "<group>"; };
 		84E078011D51D03E001C6105 /* Circled Right 2-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circled Right 2-50.png"; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 		84F768FF1D2E559000DEF5FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84BAB2F31D54518E00D25C56 /* Calendar-50.png */,
 				84F975C31D51E84500CC5391 /* Back-50.png */,
 				84F975C51D51E84D00CC5391 /* Forward-50.png */,
 				84F769001D2E559000DEF5FC /* main.m */,
@@ -364,6 +367,7 @@
 				84F975D81D51FDAD00CC5391 /* GooglePlaces.bundle in Resources */,
 				84E078021D51D03E001C6105 /* Circled Right 2-50.png in Resources */,
 				84FC1AFE1D3E39840074F765 /* menu.png in Resources */,
+				84BAB2F41D54518E00D25C56 /* Calendar-50.png in Resources */,
 				84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */,
 				84F975DA1D51FDFF00CC5391 /* GooglePlacePicker.bundle in Resources */,
 				84F975CB1D51EB6E00CC5391 /* Car Filled-50.png in Resources */,

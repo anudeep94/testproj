@@ -11,7 +11,9 @@
 #import <GooglePlaces/GooglePlaces.h>
 #import "WhereToMapviewViewController.h"
 
-@interface OnedayTripViewController ()<GMSAutocompleteViewControllerDelegate>
+@interface OnedayTripViewController ()<GMSAutocompleteViewControllerDelegate> {
+    UIView *datePickerView;
+}
 
 @end
 int flag=1;
@@ -24,20 +26,19 @@ int tagFlag=0;
 GMSPlacePicker *_placePicker;
 NSString *pickedPlace;
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
-    NSDate *now = [NSDate date];
-    NSDateFormatter *formatter = nil;
-    formatter = [[NSDateFormatter alloc] init];
-    //[formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setDateFormat:@"d"];
-    
-    [_dateLabel setText:[formatter stringFromDate:now]];
-    [formatter setDateFormat: @"EEE\nMMM'/'yy"];
-    [_monthLabel setText:[formatter stringFromDate:now]];
+//    
+//    NSDate *now = [NSDate date];
+//    NSDateFormatter *formatter = nil;
+//    formatter = [[NSDateFormatter alloc] init];
+//    //[formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setDateFormat:@"d"];
+//    
+//    [_dateLabel setText:[formatter stringFromDate:now]];
+//    [formatter setDateFormat: @"EEE\nMMM'/'yy"];
+//    [_monthLabel setText:[formatter stringFromDate:now]];
     
     
     UIImage *img1 = [UIImage imageNamed:@"KL.jpg"];
@@ -50,7 +51,7 @@ NSString *pickedPlace;
     [_modImage setImage:img3];
   //  [formatter release];
     
-    
+   
     
 
 }
@@ -197,7 +198,83 @@ didFailAutocompleteWithError:(NSError *)error {
     [self presentViewController:aCController animated:YES completion:nil];
 }
 
+- (IBAction)calenderPressed:(id)sender {
+   // UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    
+    datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 300)];
+    datePickerView.backgroundColor = [UIColor whiteColor];
+    [self.view addSubview:datePickerView];
+    
+    _datePicker=[[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, datePickerView.frame.size.width, 250)];
+    _datePicker.datePickerMode = UIDatePickerModeDate;
+    _datePicker.hidden = NO;
+    _datePicker.date = [NSDate date];
+    [_datePicker setBackgroundColor:[UIColor whiteColor]];
+    [_datePicker clipsToBounds];
+    
+    [_datePicker addTarget:self
+                   action:@selector(labelChange:)
+         forControlEvents:UIControlEventValueChanged];
+    [datePickerView addSubview:_datePicker]; //this can set value of selected date to your label change according to your condition
+    
+    NSDateFormatter * df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"M-d-yyyy"]; // from here u can change format..
+    _dateLabel.text=[df stringFromDate:_datePicker.date];
+//    _rightBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
+//    self.navigationItem.rightBarButtonItem=_rightBtn;
+    
+    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(datePickerView.frame.size.width/2,250,datePickerView.frame.size.width/2,50)];
+    [datePickerView addSubview:myButton];
+    [myButton setBackgroundColor:[UIColor colorWithRed:0.404 green:0.867 blue:0.510 alpha:1.00]];
+    [myButton setTitle:@"Ok" forState:UIControlStateNormal];
+    [myButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UIButton *myCancel = [[UIButton alloc] initWithFrame:CGRectMake(0,250,datePickerView.frame.size.width/2,40)];
+    [datePickerView addSubview:myCancel];
+    [myCancel setBackgroundColor:[UIColor whiteColor]];
+    [myCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+    [myCancel setTitle:@"Cancel" forState:UIControlStateNormal];
+    [myCancel addTarget:self action:@selector(cancelPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+}
+-(void)labelChange:(id)sender
+{ //UIDatePicker *datePicker = [[UIDatePicker alloc] init];
 
+   
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"d"];
+    _dateLabel.text = [NSString stringWithFormat:@"%@",
+                          [df stringFromDate:_datePicker.date]];
+    
+    NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
+    [df1 setDateFormat:@"EEE'\n'MMM/yy"];
+    _monthLabel.text = [NSString stringWithFormat:@"%@",
+                       [df1 stringFromDate:_datePicker.date]];
+
+    
+    
+    
+}
+-(void)save:(id)sender
+{   //UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    //self.navigationItem.rightBarButtonItem=nil;
+    [datePickerView removeFromSuperview];
+    //[_keyboardToolbar removeFromSuperview];
+}
+-(IBAction)cancelPressed:(id)sender
+{
+        NSDate *now = [NSDate date];
+        NSDateFormatter *formatter = nil;
+        formatter = [[NSDateFormatter alloc] init];
+        //[formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setDateFormat:@"d"];
+    
+        [_dateLabel setText:[formatter stringFromDate:now]];
+        [formatter setDateFormat: @"EEE\nMMM'/'yy"];
+        [_monthLabel setText:[formatter stringFromDate:now]];
+    [datePickerView removeFromSuperview];
+}
 
 
 @end
