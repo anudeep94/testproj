@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
+@import GooglePlacePicker;
+#import <GooglePlaces/GooglePlaces.h>
 
 @interface OnedayTripViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIButton *planButton;
@@ -24,14 +26,9 @@
 
 @property (nonatomic) UIBarButtonItem *rightBtn;
 @property (nonatomic) UIDatePicker *datePicker;
-@property (nonatomic, retain) UIToolbar *keyboardToolbar;
 
-@property(nonatomic) NSString *fromPlace;
-@property(nonatomic)NSString *toPlace;
-@property(nonatomic) NSString *fromSnippet;
-@property(nonatomic)NSString *toSnippet;
-//@property (nonatomic)CLLocation* fromCoordinates;
-//@property (nonatomic)CLLocation* toCoordinates;
+@property(nonatomic) GMSPlace *fromPlace;
+@property(nonatomic)GMSPlace *toPlace;
 @property (nonatomic)CLLocation *location;
 @property (nonatomic)CLLocation *location2;
 @end

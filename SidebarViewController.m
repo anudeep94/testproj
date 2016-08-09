@@ -27,8 +27,6 @@
     // Do any additional setup after loading the view.
     
     menuItems = @[@"username",@"location",@"home",@"logout"];
-//    menuItems[1]=@[@"home"];
-//    menuItems[2]=@[@"logout"];
     self.tableView1.delegate= self;
     self.tableView1.dataSource=self;
     
@@ -219,6 +217,7 @@
     if(indexPath.row >=1 && indexPath.row<7){
     TableViewCell *cell = (TableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
     [cell.idLabel setHighlightedTextColor: [UIColor whiteColor]];  //highlight colour
+        
 //        [cell.idImage setBackgroundColor:[UIColor whiteColor]];
 //      UIImage *image = [[UIImage imageNamed:@"menu icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
 //        UIImageView *imageView = [[UIImageView alloc] initWithImage:image];
@@ -226,6 +225,7 @@
 //        cell.idImage.highlightedImage = [UIImage imageNamed:@"image"];
 //        cell.idImage.userInteractionEnabled=NO;
 //       cell.idImage.highlighted = YES;
+        
         cell.idImage.highlighted=NO;
                 
         

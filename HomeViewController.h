@@ -13,8 +13,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *oneButton;
 @property (weak, nonatomic) IBOutlet UIButton *mulButton;
 
+
 @property (strong, nonatomic) NSArray *pageTitles;
 @property (strong, nonatomic) NSArray *pageImages;
 @property (strong, nonatomic) UIPageViewController *pageController;
 @property (strong, nonatomic) IBOutlet UIPageControl *pageControl;
+
 @end

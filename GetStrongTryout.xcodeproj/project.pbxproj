@@ -524,7 +524,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.GetStrongTryout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -541,7 +541,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.GetStrongTryout;
+				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

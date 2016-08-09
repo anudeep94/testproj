@@ -43,9 +43,9 @@ BOOL buttonCurrentStatus;
     }
     
     //For PageController
-    
+   
     _pageTitles = @[@"God's Own Country", @"Paradise on Earth", @"Garden City"];
-    
+   
     CGRect newFrame=self.view.frame ;
     newFrame.size.height =newFrame.size.height - 50;
     
@@ -64,6 +64,7 @@ BOOL buttonCurrentStatus;
     
     [self.view bringSubviewToFront:self.pageControl];
     [self.pageControl setNumberOfPages:3];
+    // self.screenTitle.text = [NSString stringWithFormat:@"%@", _pageTitles[(long)self.index]];
 }
 
 

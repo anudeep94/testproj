@@ -7,12 +7,12 @@
 //
 
 #import "OnedayTripViewController.h"
-@import GooglePlacePicker;
-#import <GooglePlaces/GooglePlaces.h>
+
 #import "WhereToMapviewViewController.h"
 
 @interface OnedayTripViewController ()<GMSAutocompleteViewControllerDelegate> {
     UIView *datePickerView;
+    
 }
 
 @end
@@ -50,16 +50,13 @@ NSString *pickedPlace;
     UIImage *img3 = [UIImage imageNamed:@"Car Filled-50.png"];
     [_modImage setImage:img3];
   //  [formatter release];
-    
-   
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 - (IBAction)pressPlan:(id)sender {
     if (tagFlag>1) {
         [self performSegueWithIdentifier:@"exploreSegue" sender:nil];
@@ -78,8 +75,10 @@ NSString *pickedPlace;
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
 
     if([segue.identifier isEqualToString:@"exploreSegue"]){
-        UINavigationController *navController = segue.destinationViewController;
-        WhereToMapviewViewController *controller =[navController childViewControllers].firstObject;
+//        UINavigationController *navController = segue.destinationViewController;
+//        WhereToMapviewViewController *controller =[navController childViewControllers].firstObject;
+        WhereToMapviewViewController *controller = (WhereToMapviewViewController *)segue.destinationViewController;
+        
         controller.toPlace=_toPlace;
         controller.fromPlace=_fromPlace;
         //controller.toSnippet=__
@@ -157,7 +156,7 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     pickedPlace= place.name;
     if(viewController.view.tag ==121){
         [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
-        _fromPlace=place.name;
+        _fromPlace=place;
         //_fromSnippet=place.snippet;
 //        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
 //        _fromCoordinates.coordinate.longitude = place.coordinate.longitude ;
@@ -167,9 +166,7 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     }
     if(viewController.view.tag ==122){
         [_toButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
-        _toPlace=place.name;
-//        _toCoordinates.coordinate.latitude = place.coordinate.latitude ;
-//        _toCoordinates.coordinate.longitude = place.coordinate.longitude;
+        _toPlace=place;
         _location2 = [[CLLocation alloc] initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
         
     }
@@ -207,12 +204,21 @@ didFailAutocompleteWithError:(NSError *)error {
 
 - (IBAction)calenderPressed:(id)sender {
    // UIDatePicker *datePicker = [[UIDatePicker alloc] init];
+    CGRect screenBounds = [[UIScreen mainScreen] bounds];
+    if(screenBounds.size.height==480)
+    {
+        //CGRect markerInfoViewFrame;
+        
+        datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, self.view.frame.size.height)];
+        
+    }
+    else{
+        datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 300)];}
+    _datePicker=[[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, datePickerView.frame.size.width, 250)];
     
-    datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 300)];
     datePickerView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:datePickerView];
     
-    _datePicker=[[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, datePickerView.frame.size.width, 250)];
     _datePicker.datePickerMode = UIDatePickerModeDate;
     _datePicker.hidden = NO;
     _datePicker.date = [NSDate date];
@@ -237,7 +243,7 @@ didFailAutocompleteWithError:(NSError *)error {
     [myButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIButton *myCancel = [[UIButton alloc] initWithFrame:CGRectMake(0,250,datePickerView.frame.size.width/2,40)];
+    UIButton *myCancel = [[UIButton alloc] initWithFrame:CGRectMake(0,250,datePickerView.frame.size.width/2,50)];
     [datePickerView addSubview:myCancel];
     [myCancel setBackgroundColor:[UIColor whiteColor]];
     [myCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
