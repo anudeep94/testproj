@@ -24,4 +24,6 @@
 @property(nonatomic)NSString *toSnippet;
 @property(nonatomic) GMSPlace *place;
 
+
+
 @end

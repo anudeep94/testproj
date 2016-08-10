@@ -275,7 +275,7 @@ didFailAutocompleteWithError:(NSError *)error {
     [datePickerView removeFromSuperview];
     //[_keyboardToolbar removeFromSuperview];
 }
--(IBAction)cancelPressed:(id)sender
+-(void) cancelPressed:(id)sender
 {
         NSDate *now = [NSDate date];
         NSDateFormatter *formatter = nil;

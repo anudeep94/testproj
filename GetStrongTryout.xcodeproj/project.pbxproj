@@ -11,6 +11,7 @@
 		8443499D1D5300E000CBDCF3 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8443499C1D5300E000CBDCF3 /* GoogleMaps.bundle */; };
 		844349A11D5319A100CBDCF3 /* WhereToMapviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */; };
 		844349A31D53258A00CBDCF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844349A21D53258A00CBDCF3 /* MapKit.framework */; };
+		84459F751D5AF13D00D72171 /* Pulikali.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84459F741D5AF13D00D72171 /* Pulikali.jpg */; };
 		8448AB521D45F8A900486EA2 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448AB511D45F8A900486EA2 /* TableViewCell.m */; };
 		844D13A61D49D1E200F22B52 /* AppChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844D13A51D49D1E200F22B52 /* AppChildViewController.m */; };
 		848F0B601D4C8D8100F62845 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848F0B5F1D4C8D8100F62845 /* ContactViewController.m */; };
@@ -70,6 +71,7 @@
 		8443499F1D5319A100CBDCF3 /* WhereToMapviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhereToMapviewViewController.h; path = ../WhereToMapviewViewController.h; sourceTree = "<group>"; };
 		844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhereToMapviewViewController.m; path = ../WhereToMapviewViewController.m; sourceTree = "<group>"; };
 		844349A21D53258A00CBDCF3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		84459F741D5AF13D00D72171 /* Pulikali.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Pulikali.jpg; path = ../../../Downloads/Pulikali.jpg; sourceTree = "<group>"; };
 		8448AB501D45F8A900486EA2 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ../TableViewCell.h; sourceTree = "<group>"; };
 		8448AB511D45F8A900486EA2 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ../TableViewCell.m; sourceTree = "<group>"; };
 		844D13A41D49D1E200F22B52 /* AppChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppChildViewController.h; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 				84F975C31D51E84500CC5391 /* Back-50.png */,
 				84F975C51D51E84D00CC5391 /* Forward-50.png */,
 				84F769001D2E559000DEF5FC /* main.m */,
+				84459F741D5AF13D00D72171 /* Pulikali.jpg */,
 				84E6AE9A1D4B2748006368F9 /* KL.jpg */,
 				84E078011D51D03E001C6105 /* Circled Right 2-50.png */,
 				84FC1AFD1D3E39840074F765 /* menu.png */,
@@ -366,6 +369,7 @@
 				84F975CC1D51EB6E00CC5391 /* Train Filled-50.png in Resources */,
 				84F975D81D51FDAD00CC5391 /* GooglePlaces.bundle in Resources */,
 				84E078021D51D03E001C6105 /* Circled Right 2-50.png in Resources */,
+				84459F751D5AF13D00D72171 /* Pulikali.jpg in Resources */,
 				84FC1AFE1D3E39840074F765 /* menu.png in Resources */,
 				84BAB2F41D54518E00D25C56 /* Calendar-50.png in Resources */,
 				84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */,
