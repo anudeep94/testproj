@@ -24,6 +24,7 @@
 @property(nonatomic)NSString *toSnippet;
 @property(nonatomic) GMSPlace *place;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *sideButton;
 
 
 @end

@@ -21,12 +21,12 @@
 		84E078001D51BE90001C6105 /* OnedayTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */; };
 		84E078021D51D03E001C6105 /* Circled Right 2-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E078011D51D03E001C6105 /* Circled Right 2-50.png */; };
 		84E6AE9B1D4B2748006368F9 /* KL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E6AE9A1D4B2748006368F9 /* KL.jpg */; };
+		84F53B2D1D5C4AA800714687 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F53B2C1D5C4AA800714687 /* Assets.xcassets */; };
 		84F769011D2E559000DEF5FC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769001D2E559000DEF5FC /* main.m */; };
 		84F769041D2E559000DEF5FC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769031D2E559000DEF5FC /* AppDelegate.m */; };
 		84F769071D2E559000DEF5FC /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769061D2E559000DEF5FC /* ViewController.m */; };
 		84F7690A1D2E559000DEF5FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F769081D2E559000DEF5FC /* Main.storyboard */; };
 		84F7690D1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 84F7690B1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld */; };
-		84F7690F1D2E559000DEF5FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 84F7690E1D2E559000DEF5FC /* Assets.xcassets */; };
 		84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F769101D2E559000DEF5FC /* LaunchScreen.storyboard */; };
 		84F7691B1D2E5CA700DEF5FC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */; };
 		84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */; };
@@ -63,6 +63,7 @@
 		84FBBE751D422CF000CF1A31 /* WorkoutTipsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE741D422CF000CF1A31 /* WorkoutTipsViewController.m */; };
 		84FBBE781D422D1B00CF1A31 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FBBE771D422D1B00CF1A31 /* ProfileViewController.m */; };
 		84FC1AFE1D3E39840074F765 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 84FC1AFD1D3E39840074F765 /* menu.png */; };
+		84FD276F1D5B41EE008B83D5 /* OverViewTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84FD276E1D5B41EE008B83D5 /* OverViewTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +88,7 @@
 		84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnedayTripViewController.m; path = ../OnedayTripViewController.m; sourceTree = "<group>"; };
 		84E078011D51D03E001C6105 /* Circled Right 2-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circled Right 2-50.png"; sourceTree = "<group>"; };
 		84E6AE9A1D4B2748006368F9 /* KL.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = KL.jpg; sourceTree = "<group>"; };
+		84F53B2C1D5C4AA800714687 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F768FC1D2E559000DEF5FC /* GetStrongTryout.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GetStrongTryout.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84F769001D2E559000DEF5FC /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		84F769021D2E559000DEF5FC /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -95,7 +97,6 @@
 		84F769061D2E559000DEF5FC /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		84F769091D2E559000DEF5FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		84F7690C1D2E559000DEF5FC /* GetStrongTryout.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GetStrongTryout.xcdatamodel; sourceTree = "<group>"; };
-		84F7690E1D2E559000DEF5FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		84F769111D2E559000DEF5FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		84F769131D2E559000DEF5FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		84F769191D2E5CA700DEF5FC /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
@@ -142,6 +143,8 @@
 		84FBBE761D422D1B00CF1A31 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
 		84FBBE771D422D1B00CF1A31 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
 		84FC1AFD1D3E39840074F765 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menu.png; path = ../../../Downloads/SidebarDemoTemplate/SidebarDemo/menu.png; sourceTree = "<group>"; };
+		84FD276D1D5B41EE008B83D5 /* OverViewTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OverViewTableViewController.h; path = ../OverViewTableViewController.h; sourceTree = "<group>"; };
+		84FD276E1D5B41EE008B83D5 /* OverViewTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OverViewTableViewController.m; path = ../OverViewTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -277,7 +280,8 @@
 				84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */,
 				8443499F1D5319A100CBDCF3 /* WhereToMapviewViewController.h */,
 				844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */,
-				84F7690E1D2E559000DEF5FC /* Assets.xcassets */,
+				84FD276D1D5B41EE008B83D5 /* OverViewTableViewController.h */,
+				84FD276E1D5B41EE008B83D5 /* OverViewTableViewController.m */,
 				84F769101D2E559000DEF5FC /* LaunchScreen.storyboard */,
 				84F769131D2E559000DEF5FC /* Info.plist */,
 				84F7690B1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld */,
@@ -291,6 +295,7 @@
 		84F768FF1D2E559000DEF5FC /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				84F53B2C1D5C4AA800714687 /* Assets.xcassets */,
 				84BAB2F31D54518E00D25C56 /* Calendar-50.png */,
 				84F975C31D51E84500CC5391 /* Back-50.png */,
 				84F975C51D51E84D00CC5391 /* Forward-50.png */,
@@ -375,9 +380,9 @@
 				84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */,
 				84F975DA1D51FDFF00CC5391 /* GooglePlacePicker.bundle in Resources */,
 				84F975CB1D51EB6E00CC5391 /* Car Filled-50.png in Resources */,
-				84F7690F1D2E559000DEF5FC /* Assets.xcassets in Resources */,
 				84F7690A1D2E559000DEF5FC /* Main.storyboard in Resources */,
 				84F975CA1D51EB6E00CC5391 /* Airplane Mode On Filled-50.png in Resources */,
+				84F53B2D1D5C4AA800714687 /* Assets.xcassets in Resources */,
 				8443499D1D5300E000CBDCF3 /* GoogleMaps.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -389,6 +394,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84FD276F1D5B41EE008B83D5 /* OverViewTableViewController.m in Sources */,
 				84F769211D2E6AC800DEF5FC /* OTPViewController.m in Sources */,
 				84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */,
 				84F7690D1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld in Sources */,

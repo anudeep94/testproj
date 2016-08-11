@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "OnedayTripViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "SWRevealViewController.h"
 
 @interface WhereToMapviewViewController ()<GMSMapViewDelegate>{
     UIView *markerInfoView;
@@ -29,6 +30,18 @@ UILabel *numAdult;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
+    
+    SWRevealViewController *revealViewController = self.revealViewController;
+    if ( revealViewController )
+    {
+        [self.sideButton setTarget: self.revealViewController];
+        [self.sideButton setAction: @selector( revealToggle: )];
+        [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
+    }
+
    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:_fromLocation.coordinate.latitude
                                                             longitude:_fromLocation.coordinate.longitude

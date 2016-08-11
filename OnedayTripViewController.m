@@ -77,8 +77,8 @@ NSString *pickedPlace;
     if([segue.identifier isEqualToString:@"exploreSegue"]){
 //        UINavigationController *navController = segue.destinationViewController;
 //        WhereToMapviewViewController *controller =[navController childViewControllers].firstObject;
-        WhereToMapviewViewController *controller = (WhereToMapviewViewController *)segue.destinationViewController;
-        
+        UITabBarController *tabBarController = (UITabBarController *)segue.destinationViewController;
+        WhereToMapviewViewController *controller= tabBarController.viewControllers[0];
         controller.toPlace=_toPlace;
         controller.fromPlace=_fromPlace;
         //controller.toSnippet=__
