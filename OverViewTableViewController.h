@@ -16,18 +16,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *fromMonthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toMonthLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *activityImage;
+
+@property(nonatomic) NSString *fromPlace;
+@property(nonatomic)NSString *toPlace;
+
+//@property (weak, nonatomic) IBOutlet UIImageView *activityImage;
 @property (weak, nonatomic) IBOutlet UILabel *eventLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *activityIconImage;
-@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *adultIconImage;
-@property (weak, nonatomic) IBOutlet UIImageView *childIconImage;
-@property (weak, nonatomic) IBOutlet UIButton *minusButton1;
-@property (weak, nonatomic) IBOutlet UIButton *plusButton1;
-@property (weak, nonatomic) IBOutlet UILabel *adultCountLabel;
-@property (weak, nonatomic) IBOutlet UIButton *minusButton2;
-@property (weak, nonatomic) IBOutlet UIButton *plusButton2;
-@property (weak, nonatomic) IBOutlet UILabel *childCountLabel;
+//@property (weak, nonatomic) IBOutlet UIImageView *activityIconImage;
+//@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
+//@property (weak, nonatomic) IBOutlet UIImageView *adultIconImage;
+//@property (weak, nonatomic) IBOutlet UIImageView *childIconImage;
+//@property (weak, nonatomic) IBOutlet UIButton *minusButton1;
+//@property (weak, nonatomic) IBOutlet UIButton *plusButton1;
+//@property (weak, nonatomic) IBOutlet UILabel *adultCountLabel;
+//@property (weak, nonatomic) IBOutlet UIButton *minusButton2;
+//@property (weak, nonatomic) IBOutlet UIButton *plusButton2;
+//@property (weak, nonatomic) IBOutlet UILabel *childCountLabel;
 
 
 @end

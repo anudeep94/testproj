@@ -9,6 +9,7 @@
 #import "OnedayTripViewController.h"
 
 #import "WhereToMapviewViewController.h"
+#import "OverViewTableViewController.h"
 
 @interface OnedayTripViewController ()<GMSAutocompleteViewControllerDelegate> {
     UIView *datePickerView;
@@ -25,6 +26,7 @@ int tagFlag=0;
 @implementation OnedayTripViewController
 GMSPlacePicker *_placePicker;
 NSString *pickedPlace;
+NSString *pickedPlace2;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -84,6 +86,16 @@ NSString *pickedPlace;
         //controller.toSnippet=__
         controller.toLocation=_location2;
         controller.fromLocation=_location;
+        
+        OverViewTableViewController *controller1= tabBarController.viewControllers[1];
+        controller1.fromDateLabel=_dateLabel;
+        controller1.fromMonthLabel=_monthLabel;
+        controller1.toDateLabel=_dateLabel;
+        controller1.toMonthLabel= _monthLabel;
+        controller1.toPlace=pickedPlace;
+        controller1.fromPlace=pickedPlace2;
+        
+        
         
     }
 }
@@ -157,6 +169,7 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     if(viewController.view.tag ==121){
         [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _fromPlace=place;
+        pickedPlace2=pickedPlace;
         //_fromSnippet=place.snippet;
 //        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
 //        _fromCoordinates.coordinate.longitude = place.coordinate.longitude ;
