@@ -27,6 +27,8 @@ int tagFlag=0;
 GMSPlacePicker *_placePicker;
 NSString *pickedPlace;
 NSString *pickedPlace2;
+UILabel* smallDate;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -42,7 +44,7 @@ NSString *pickedPlace2;
 //    [formatter setDateFormat: @"EEE\nMMM'/'yy"];
 //    [_monthLabel setText:[formatter stringFromDate:now]];
     
-    
+    smallDate=[[UILabel alloc] init];
     UIImage *img1 = [UIImage imageNamed:@"KL.jpg"];
     [_onedayBGImage setImage:img1];
     UIImage *img2= [UIImage imageNamed:@"Circled Right 2-50.png"];
@@ -94,6 +96,7 @@ NSString *pickedPlace2;
         controller1.toMonthLabel= _monthLabel;
         controller1.toPlace=pickedPlace;
         controller1.fromPlace=pickedPlace2;
+        controller1.smallDateLabel=smallDate;
         
         
         
@@ -270,13 +273,16 @@ didFailAutocompleteWithError:(NSError *)error {
    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setDateFormat:@"d"];
-    _dateLabel.text = [NSString stringWithFormat:@"%@",
-                          [df stringFromDate:_datePicker.date]];
+    _dateLabel.text = [NSString stringWithFormat:@"%@",[df stringFromDate:_datePicker.date]];
     
     NSDateFormatter *df1 = [[NSDateFormatter alloc] init];
     [df1 setDateFormat:@"EEE'\n'MMM/yy"];
-    _monthLabel.text = [NSString stringWithFormat:@"%@",
-                       [df1 stringFromDate:_datePicker.date]];
+    _monthLabel.text = [NSString stringWithFormat:@"%@",[df1 stringFromDate:_datePicker.date]];
+    NSDateFormatter *df2 = [[NSDateFormatter alloc] init];
+    [df2 setDateFormat:@"d MMM"];
+    smallDate.text = [NSString stringWithFormat:@"%@",[df2 stringFromDate:_datePicker.date]];
+    
+
 
     
     

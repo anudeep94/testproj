@@ -37,7 +37,7 @@ NSString *name, *mobNumber, *pin;
 
 - (IBAction)signupAction:(id)sender {
     
-    if([_nameLabel.text isEqualToString:@""] || [_mobLabel.text isEqualToString:@""]){
+    if([_nameLabel.text isEqualToString:@""] || [_mailLabel.text isEqualToString:@""]){
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
                                                         message:@"Forgot to Enter Name/Number."
                                                        delegate:self
@@ -49,7 +49,7 @@ NSString *name, *mobNumber, *pin;
     else{
          [self performSegueWithIdentifier:@"signupSegue" sender:nil];
         name= _nameLabel.text;
-        mobNumber= _mobLabel.text;
+        mobNumber= _mailLabel.text;
     }
 
     

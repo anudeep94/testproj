@@ -75,6 +75,7 @@
         UILabel *taggedFromLabel =(UILabel*) [cell viewWithTag:15];
         UILabel *taggedToLabel =(UILabel*) [cell viewWithTag:16];
         
+        
         taggedToDateLabel.text=_toDateLabel.text;
         taggedToMonthLabel.text=_toMonthLabel.text;
         taggedFromDateLabel.text=_fromDateLabel.text;
@@ -127,12 +128,13 @@
         [cell.contentView addSubview:childCountLabel];
         adultCountLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
         childCountLabel.font = [UIFont fontWithName:@"Helvetica" size:14];
-        UILabel *taggedEventLabel =(UILabel*) [cell viewWithTag:201]; //event Name
-        UIImageView *taggedEventImageView = (UIImageView*) [cell viewWithTag:101];// Event icon ImageVIew
-        UIImageView *taggedLargeImageView = (UIImageView*) [cell viewWithTag:102];// Event ImageViewLarge
-        UIImageView *taggedAdultIconView = (UIImageView*) [cell viewWithTag:103];//Adult Icon
-        UIImageView *taggedChildIconView = (UIImageView*) [cell viewWithTag:104];//child Icon
-        
+//        UILabel *taggedEventLabel =(UILabel*) [cell viewWithTag:201]; //event Name
+//        UIImageView *taggedEventImageView = (UIImageView*) [cell viewWithTag:101];// Event icon ImageVIew
+//        UIImageView *taggedLargeImageView = (UIImageView*) [cell viewWithTag:102];// Event ImageViewLarge
+//        UIImageView *taggedAdultIconView = (UIImageView*) [cell viewWithTag:103];//Adult Icon
+//        UIImageView *taggedChildIconView = (UIImageView*) [cell viewWithTag:104];//child Icon
+         UILabel *taggedSmallDateLabel =(UILabel*) [cell viewWithTag:205];
+        taggedSmallDateLabel.text=_smallDateLabel.text;
         
         
     }

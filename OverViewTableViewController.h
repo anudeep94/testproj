@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *fromMonthLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toDateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *toMonthLabel;
+@property (weak, nonatomic) IBOutlet UILabel *smallDateLabel;
 
 @property(nonatomic) NSString *fromPlace;
 @property(nonatomic)NSString *toPlace;
