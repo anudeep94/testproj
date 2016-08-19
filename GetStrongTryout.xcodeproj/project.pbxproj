@@ -30,7 +30,6 @@
 		84F769121D2E559000DEF5FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84F769101D2E559000DEF5FC /* LaunchScreen.storyboard */; };
 		84F7691B1D2E5CA700DEF5FC /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */; };
 		84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */; };
-		84F769211D2E6AC800DEF5FC /* OTPViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F769201D2E6AC800DEF5FC /* OTPViewController.m */; };
 		84F9398F1D34E84B0053C9EA /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84F9398E1D34E84B0053C9EA /* HomeViewController.m */; };
 		84F975C41D51E84500CC5391 /* Back-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F975C31D51E84500CC5391 /* Back-50.png */; };
 		84F975C61D51E84D00CC5391 /* Forward-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84F975C51D51E84D00CC5391 /* Forward-50.png */; };
@@ -103,8 +102,6 @@
 		84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		84F7691C1D2E5CBD00DEF5FC /* SignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignupViewController.h; path = ../SignupViewController.h; sourceTree = "<group>"; };
 		84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignupViewController.m; path = ../SignupViewController.m; sourceTree = "<group>"; };
-		84F7691F1D2E6AC800DEF5FC /* OTPViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OTPViewController.h; path = ../OTPViewController.h; sourceTree = "<group>"; };
-		84F769201D2E6AC800DEF5FC /* OTPViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OTPViewController.m; path = ../OTPViewController.m; sourceTree = "<group>"; };
 		84F9398D1D34E84B0053C9EA /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeViewController.h; path = ../HomeViewController.h; sourceTree = "<group>"; };
 		84F9398E1D34E84B0053C9EA /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeViewController.m; path = ../HomeViewController.m; sourceTree = "<group>"; };
 		84F975C31D51E84500CC5391 /* Back-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Back-50.png"; sourceTree = "<group>"; };
@@ -216,8 +213,6 @@
 				84F7691A1D2E5CA700DEF5FC /* LoginViewController.m */,
 				84F7691C1D2E5CBD00DEF5FC /* SignupViewController.h */,
 				84F7691D1D2E5CBD00DEF5FC /* SignupViewController.m */,
-				84F7691F1D2E6AC800DEF5FC /* OTPViewController.h */,
-				84F769201D2E6AC800DEF5FC /* OTPViewController.m */,
 			);
 			name = Initial;
 			sourceTree = "<group>";
@@ -395,7 +390,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FD276F1D5B41EE008B83D5 /* OverViewTableViewController.m in Sources */,
-				84F769211D2E6AC800DEF5FC /* OTPViewController.m in Sources */,
 				84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */,
 				84F7690D1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld in Sources */,
 				84FBBE6C1D422C6F00CF1A31 /* ChallengeViewController.m in Sources */,

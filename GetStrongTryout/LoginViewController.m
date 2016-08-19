@@ -12,7 +12,13 @@
 
 #define baseURL @"https://www.yatramantra.com/kerala"
 
-@interface LoginViewController () <UITextFieldDelegate>
+@interface LoginViewController () <UITextFieldDelegate> {
+    NSString *mailId;
+    NSString *password;
+    NSArray *groups;
+    NSString *loginStatus;
+    NSDictionary *jsonDic, *jsonDic1;
+}
 
 
 @property (weak, nonatomic) AppDelegate *appDelegate;
@@ -21,8 +27,7 @@
 @end
 
 @implementation LoginViewController
-NSString *mailId;
-NSArray *groups;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -32,10 +37,7 @@ NSArray *groups;
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startFetchingNonce:)
-                                                 name:@"kCLAuthorizationStatusAuthorized"
-                                               object:nil];
+   
     
 }
 
@@ -43,75 +45,109 @@ NSArray *groups;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (void)startFetchingNonce:(NSNotification *)notification
-{
-    NSString *urlAsString = [NSString stringWithFormat:@"%@", baseURL];
-    NSURL *url = [[NSURL alloc] initWithString:urlAsString];
+- (IBAction)loginGreenButtonPressed:(id)sender {
     
-    NSLog(@"%@", urlAsString);
+    //[_loginButton1 sendActionsForControlEvents:UIControlEventTouchUpInside];
+    //[_loginButton1 performSelector:@selector(startFetchingNonce:) withObject:nil afterDelay:0.25];
     
     
-    [NSURLConnection sendAsynchronousRequest:[[NSURLRequest alloc] initWithURL:url] queue:[[NSOperationQueue alloc] init] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-        if ([data length] >0 && error == nil)
-        {
-            
-//            [self receivedData:data];
-            
-        }
-        else if ([data length] == 0 && error == nil)
-        {
-            NSLog(@"Nothing was downloaded.");
-        }
-        else if (error != nil){
-            NSLog(@"Error = %@", error);
-        }
-    
-    
-    }];
-    
-}
--(void) fetchingNonceFailedWithError:(NSError *)error
-{
-    [self fetchingNonceFailedWithError:error];
-}
-
-//-(void)receivedData:(NSData *)objectNotation
-//{
-//    NSError *error=nil;
-//    NSArray *receivedGroups=[LoginViewController dataFromServer:objectNotation error:&error];
-//    
-//    if(error !=nil)
-//    {
-//        [self fetchingNonceFailedWithError:error];
-//    }else{
+    if([_mailLabel.text isEqualToString:@""] || [_passwordLabel.text isEqualToString:@""] ){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                        message:@"Forgot to Enter Mail Id/Password."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        
+        mailId= _mailLabel.text;
+        password=_passwordLabel.text;
+        //    UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+        //                                                         message:@"Login Successful."
+        //                                                        delegate:self
+        //                                               cancelButtonTitle:@"OK"
+        //                                               otherButtonTitles:nil];
+        //    [loginAlert show];
+        
+        
+        
+        
+        
+        
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"isLogin"];
 //        
-//        [self didReceiveGroups:receivedGroups];
-//    }
-//}
+//        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
+//        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+//        [appDelegate.window setRootViewController:vC];
+        [self verifyUser];
+    }
 
-//+(NSString *)dataFromServer:(NSData *)objectNotation error:(NSError **) error{
-//    NSError *localError = nil;
-////    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:objectNotation options:0 error:&localError];//Converts the JSON content, make it readable for the compiler.
-////    
-////    if (localError != nil) {
-////        *error = localError;
-////        return nil;
-////    }
-//    
-//  //  return
-//}
-
-
-
-- (void)didReceiveGroups:(NSArray *)receivedGroups
-{
-    dispatch_async(dispatch_get_main_queue(), ^{
-        groups = receivedGroups;
-       
-    });
-    //Reloads New data into the the table view.
+   
 }
+
+- (void)verifyUser
+{
+    NSString *urlString = [NSString stringWithFormat:
+                  @"https://www.yatramantra.com/kerala/usermanager/user/generate_auth_cookie/?username=%@&password=%@", mailId, password];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               else{
+                                   NSError *error = nil;
+                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   
+                                   if (error != nil) {
+                                       NSLog(@"Error parsing JSON.");
+                                   }
+                                   else {
+                                       NSLog(@"Array: %@", jsonDic);
+                                       loginStatus= [jsonDic valueForKey:@"status"];
+                                       
+                                       if ([loginStatus isEqualToString:@"ok"]) {
+                                           
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               UIAlertView *loginAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                                                                    message:@"Login Successful."
+                                                                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                               [loginAlert show];
+                                               [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"isLogin"];
+                                               
+                                               UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                               UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
+                                               AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+                                               [appDelegate.window setRootViewController:vC];
+                                           });
+                                           
+                                           
+                                       }
+                                       else{
+                                           UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                                                           message:@"Wrong Username/Password!"
+                                                                                          delegate:self
+                                                                                 cancelButtonTitle:@"OK"
+                                                                                 otherButtonTitles:nil];
+                                           [alert show];
+                                       }
+                                       
+                                   }
+                               
+                               }
+                           }];
+    
+    
+}
+
 - (IBAction)loginAction:(id)sender {
     
     
@@ -138,18 +174,74 @@ NSArray *groups;
         
         
         
-        [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"isLogin"];
-        
-        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-        UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
-        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
-        [appDelegate.window setRootViewController:vC];
+//        [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"isLogin"];
+//        
+//        UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+//        UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
+//        AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+//        [appDelegate.window setRootViewController:vC];
     
     }
 }
 - (IBAction)signupPressedAtLogin:(id)sender {
 [self performSegueWithIdentifier:@"signupButtonSegue" sender:nil];    
 }
+
+
+- (IBAction)forgotPasswordPressed:(id)sender {
+    
+    if([_mailLabel.text isEqualToString:@""]){
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                        message:@"Forgot to Enter Mail Id."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
+    else{
+        mailId=_mailLabel.text;
+        
+        NSString *urlString = [NSString stringWithFormat:
+                               @"https://www.yatramantra.com/kerala/usermanager/user/retrieve_password/?user_login=%@", mailId];
+        
+        NSURL *url = [[NSURL alloc] initWithString:urlString];
+        
+        NSURLRequest *request = [NSURLRequest requestWithURL:url];
+        //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+        NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+        [NSURLConnection sendAsynchronousRequest:request
+                                           queue:queue
+                               completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                                   if (error) {
+                                       NSLog(@"error:%@", error.localizedDescription);
+                                   }
+                                   else{
+                                       NSError *error = nil;
+                                       jsonDic1 = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                       
+                                       if (error != nil) {
+                                           NSLog(@"Error parsing JSON.");
+                                       }
+                                       else {
+                                           NSLog(@"Array: %@", jsonDic1);
+                                           loginStatus= [jsonDic valueForKey:@"status"];
+                                            NSString *message;
+                                           if ([loginStatus isEqualToString:@"ok"]) {
+                                               message= @"NewPassword sent you Mail Id.";
+                                           }
+                                            else{
+                                               message= @"Wrong Username";
+                                                }
+                                           // dispatch
+                                       }
+                                       
+                                   }
+                               }];
+        
+        
+    }
+}
+
 
 //- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{
 //}
