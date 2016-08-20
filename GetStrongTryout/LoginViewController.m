@@ -16,8 +16,9 @@
     NSString *mailId;
     NSString *password;
     NSArray *groups;
-    NSString *loginStatus;
+    NSString *loginStatus, *cookie , *cookieName;
     NSDictionary *jsonDic, *jsonDic1;
+    NSDictionary *detailsDic;
 }
 
 
@@ -113,6 +114,11 @@
                                    else {
                                        NSLog(@"Array: %@", jsonDic);
                                        loginStatus= [jsonDic valueForKey:@"status"];
+                                       detailsDic=[jsonDic valueForKey:@"user"];
+                                       cookie=[jsonDic valueForKey:@"cookie"];
+                                       cookieName=[jsonDic valueForKey:@"cookie_name"];
+                                       NSLog(@"User Details: %@", detailsDic);
+                                       NSLog(@"cookie: %@ cookie Nme: %@",cookie, cookieName);
                                        
                                        if ([loginStatus isEqualToString:@"ok"]) {
                                            
@@ -221,24 +227,27 @@
                                        
                                        if (error != nil) {
                                            NSLog(@"Error parsing JSON.");
-                                       }
+                                                }
                                        else {
                                            NSLog(@"Array: %@", jsonDic1);
-                                           loginStatus= [jsonDic valueForKey:@"status"];
+                                           loginStatus= [jsonDic1 valueForKey:@"status"];
                                             NSString *message;
                                            if ([loginStatus isEqualToString:@"ok"]) {
                                                message= @"NewPassword sent you Mail Id.";
                                            }
                                             else{
-                                               message= @"Wrong Username";
+                                               message= @"Wrong Username.";
                                                 }
-                                           // dispatch
+                                           dispatch_async(dispatch_get_main_queue(), ^{
+                                               UIAlertView *mailIDAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                                                                    message:[NSString stringWithFormat:@"%@",message]
+                                                                                                   delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                               [mailIDAlert show];
+                                          });
+                                           NSLog(@"Message :%@",message);
                                        }
-                                       
                                    }
                                }];
-        
-        
     }
 }
 

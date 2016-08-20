@@ -13,6 +13,7 @@
 		844349A31D53258A00CBDCF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844349A21D53258A00CBDCF3 /* MapKit.framework */; };
 		84459F751D5AF13D00D72171 /* Pulikali.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84459F741D5AF13D00D72171 /* Pulikali.jpg */; };
 		8448AB521D45F8A900486EA2 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448AB511D45F8A900486EA2 /* TableViewCell.m */; };
+		844A9FEB1D68301B005F6312 /* FirstPGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A9FEA1D68301B005F6312 /* FirstPGViewController.m */; };
 		844D13A61D49D1E200F22B52 /* AppChildViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844D13A51D49D1E200F22B52 /* AppChildViewController.m */; };
 		848F0B601D4C8D8100F62845 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 848F0B5F1D4C8D8100F62845 /* ContactViewController.m */; };
 		84B2F8BF1D3F3BFA004D6B95 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */; };
@@ -74,6 +75,8 @@
 		84459F741D5AF13D00D72171 /* Pulikali.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Pulikali.jpg; path = ../../../Downloads/Pulikali.jpg; sourceTree = "<group>"; };
 		8448AB501D45F8A900486EA2 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ../TableViewCell.h; sourceTree = "<group>"; };
 		8448AB511D45F8A900486EA2 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ../TableViewCell.m; sourceTree = "<group>"; };
+		844A9FE91D68301B005F6312 /* FirstPGViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FirstPGViewController.h; path = ../FirstPGViewController.h; sourceTree = "<group>"; };
+		844A9FEA1D68301B005F6312 /* FirstPGViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FirstPGViewController.m; path = ../FirstPGViewController.m; sourceTree = "<group>"; };
 		844D13A41D49D1E200F22B52 /* AppChildViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppChildViewController.h; sourceTree = "<group>"; };
 		844D13A51D49D1E200F22B52 /* AppChildViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppChildViewController.m; sourceTree = "<group>"; };
 		848F0B5E1D4C8D8100F62845 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 				84F769081D2E559000DEF5FC /* Main.storyboard */,
 				84F769051D2E559000DEF5FC /* ViewController.h */,
 				84F769061D2E559000DEF5FC /* ViewController.m */,
+				844A9FE91D68301B005F6312 /* FirstPGViewController.h */,
+				844A9FEA1D68301B005F6312 /* FirstPGViewController.m */,
 				84F9398D1D34E84B0053C9EA /* HomeViewController.h */,
 				84F9398E1D34E84B0053C9EA /* HomeViewController.m */,
 				84B2F8C31D3F3DDA004D6B95 /* SidebarViewController.h */,
@@ -407,6 +412,7 @@
 				8448AB521D45F8A900486EA2 /* TableViewCell.m in Sources */,
 				84F9398F1D34E84B0053C9EA /* HomeViewController.m in Sources */,
 				84FBBE6F1D422C9B00CF1A31 /* AttendanceViewController.m in Sources */,
+				844A9FEB1D68301B005F6312 /* FirstPGViewController.m in Sources */,
 				84E078001D51BE90001C6105 /* OnedayTripViewController.m in Sources */,
 				844349A11D5319A100CBDCF3 /* WhereToMapviewViewController.m in Sources */,
 			);

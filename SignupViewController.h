@@ -10,7 +10,6 @@
 
 @interface SignupViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UITextField *mailLabel;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *signupButton;
 @property (weak, nonatomic) IBOutlet UITextField *passwordField;
 
 @property (weak, nonatomic) IBOutlet UITextField *nameLabel;
