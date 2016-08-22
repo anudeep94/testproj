@@ -19,6 +19,9 @@
     NSString *loginStatus, *cookie , *cookieName;
     NSDictionary *jsonDic, *jsonDic1;
     NSDictionary *detailsDic;
+    NSUserDefaults *detailsUser;
+    NSData *datas;
+    
 }
 
 
@@ -118,6 +121,17 @@
                                        cookie=[jsonDic valueForKey:@"cookie"];
                                        cookieName=[jsonDic valueForKey:@"cookie_name"];
                                        NSLog(@"User Details: %@", detailsDic);
+                                       
+                                       datas= [NSKeyedArchiver archivedDataWithRootObject:detailsDic];
+                                       NSLog(@"NSData Values :%@",datas);
+                                       /// pasing values to controller uisng NSUserDefault
+                                       [[NSUserDefaults standardUserDefaults] setObject:mailId forKey:@"MailID"];
+                                       [[NSUserDefaults standardUserDefaults] setObject:datas forKey:@"MyStrings"];
+                                       [[NSUserDefaults standardUserDefaults] setObject:cookie forKey:@"cookie"];
+                                       [[NSUserDefaults standardUserDefaults] setObject:cookieName forKey:@"cookiename"];
+                                       [[NSUserDefaults standardUserDefaults] synchronize];
+                                       
+                                       
                                        NSLog(@"cookie: %@ cookie Nme: %@",cookie, cookieName);
                                        
                                        if ([loginStatus isEqualToString:@"ok"]) {
@@ -133,6 +147,8 @@
                                                UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
                                                AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
                                                [appDelegate.window setRootViewController:vC];
+                                               
+                                               
                                            });
                                            
                                            
@@ -250,6 +266,15 @@
                                }];
     }
 }
+
+
+
+- (IBAction)fbLoginPressed:(id)sender {
+    
+    
+}
+
+
 
 
 //- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender{

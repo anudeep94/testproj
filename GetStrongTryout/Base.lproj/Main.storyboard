@@ -110,20 +110,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="feC-LV-GwG">
-                                <rect key="frame" x="71" y="498" width="178" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.19466662570000001" green="0.29306925919999999" blue="0.58827715970000005" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="facebook">
-                                    <color key="titleColor" red="0.96803419499999999" green="0.96803419499999999" blue="0.96803419499999999" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="or" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fEA-bR-o31">
                                 <rect key="frame" x="139" y="469" width="42" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -173,6 +159,23 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="0.44099069148936171" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="feC-LV-GwG">
+                                <rect key="frame" x="71" y="498" width="178" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19466662570000001" green="0.29306925919999999" blue="0.58827715970000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="facebook">
+                                    <color key="titleColor" red="0.96803419499999999" green="0.96803419499999999" blue="0.96803419499999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fbSignupAction:" destination="U8I-gn-5AR" eventType="touchUpInside" id="HwV-ip-ehP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -220,20 +223,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R99-Kw-qWK">
-                                <rect key="frame" x="71" y="402" width="178" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.19466662573821719" green="0.29306925922512889" blue="0.58827715968586392" alpha="1" colorSpace="calibratedRGB"/>
-                                <state key="normal" title="facebook">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="16"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="iaN-y2-Q0i">
                                 <rect key="frame" x="0.0" y="519" width="160" height="49"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -293,6 +282,23 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="0.44099069149999998" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="R99-Kw-qWK">
+                                <rect key="frame" x="71" y="402" width="178" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.19466662573821719" green="0.29306925922512889" blue="0.58827715968586392" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="facebook">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.maskToBounds" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="fbLoginPressed:" destination="tXI-Ip-kf4" eventType="touchUpInside" id="mrt-yS-tHj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -650,20 +656,8 @@
                                 <rect key="frame" x="8" y="72" width="305" height="489"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" id="50r-np-ILv">
-                                        <rect key="frame" x="96" y="230" width="173" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone" textAlignment="natural" minimumFontSize="17" id="v5S-YC-XmC">
                                         <rect key="frame" x="96" y="278" width="173" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" id="qqi-Ix-95k">
-                                        <rect key="frame" x="96" y="379" width="173" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -683,6 +677,9 @@
                                         <state key="normal" title="Done">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="doneButtonPressed:" destination="gS3-it-nck" eventType="touchUpInside" id="zX9-nI-EWl"/>
+                                        </connections>
                                     </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jiI-hV-etE">
                                         <rect key="frame" x="58" y="230" width="30" height="30"/>
@@ -709,6 +706,18 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </imageView>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" id="50r-np-ILv">
+                                        <rect key="frame" x="96" y="230" width="173" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" id="qqi-Ix-95k">
+                                        <rect key="frame" x="96" y="379" width="173" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
@@ -719,6 +728,11 @@
                         <barButtonItem key="leftBarButtonItem" image="menu icon" id="Gvi-sO-2yO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="Iad-Y7-y35" id="VhR-fc-Zcy"/>
+                        <outlet property="locationField" destination="qqi-Ix-95k" id="WBp-Lc-AST"/>
+                        <outlet property="mailLabel" destination="OhR-h6-55X" id="s7d-h9-17O"/>
+                        <outlet property="nameTxtField" destination="50r-np-ILv" id="TMO-St-hLR"/>
+                        <outlet property="phnTxtField" destination="v5S-YC-XmC" id="d9D-h1-VTS"/>
                         <outlet property="sidebarButton" destination="Gvi-sO-2yO" id="Hia-BY-5FD"/>
                     </connections>
                 </viewController>
@@ -1171,7 +1185,7 @@
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="0.099872562060000003" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="date" rowHeight="112" id="Nk5-dV-sUQ">
-                                        <rect key="frame" x="0.0" y="92" width="320" height="112"/>
+                                        <rect key="frame" x="0.0" y="28" width="320" height="112"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Nk5-dV-sUQ" id="hU4-GW-EDB">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="112"/>
@@ -1276,7 +1290,7 @@
                                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.099872562060000003" colorSpace="calibratedRGB"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="activities" rowHeight="165" id="HYQ-nY-eKX">
-                                        <rect key="frame" x="0.0" y="204" width="320" height="165"/>
+                                        <rect key="frame" x="0.0" y="140" width="320" height="165"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HYQ-nY-eKX" id="syC-Wg-1bH">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="165"/>
@@ -1389,7 +1403,7 @@
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="0.099872562060000003" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="coupon" rowHeight="80" id="EoB-9t-iDE">
-                                        <rect key="frame" x="0.0" y="369" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="305" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EoB-9t-iDE" id="xyV-fR-5Sa">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
@@ -1444,7 +1458,7 @@
                                         <color key="backgroundColor" white="0.66666666669999997" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="total" rowHeight="80" id="Xah-Sv-9f3">
-                                        <rect key="frame" x="0.0" y="449" width="320" height="80"/>
+                                        <rect key="frame" x="0.0" y="385" width="320" height="80"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Xah-Sv-9f3" id="dM3-Ds-NCf">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>

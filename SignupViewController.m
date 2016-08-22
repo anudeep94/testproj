@@ -7,12 +7,15 @@
 //
 
 #import "SignupViewController.h"
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+#import "AppDelegate.h"
 
 
 @interface SignupViewController () <UITextFieldDelegate>{
     NSString *name, *mailId, *pin;
     NSDictionary *jsonDic1, *jsonDic2;
-    
+    NSString *fbToken;
     NSString *userNonce;
 }
 
@@ -127,17 +130,72 @@
                                    }
                                    else {
                                       NSLog(@"Array: %@", jsonDic2);
-                                                                        }
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           UIAlertView *signupAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                                                                 message:@"SignUp Successful."
+                                                                                                delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                                           [signupAlert show];
+                                           [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"isLogin"];
+                                           
+                                           UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                                           UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
+                                           AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+                                           [appDelegate.window setRootViewController:vC];
+                                       });
+  }
                                    
                                }
                            }];
 
 
 }
+- (IBAction)fbSignupAction:(id)sender {
+    
+    [_fbButtonForSignup
+     addTarget:self
+     action:@selector(loginButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+}
+
+-(void)loginButtonClicked
+{
+    FBSDKLoginManager *login = [[FBSDKLoginManager alloc] init];
+    [login
+     logInWithReadPermissions: @[@"public_profile"]
+     fromViewController:self
+     handler:^(FBSDKLoginManagerLoginResult *result, NSError *error) {
+         if (error) {
+             NSLog(@"Process error");
+         } else if (result.isCancelled) {
+             NSLog(@"Cancelled");
+         } else {
+             NSLog(@"Logged in");
+             
+             //FBSDKAccessToken *accessToken = result.token;
+             NSLog(@"Token :%@",result.token.tokenString);
+             fbToken=result.token.tokenString;
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 UIAlertView *signupAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                                      message:@"SignUp Successful."
+                                                                     delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                 [signupAlert show];
+                 [[NSUserDefaults standardUserDefaults] setBool:YES forKey: @"isLogin"];
+                 
+                 UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+                 UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
+                 AppDelegate *appDelegate = (AppDelegate *) [[UIApplication sharedApplication] delegate];
+                 [appDelegate.window setRootViewController:vC];
+             });
+
+             
+         }
+     }];
+}
+
 
 
 //- (IBAction)signupAction:(id)sender {
-//    
+//
 //    if([_nameLabel.text isEqualToString:@""] || [_mailLabel.text isEqualToString:@""]){
 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Message"
 //                                                        message:@"Forgot to Enter Name/Number."

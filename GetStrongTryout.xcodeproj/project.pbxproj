@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		843CFE311D6AD24F00836F13 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843CFE2D1D6AD24F00836F13 /* FBSDKCoreKit.framework */; };
+		843CFE321D6AD24F00836F13 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843CFE2E1D6AD24F00836F13 /* Bolts.framework */; };
+		843CFE331D6AD24F00836F13 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843CFE2F1D6AD24F00836F13 /* FBSDKShareKit.framework */; };
+		843CFE341D6AD24F00836F13 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 843CFE301D6AD24F00836F13 /* FBSDKLoginKit.framework */; };
 		8443499B1D53001600CBDCF3 /* GoogleMaps.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8443499A1D53001600CBDCF3 /* GoogleMaps.framework */; };
 		8443499D1D5300E000CBDCF3 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8443499C1D5300E000CBDCF3 /* GoogleMaps.bundle */; };
 		844349A11D5319A100CBDCF3 /* WhereToMapviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */; };
@@ -67,6 +71,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		843CFE2D1D6AD24F00836F13 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		843CFE2E1D6AD24F00836F13 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		843CFE2F1D6AD24F00836F13 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		843CFE301D6AD24F00836F13 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		8443499A1D53001600CBDCF3 /* GoogleMaps.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GoogleMaps.framework; path = "../../Downloads/5a212b0fa429156f-GoogleMaps-2.0.1/Subspecs/Maps/Frameworks/GoogleMaps.framework"; sourceTree = "<group>"; };
 		8443499C1D5300E000CBDCF3 /* GoogleMaps.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = "../../Downloads/5a212b0fa429156f-GoogleMaps-2.0.1/Subspecs/Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle"; sourceTree = "<group>"; };
 		8443499F1D5319A100CBDCF3 /* WhereToMapviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhereToMapviewViewController.h; path = ../WhereToMapviewViewController.h; sourceTree = "<group>"; };
@@ -156,20 +164,24 @@
 				8443499B1D53001600CBDCF3 /* GoogleMaps.framework in Frameworks */,
 				84F975F41D5200A600CC5391 /* libc++.1.dylib in Frameworks */,
 				84F975F21D52008000CC5391 /* libz.1.dylib in Frameworks */,
+				843CFE311D6AD24F00836F13 /* FBSDKCoreKit.framework in Frameworks */,
 				84F975F01D51FF6400CC5391 /* UIKit.framework in Frameworks */,
 				84F975EE1D51FF5B00CC5391 /* SystemConfiguration.framework in Frameworks */,
+				843CFE331D6AD24F00836F13 /* FBSDKShareKit.framework in Frameworks */,
 				84F975EC1D51FF4D00CC5391 /* QuartzCore.framework in Frameworks */,
 				84F975EA1D51FF4000CC5391 /* OpenGLES.framework in Frameworks */,
 				84F975E81D51FF1200CC5391 /* ImageIO.framework in Frameworks */,
 				84F975E61D51FF0600CC5391 /* GLKit.framework in Frameworks */,
 				84F975E41D51FEFA00CC5391 /* CoreText.framework in Frameworks */,
 				84F975E21D51FEEF00CC5391 /* CoreLocation.framework in Frameworks */,
+				843CFE341D6AD24F00836F13 /* FBSDKLoginKit.framework in Frameworks */,
 				84F975E01D51FEE300CC5391 /* CoreGraphics.framework in Frameworks */,
 				84F975DE1D51FED500CC5391 /* CoreData.framework in Frameworks */,
 				84F975DC1D51FEC700CC5391 /* Accelerate.framework in Frameworks */,
 				84F975D21D51FCA600CC5391 /* GooglePlaces.framework in Frameworks */,
 				84F975CE1D51FC3900CC5391 /* GooglePlacePicker.framework in Frameworks */,
 				84F975D01D51FC6500CC5391 /* GoogleMapsBase.framework in Frameworks */,
+				843CFE321D6AD24F00836F13 /* Bolts.framework in Frameworks */,
 				84F975D61D51FCF800CC5391 /* GoogleMaps.framework in Frameworks */,
 				84F975D41D51FCE800CC5391 /* GoogleMapsCore.framework in Frameworks */,
 			);
@@ -181,6 +193,10 @@
 		8443499E1D53143D00CBDCF3 /* FrameWork and Others */ = {
 			isa = PBXGroup;
 			children = (
+				843CFE2D1D6AD24F00836F13 /* FBSDKCoreKit.framework */,
+				843CFE2E1D6AD24F00836F13 /* Bolts.framework */,
+				843CFE2F1D6AD24F00836F13 /* FBSDKShareKit.framework */,
+				843CFE301D6AD24F00836F13 /* FBSDKLoginKit.framework */,
 				844349A21D53258A00CBDCF3 /* MapKit.framework */,
 				84F975CD1D51FC3900CC5391 /* GooglePlacePicker.framework */,
 				84F975CF1D51FC6500CC5391 /* GoogleMapsBase.framework */,
@@ -529,6 +545,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GetStrongTryout",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = GetStrongTryout/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -546,6 +563,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GetStrongTryout",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = GetStrongTryout/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

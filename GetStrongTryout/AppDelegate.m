@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 @import GooglePlacePicker;
 @import GoogleMaps;
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
 //#import "LoginViewController.h"
 
 
@@ -28,6 +29,8 @@
         UIViewController *vC = [storyBoard instantiateViewControllerWithIdentifier:@"revealViewController"];
         
         [self.window setRootViewController:vC];
+        
+        
     }
     // pagecontrol dot color change
     UIPageControl *pageControl = [UIPageControl appearance];
@@ -39,8 +42,24 @@
     [GMSServices provideAPIKey:@"AIzaSyDP0AL3kU8pFkAYe-T_pNLp_qAQjoAcPrU"];
     
     
+    //For FBLogin
+    [FBSDKAppEvents activateApp];
+    [[FBSDKApplicationDelegate sharedInstance] application:application
+                             didFinishLaunchingWithOptions:launchOptions];
+    
     return YES;
 }
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation {
+    return [[FBSDKApplicationDelegate sharedInstance] application:application
+                                                          openURL:url
+                                                sourceApplication:sourceApplication
+                                                       annotation:annotation];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
