@@ -64,7 +64,9 @@
     NSString *url2 = [NSString stringWithFormat:
                       @"https://www.yatramantra.com/kerala/usermanager/user/update_user_meta_vars/?cookie=%@&display_name=%@&billing_phone=%@&billing_country=%@",cookie,username,phnNmbr,location];
     
-    NSURL *url21 = [[NSURL alloc] initWithString:url2];
+    NSString *percentEscapedString = [url2 stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    
+    NSURL *url21 = [[NSURL alloc] initWithString:percentEscapedString];
     NSURLRequest *request2 = [NSURLRequest requestWithURL:url21];
     //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
     NSOperationQueue *queue2 = [[NSOperationQueue alloc]init];
@@ -97,7 +99,6 @@
                                    
                                }
                            }];
-    
     
 }
 
