@@ -10,9 +10,9 @@
 #import "SWRevealViewController.h"
 
 @interface CheatdaysViewController (){
-    NSDictionary *detailsDic, *jsonDic2;
+    NSDictionary *detailsDic, *jsonDic,*jsonDic2, *jsonDic3;
     NSData *datas;
-    NSString *cookie, *cookieName, *phnNmbr, *username,*mailID,*location;
+    NSString *cookie, *cookieName, *phnNmbr, *username,*mailID,*location, *pin;
 }
 
 
@@ -37,6 +37,7 @@
     }
     
     mailID = [[NSUserDefaults standardUserDefaults] objectForKey:@"MailID"];
+    pin=[[NSUserDefaults standardUserDefaults] objectForKey:@"password"];
     _mailLabel.text=mailID;
     datas = [[NSUserDefaults standardUserDefaults] objectForKey:@"MyStrings"];
     NSLog(@"Details@MyAccount :%@",datas);
@@ -46,6 +47,7 @@
     NSLog(@"recieved details:%@",detailsDic);
     NSLog(@"recievedCookie: %@",cookie);
     NSLog(@"recieveddCookieName :%@",cookieName);
+    [self uploadingExistingUserdetails];
     
     
 }
@@ -83,7 +85,7 @@
                                    jsonDic2 = [NSJSONSerialization JSONObjectWithData:data2
                                                                               options:NSJSONReadingAllowFragments
                                                                                 error:&error2];
-                                   
+                                  // [[NSUserDefaults standardUserDefaults] setObject:json2 forKey:@"cookiename"];
                                    if (error2 != nil) {
                                        NSLog(@"Error parsing JSON.");
                                    }
@@ -101,6 +103,10 @@
                            }];
     
 }
+
+
+
+
 
 
 - (IBAction)doneButtonPressed:(id)sender {
@@ -122,7 +128,42 @@
     
 }
 
+-(void) uploadingExistingUserdetails{
 
+    NSString *urlString = [NSString stringWithFormat:
+                           @"https://www.yatramantra.com/kerala/usermanager/user/generate_auth_cookie/?username=%@&password=%@", mailID, pin];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               else{
+                                   NSError *error = nil;
+                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   
+                                   if (error != nil) {
+                                       NSLog(@"Error parsing JSON.");
+                                   }
+                                   else {
+                                     
+                                       NSLog(@"new Details: %@", jsonDic);
+                                       jsonDic3=[jsonDic valueForKey:@"user"];
+
+                                    dispatch_async(dispatch_get_main_queue(), ^{
+                                    _nameTxtField.placeholder=[jsonDic3 valueForKey:@"displayname"];
+                                    
+                                    });
+                                   }
+                               }
+                               }];
+}
 /*
 #pragma mark - Navigation
 

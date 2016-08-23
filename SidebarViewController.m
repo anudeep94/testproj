@@ -128,7 +128,7 @@
             }
             case 7:
             {
-                taggedLabel.text = @"About";
+                taggedLabel.text = @"Feedback";
                 taggedImageView.backgroundColor= [UIColor magentaColor];
                 break;
             }

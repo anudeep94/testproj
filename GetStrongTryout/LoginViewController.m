@@ -126,6 +126,7 @@
                                        NSLog(@"NSData Values :%@",datas);
                                        /// pasing values to controller uisng NSUserDefault
                                        [[NSUserDefaults standardUserDefaults] setObject:mailId forKey:@"MailID"];
+                                       [[NSUserDefaults standardUserDefaults] setObject:password forKey:@"password"];
                                        [[NSUserDefaults standardUserDefaults] setObject:datas forKey:@"MyStrings"];
                                        [[NSUserDefaults standardUserDefaults] setObject:cookie forKey:@"cookie"];
                                        [[NSUserDefaults standardUserDefaults] setObject:cookieName forKey:@"cookiename"];

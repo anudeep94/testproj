@@ -10,5 +10,9 @@
 
 @interface WorkoutTipsViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UIButton *callRequestButton;
+@property (weak, nonatomic) IBOutlet UITextField *subTxtField;
+@property (weak, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UIButton *callButton;
 
 @end

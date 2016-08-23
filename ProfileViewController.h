@@ -10,5 +10,8 @@
 
 @interface ProfileViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
+@property (weak, nonatomic) IBOutlet UITextView *feedbackTextView;
+@property (weak, nonatomic) IBOutlet UIButton *ratingButton;
 
+@property (weak, nonatomic) IBOutlet UIButton *sendDataButton;
 @end

@@ -9,7 +9,10 @@
 #import "ProfileViewController.h"
 #import "SWRevealViewController.h"
 
-@interface ProfileViewController ()
+@interface ProfileViewController (){
+
+    UIView *rateView;
+}
 
 @end
 
@@ -31,12 +34,19 @@
         [self.sidebarButton setAction: @selector( revealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
-
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     }
+- (IBAction)ratePressed:(id)sender {
+    
+    rateView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, self.view.frame.size.height)];
+}
+- (IBAction)sentPressed:(id)sender {
+    
+    
+}
 
 /*
 #pragma mark - Navigation
