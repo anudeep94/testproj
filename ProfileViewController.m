@@ -9,9 +9,13 @@
 #import "ProfileViewController.h"
 #import "SWRevealViewController.h"
 
-@interface ProfileViewController (){
+@interface ProfileViewController ()<UITextViewDelegate>{
 
-    UIView *rateView;
+    UIView  *fakeView;
+    NSString *rateSelected;
+    int flag;
+    NSString *cookie, *message;
+    
 }
 
 @end
@@ -26,7 +30,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
     
-    
+    flag=0;
     SWRevealViewController *revealViewController = self.revealViewController;
     if ( revealViewController )
     {
@@ -34,28 +38,112 @@
         [self.sidebarButton setAction: @selector( revealToggle: )];
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
+    _rateView.hidden=YES;
+    cookie=[[NSUserDefaults standardUserDefaults] objectForKey:@"cookie"];
+    _feedbackTextView.delegate=self;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     }
+
+
 - (IBAction)ratePressed:(id)sender {
     
-    rateView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, self.view.frame.size.height)];
+    _rateView.hidden=NO;
+    UITapGestureRecognizer *tapGesture= [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapped:)];
+    fakeView = [[UIView alloc] initWithFrame:self.view.frame];
+    [self.view addSubview:fakeView];
+    [fakeView addSubview:_rateView];
+    [fakeView addGestureRecognizer:tapGesture];
+//    _rateView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, self.view.frame.size.height)];
+    
+    
+    
+}
+- (IBAction)excePressed:(id)sender {
+    rateSelected =[_exceButton titleForState:UIControlStateNormal];
+    [_ratingButton setTitle: rateSelected forState: UIControlStateNormal];
+    flag++;
+     [fakeView removeFromSuperview];
+    
+}
+- (IBAction)goodPressed:(id)sender {
+    rateSelected =[_goodButton titleForState:UIControlStateNormal];
+    [_ratingButton setTitle: rateSelected forState: UIControlStateNormal];
+    flag++;
+     [fakeView removeFromSuperview];
+}
+- (IBAction)satPressed:(id)sender {
+    rateSelected =[_satButton titleForState:UIControlStateNormal];
+    [_ratingButton setTitle: rateSelected forState: UIControlStateNormal];
+    flag++;
+    [fakeView removeFromSuperview];
+}
+- (IBAction)notBadPressed:(id)sender {
+    rateSelected =[_notBadButton titleForState:UIControlStateNormal];
+    [_ratingButton setTitle: rateSelected forState: UIControlStateNormal];
+    flag++;
+     [fakeView removeFromSuperview];
+}
+- (IBAction)needPresssed:(id)sender {
+    rateSelected =[_needBUtton titleForState:UIControlStateNormal];
+    [_ratingButton setTitle: rateSelected forState: UIControlStateNormal];
+    flag++;
+     [fakeView removeFromSuperview];
 }
 - (IBAction)sentPressed:(id)sender {
     
+    if (flag==0) {
+        UIAlertView *rateAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                            message:@"Forgot to enter Rating/message"
+                                                           delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [rateAlert show];
+    }
+    else
+    {
+     flag=0;
+        message=_feedbackTextView.text;
+        NSString *strupload=[NSString stringWithFormat:@"sub=%@&msg=%@&type=feedback",rateSelected, message];
+        NSString *strurl=[NSString stringWithFormat:
+                          @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_support"];
+        //NSString *strpostlength=[NSString stringWithFormat:@"%d",[strupload length]];
+        NSMutableURLRequest *urlrequest=[[NSMutableURLRequest alloc]init];
+        
+        [urlrequest setURL:[NSURL URLWithString:strurl]];
+        [urlrequest setHTTPMethod:@"POST"];
+        [urlrequest setValue:cookie forHTTPHeaderField:@"Authorization"];
+        [urlrequest setHTTPBody:[strupload dataUsingEncoding:NSUTF8StringEncoding]];
+        
+        [NSURLConnection sendAsynchronousRequest:urlrequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+         {
+             NSError *error1;
+             NSDictionary *res=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error1];
+             
+             NSLog(@"res dicitionary: %@",res);
+             
+             dispatch_async(dispatch_get_main_queue(), ^{
+                 [_ratingButton setTitle: @"Rate" forState: UIControlStateNormal];
+             _feedbackTextView.text=@"";
+             UIAlertView *feedbackAlert = [[UIAlertView alloc] initWithTitle:@"Message"
+                                                                     message:@"FeedBack sent.\n Thank You"
+                                                                    delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+             [feedbackAlert show];
+             
+              });
+         }];
+        
+        
+        }
+
     
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)tapped:(UITapGestureRecognizer*) sender
+{
+    
+    [fakeView removeFromSuperview];
 }
-*/
+
 
 @end

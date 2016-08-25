@@ -8,7 +8,12 @@
 
 #import "AppChildViewController.h"
 
-@interface AppChildViewController ()
+@interface AppChildViewController (){
+    NSArray *contentData;
+    NSDictionary *contentDic1, *contentDic2, *contentDic3;
+    NSString *imageName;
+    UIImage *imageForBG;
+}
 
 @end
 
@@ -35,8 +40,28 @@
         _descriptLabel.frame=descriptLabelFrame;
        
     }
-    UIImage *img1 = [UIImage imageNamed:@"KL.jpg"];
-    [_bgImageView setImage:img1];
+//    UIImage *img1 = [UIImage imageNamed:@"KL.jpg"];
+//    [_bgImageView setImage:img1];
+    
+    contentData=[[NSUserDefaults standardUserDefaults] objectForKey:@"AppInitData"];
+    contentDic1= contentData[0];
+    contentDic2=contentData[1];
+    contentDic3=contentData[2];
+    
+    
+    if (self.index ==0) {
+        _descriptLabel.text= [contentDic1 valueForKey:@"content"];
+        NSURL *imagUrl=[contentDic1 valueForKey:@"img"];
+       _bgImageView.image = [UIImage imageWithCIImage:[CIImage imageWithContentsOfURL:imagUrl]];
+        _titleLabel.text=[contentDic1 valueForKey:@"heading"];
+    }
+    else if (self.index ==1){
+    
+    }
+    else if(self.index == 2){
+    
+    }
+    
 }
 
 - (void)didReceiveMemoryWarning {

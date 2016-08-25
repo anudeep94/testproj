@@ -13,6 +13,8 @@
 
 @interface HomeViewController ()<UIPageViewControllerDelegate> {
     NSInteger currentIndex;
+    NSDictionary *jsonDic, *mainData, *stateDic1, *stateDic2, *dataDic;
+    NSArray *states;
 }
 
 @end
@@ -65,7 +67,81 @@ BOOL buttonCurrentStatus;
     [self.view bringSubviewToFront:self.pageControl];
     [self.pageControl setNumberOfPages:3];
     // self.screenTitle.text = [NSString stringWithFormat:@"%@", _pageTitles[(long)self.index]];
+    
+    
+    NSString *urlString = [NSString stringWithFormat:
+                           @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_init"];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               else{
+                                   NSError *error = nil;
+                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   
+                                   if (error != nil) {
+                                       NSLog(@"Error parsing JSON.");
+                                   }
+                                   else {
+                                    //   NSArray *keyArray = jsonDic.allKeys;
+                                      // NSLog(@"DicKeys : %@",keyArray);
+//                                       
+//                                       for (NSString *key in keyArray) {
+//                                           stateDic1= [jsonDic valueForKeyPath:key];
+//                                           dataDic= [stateDic1 valueForKey:@"data"];
+//                                           NSLog(@"stateData : %@",stateDic1);
+//                                           NSLog(@"DicData : %@",dataDic);
+//                                           
+//                                           
+//                                          
+//                                      }
+                                       
+                                       
+                                       for (NSString *aKey in [jsonDic allKeys]) {
+                                           NSDictionary *aValue = [jsonDic valueForKey:aKey];
+                                           NSLog(@"Key : %@", aKey);
+                                           NSLog(@"Value : %@", aValue);
+                                           
+                                           // Extract individual values
+                                          // NSLog(@"Author : %@", [aValue objectForKey:@"data"]);
+                                           NSArray *dataArray= [aValue objectForKey:@"data"];
+                                           NSLog(@"data Array : %@",dataArray);
+                                           // If the titles are dynamic
+                                           //for (NSString *aSubKey in [aValue allKeys]) {
+                                              // NSString *aSubValue = [aValue objectForKey:aSubKey];
+                                               NSDictionary *value1 = dataArray[1];
+                                               NSLog(@" !!****** %@",value1);
+                                           
+                                           [[NSUserDefaults standardUserDefaults] setObject:dataArray forKey:@"AppInitData"];
+                                           
+                                             //  NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
+                                           }
+                                       }
+                                       
+                                       
+                                       
+                                       //NSString *keyString =[NSString stringWithFormat:@"%@.data",keyArray[1]];
+                                       //NSLog(@"Data to be loaded: %@", jsonDic);
+                                       
+                                       //stateDic2= [jsonDic valueForKeyPath:@"%@.data",keyArray[1]];
+                                       
+//                                       dispatch_async(dispatch_get_main_queue(), ^{
+//                                           _nameTxtField.placeholder=[jsonDic3 valueForKey:@"displayname"];
+//                                           
+//                                       });
+                                   }
+                               }
+                           }];
 }
+
 
 
 - (AppChildViewController *)viewControllerAtIndex:(NSUInteger)index

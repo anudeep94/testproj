@@ -12,6 +12,16 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sidebarButton;
 @property (weak, nonatomic) IBOutlet UITextView *feedbackTextView;
 @property (weak, nonatomic) IBOutlet UIButton *ratingButton;
+@property (weak, nonatomic) IBOutlet UIButton *exceButton;
+@property (weak, nonatomic) IBOutlet UIButton *goodButton;
+@property (weak, nonatomic) IBOutlet UIButton *satButton;
+@property (weak, nonatomic) IBOutlet UIButton *notBadButton;
+@property (weak, nonatomic) IBOutlet UIButton *needBUtton;
+@property (weak, nonatomic) IBOutlet UIView *rateView;
+
+
+
+
 
 @property (weak, nonatomic) IBOutlet UIButton *sendDataButton;
 @end

@@ -87,7 +87,7 @@
 //                           }];
         
         
-        NSString *strupload=[NSString stringWithFormat:@"sub=%@&msg=%@",sub, message];
+        NSString *strupload=[NSString stringWithFormat:@"sub=%@&msg=%@&type=support",sub, message];
         NSString *strurl=[NSString stringWithFormat:
                                                   @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_support"];
         //NSString *strpostlength=[NSString stringWithFormat:@"%d",[strupload length]];
