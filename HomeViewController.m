@@ -91,7 +91,8 @@ BOOL buttonCurrentStatus;
                                        NSLog(@"Error parsing JSON.");
                                    }
                                    else {
-                                    //   NSArray *keyArray = jsonDic.allKeys;
+                                      NSArray *keyArray = jsonDic.allKeys;
+                                
                                       // NSLog(@"DicKeys : %@",keyArray);
 //                                       
 //                                       for (NSString *key in keyArray) {
@@ -99,31 +100,28 @@ BOOL buttonCurrentStatus;
 //                                           dataDic= [stateDic1 valueForKey:@"data"];
 //                                           NSLog(@"stateData : %@",stateDic1);
 //                                           NSLog(@"DicData : %@",dataDic);
-//                                           
-//                                           
-//                                          
 //                                      }
                                        
                                        
                                        for (NSString *aKey in [jsonDic allKeys]) {
                                            NSDictionary *aValue = [jsonDic valueForKey:aKey];
-                                           NSLog(@"Key : %@", aKey);
-                                           NSLog(@"Value : %@", aValue);
+                                          // NSLog(@"Key : %@", aKey);
+                                          // NSLog(@"Value : %@", aValue);
                                            
                                            // Extract individual values
                                           // NSLog(@"Author : %@", [aValue objectForKey:@"data"]);
                                            NSArray *dataArray= [aValue objectForKey:@"data"];
-                                           NSLog(@"data Array : %@",dataArray);
-                                           // If the titles are dynamic
-                                           //for (NSString *aSubKey in [aValue allKeys]) {
+                                          // NSLog(@"data Array : %@",dataArray);
+                                            //If the titles are dynamic
+                                          // for (NSString *aSubKey in [aValue allKeys]) {
                                               // NSString *aSubValue = [aValue objectForKey:aSubKey];
-                                               NSDictionary *value1 = dataArray[1];
-                                               NSLog(@" !!****** %@",value1);
+                                              // NSDictionary *value1 = dataArray[1];
+                                              // NSLog(@" !!****** %@",value1);
                                            
                                            [[NSUserDefaults standardUserDefaults] setObject:dataArray forKey:@"AppInitData"];
                                            
                                              //  NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
-                                           }
+                                         //  }
                                        }
                                        
                                        
@@ -141,6 +139,7 @@ BOOL buttonCurrentStatus;
                                }
                            }];
 }
+
 
 
 
