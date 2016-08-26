@@ -54,6 +54,13 @@ UILabel* smallDate;
     UIImage *img3 = [UIImage imageNamed:@"Car Filled-50.png"];
     [_modImage setImage:img3];
   //  [formatter release];
+    
+    NSDictionary *fromloc=[[NSUserDefaults standardUserDefaults] objectForKey:@"StartLocation"];
+    CLLocation *fromLat;
+    NSInteger *coordinate=[fromloc objectForKey:@"lat"];
+//    fromLat.coordinate.latitude=coordinate;
+//    fromLat.coordinate.longitude=[fromloc objectForKey:@"lng"];
+    
 }
 
 - (void)didReceiveMemoryWarning {
