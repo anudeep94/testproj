@@ -24,7 +24,11 @@
 @property(nonatomic)NSString *toSnippet;
 @property(nonatomic) GMSPlace *place;
 
+@property(nonatomic) NSString *fromAddress;
+@property(nonatomic) NSString *toAddress;
+
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideButton;
 
 
 @end
+

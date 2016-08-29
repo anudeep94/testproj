@@ -13,6 +13,14 @@
 
 @interface OnedayTripViewController ()<GMSAutocompleteViewControllerDelegate> {
     UIView *datePickerView;
+    GMSPlacePicker *_placePicker;
+    NSString *pickedPlace;
+    NSString *pickedPlace2;
+    UILabel* smallDate;
+    NSString *toAddress, *fromAddress;
+    NSDictionary* jsonDic;
+
+    
     
 }
 
@@ -24,10 +32,6 @@ int tagFlag=0;
 
 
 @implementation OnedayTripViewController
-GMSPlacePicker *_placePicker;
-NSString *pickedPlace;
-NSString *pickedPlace2;
-UILabel* smallDate;
 
 
 - (void)viewDidLoad {
@@ -56,8 +60,10 @@ UILabel* smallDate;
   //  [formatter release];
     
     NSDictionary *fromloc=[[NSUserDefaults standardUserDefaults] objectForKey:@"StartLocation"];
-    CLLocation *fromLat;
-    NSInteger *coordinate=[fromloc objectForKey:@"lat"];
+    NSLog(@"StartLocation = %@",fromloc);
+    CLLocation *fromLat=[[CLLocation alloc]init];
+    NSData *coordinate=[fromloc objectForKey:@"lat"];
+   // fromLat.coordinate.latitude= [[CLLocation alloc] initWithLatitude:coordinate longitude:-36.6462520];
 //    fromLat.coordinate.latitude=coordinate;
 //    fromLat.coordinate.longitude=[fromloc objectForKey:@"lng"];
     
@@ -95,6 +101,8 @@ UILabel* smallDate;
         //controller.toSnippet=__
         controller.toLocation=_location2;
         controller.fromLocation=_location;
+        controller.fromAddress=fromAddress;
+        controller.toAddress=toAddress;
         
         OverViewTableViewController *controller1= tabBarController.viewControllers[1];
         controller1.fromDateLabel=_dateLabel;
@@ -179,6 +187,7 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     if(viewController.view.tag ==121){
         [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _fromPlace=place;
+        fromAddress=place.formattedAddress;
         pickedPlace2=pickedPlace;
         //_fromSnippet=place.snippet;
 //        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
@@ -190,13 +199,64 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     if(viewController.view.tag ==122){
         [_toButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _toPlace=place;
+        toAddress=place.formattedAddress;
         _location2 = [[CLLocation alloc] initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
+        [self fetchDistanceFromGoogleAPI];
         
     }
 }
 
 
+-(void) fetchDistanceFromGoogleAPI{
 
+    NSString *urlString = [NSString stringWithFormat:
+                           @"http://maps.googleapis.com/maps/api/distancematrix/json?origins=%@&destinations=%@&language=en-EN&sensor=false",pickedPlace2, pickedPlace];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               else{
+                                   NSError *error = nil;
+                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   
+                                   if (error != nil) {
+                                       NSLog(@"Error parsing JSON.");
+                                   }
+                                   else {
+                                       
+                                       NSLog(@" Travel Details: %@", jsonDic);
+                                       [[NSUserDefaults standardUserDefaults] setObject:jsonDic forKey:@"TravelDetailsDic"];
+                                       NSArray *dicKeys= [jsonDic allKeys];
+                                       NSLog(@"keys :%@",dicKeys);
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           NSDictionary *travelArray= [jsonDic objectForKey:@"rows"];
+                                          
+                                           for (NSString *aKey in [travelArray allKeys]) {
+                                               NSDictionary *aValue = [jsonDic valueForKey:aKey];
+                                               NSLog(@"Key : %@", aKey);
+                                               NSLog(@"Value : %@", aValue);
+                                               NSArray *dataArray= [aValue objectForKey:@"rows"];
+                                               for (NSString *aSubKey in [aValue allKeys]) {
+                                                   NSString *aSubValue = [aValue objectForKey:aSubKey];
+                                                   NSDictionary *value1 = dataArray[1];
+                                                   NSLog(@" !!****** %@",value1);
+                                                   NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
+                                                    }
+                                           }
+                                       });
+                                   }
+                               }
+                           }];
+
+}
 
 - (void)viewController:(GMSAutocompleteViewController *)viewController
 didFailAutocompleteWithError:(NSError *)error {
@@ -223,6 +283,7 @@ didFailAutocompleteWithError:(NSError *)error {
     aCController.delegate = self;
     aCController.view.tag=_toButton.tag;
     [self presentViewController:aCController animated:YES completion:nil];
+    
 }
 
 - (IBAction)calenderPressed:(id)sender {
