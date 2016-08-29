@@ -237,20 +237,20 @@ didAutocompleteWithPlace:(GMSPlace *)place {
                                        NSArray *dicKeys= [jsonDic allKeys];
                                        NSLog(@"keys :%@",dicKeys);
                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                           NSDictionary *travelArray= [jsonDic objectForKey:@"rows"];
-                                          
-                                           for (NSString *aKey in [travelArray allKeys]) {
-                                               NSDictionary *aValue = [jsonDic valueForKey:aKey];
-                                               NSLog(@"Key : %@", aKey);
-                                               NSLog(@"Value : %@", aValue);
-                                               NSArray *dataArray= [aValue objectForKey:@"rows"];
-                                               for (NSString *aSubKey in [aValue allKeys]) {
-                                                   NSString *aSubValue = [aValue objectForKey:aSubKey];
-                                                   NSDictionary *value1 = dataArray[1];
-                                                   NSLog(@" !!****** %@",value1);
-                                                   NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
-                                                    }
-                                           }
+                                           NSArray *travelArray= [jsonDic objectForKey:@"rows"];
+                                        //************** Problem here***************///
+//                                           for (NSString *aKey in [travelArray allKeys]) {
+//                                               NSDictionary *aValue = [jsonDic valueForKey:aKey];
+//                                               NSLog(@"Key : %@", aKey);
+//                                               NSLog(@"Value : %@", aValue);
+//                                               NSArray *dataArray= [aValue objectForKey:@"rows"];
+//                                               for (NSString *aSubKey in [aValue allKeys]) {
+//                                                   NSString *aSubValue = [aValue objectForKey:aSubKey];
+//                                                   NSDictionary *value1 = dataArray[1];
+//                                                   NSLog(@" !!****** %@",value1);
+//                                                   NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
+//                                                    }
+//                                           }
                                        });
                                    }
                                }
