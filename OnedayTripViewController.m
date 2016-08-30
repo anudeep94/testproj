@@ -61,8 +61,8 @@ int tagFlag=0;
     
     NSDictionary *fromloc=[[NSUserDefaults standardUserDefaults] objectForKey:@"StartLocation"];
     NSLog(@"StartLocation = %@",fromloc);
-    CLLocation *fromLat=[[CLLocation alloc]init];
-    NSData *coordinate=[fromloc objectForKey:@"lat"];
+//    CLLocation *fromLat=[[CLLocation alloc]init];
+//    NSData *coordinate=[fromloc objectForKey:@"lat"];
    // fromLat.coordinate.latitude= [[CLLocation alloc] initWithLatitude:coordinate longitude:-36.6462520];
 //    fromLat.coordinate.latitude=coordinate;
 //    fromLat.coordinate.longitude=[fromloc objectForKey:@"lng"];
@@ -87,6 +87,59 @@ int tagFlag=0;
             [alert show];
             
         }
+    
+    [self googleMapRouteDrawing];
+    
+    
+    
+    
+}
+
+-(void) googleMapRouteDrawing{
+
+    NSString *urlString = [NSString stringWithFormat:
+                           @"https://maps.googleapis.com/maps/api/directions/json?origin=%@&destination=%@",pickedPlace2,pickedPlace];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               else{
+                                   NSError *error = nil;
+                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   
+                                   if (error != nil) {
+                                       NSLog(@"Error parsing JSON.");
+                                   }
+                                   else {
+                                       NSLog(@"MapRoute data : %@",jsonDic);
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           
+                                           
+                                        NSArray *routeArray =[jsonDic objectForKey:@"routes"];
+                                        NSDictionary *innerDict= [routeArray objectAtIndex:0];
+                                        NSDictionary *overViewPolyLine= [innerDict objectForKey:@"overview_polyline"];
+                                        NSLog(@"poyline String :%@",overViewPolyLine);
+                                                             
+                                        NSString *polyLineString =[overViewPolyLine objectForKey:@"points"];
+                                        [[NSUserDefaults standardUserDefaults] setObject:polyLineString forKey:@"overview_polyline_string"]; ////
+                                           
+                                       });
+                                   }
+                               }
+                           }];
+
+
+
+
+
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
@@ -237,20 +290,24 @@ didAutocompleteWithPlace:(GMSPlace *)place {
                                        NSArray *dicKeys= [jsonDic allKeys];
                                        NSLog(@"keys :%@",dicKeys);
                                        dispatch_async(dispatch_get_main_queue(), ^{
-                                           NSArray *travelArray= [jsonDic objectForKey:@"rows"];
-                                        //************** Problem here***************///
-//                                           for (NSString *aKey in [travelArray allKeys]) {
-//                                               NSDictionary *aValue = [jsonDic valueForKey:aKey];
-//                                               NSLog(@"Key : %@", aKey);
-//                                               NSLog(@"Value : %@", aValue);
-//                                               NSArray *dataArray= [aValue objectForKey:@"rows"];
-//                                               for (NSString *aSubKey in [aValue allKeys]) {
-//                                                   NSString *aSubValue = [aValue objectForKey:aSubKey];
-//                                                   NSDictionary *value1 = dataArray[1];
-//                                                   NSLog(@" !!****** %@",value1);
-//                                                   NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
-//                                                    }
-//                                           }
+                                               if (jsonDic) {
+                                               NSArray *extraData = jsonDic[@"rows"];
+                                               for (NSDictionary *innerDict in extraData) {
+
+                                                       NSArray *valueStr = innerDict[@"elements"];
+                                                        for (NSDictionary *elementDic in valueStr) {
+                                                       NSDictionary *distanceDic=[elementDic objectForKey:@"distance"];
+                                                       NSLog(@"DistanceDic : %@",distanceDic);
+                                                        [[NSUserDefaults standardUserDefaults] setObject:distanceDic forKey:@"DistanceDic"];
+                                                       NSDictionary *durationDic= [elementDic objectForKey:@"duration"];
+                                                        NSLog(@"DurationDic : %@",durationDic);
+                                                        [[NSUserDefaults standardUserDefaults] setObject:durationDic forKey:@"DurationDic"];
+                                                            _travelTimeLabel.text=[durationDic objectForKey:@"text"];
+                                                            _travelDistanceLabel.text=[distanceDic objectForKey:@"text"];
+                                                            
+                                                   }
+                                               }
+                                           }
                                        });
                                    }
                                }

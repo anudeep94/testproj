@@ -1109,18 +1109,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5q5-yt-bJZ">
-                                        <rect key="frame" x="8" y="340" width="302" height="55"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.3921568627" green="0.83137254900000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
-                                        <state key="normal" title="Explore">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="pressPlan:" destination="dQ3-eH-KaF" eventType="touchUpInside" id="lOk-M5-sOL"/>
-                                        </connections>
-                                    </button>
                                     <view contentMode="scaleToFill" id="LdL-hj-m4G">
                                         <rect key="frame" x="11" y="112" width="299" height="141"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
@@ -1148,7 +1136,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="3hr 35mins" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="906-rE-8Lz">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Travel Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="906-rE-8Lz">
                                                 <rect key="frame" x="190" y="77" width="91" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
@@ -1161,13 +1149,6 @@
                                                 <color key="backgroundColor" red="0.93470748394735692" green="0.97671680906858638" blue="0.97671680906858638" alpha="1" colorSpace="calibratedRGB"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.54000000000000004" colorSpace="calibratedRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="130.4km" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3QJ-Nd-xSQ">
-                                                <rect key="frame" x="190" y="99" width="91" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="oiH-Dl-uEg">
@@ -1205,9 +1186,28 @@
                                                     <action selector="startPressed:" destination="dQ3-eH-KaF" eventType="touchUpInside" id="F0V-YL-J2P"/>
                                                 </connections>
                                             </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Distance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="3QJ-Nd-xSQ">
+                                                <rect key="frame" x="190" y="98" width="91" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="5q5-yt-bJZ">
+                                        <rect key="frame" x="8" y="340" width="302" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.3921568627" green="0.83137254900000002" blue="0.4823529412" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
+                                        <state key="normal" title="Explore">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="pressPlan:" destination="dQ3-eH-KaF" eventType="touchUpInside" id="lOk-M5-sOL"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.087393025546832398" green="0.30834833115183247" blue="0.0" alpha="0.24897495567375885" colorSpace="calibratedRGB"/>
                             </view>
@@ -1227,6 +1227,8 @@
                         <outlet property="onedayBGImage" destination="J8w-xB-x8s" id="8gt-aE-Mku"/>
                         <outlet property="planButton" destination="5q5-yt-bJZ" id="375-ys-ed8"/>
                         <outlet property="toButton" destination="656-Ra-3Kh" id="lYR-Ol-drW"/>
+                        <outlet property="travelDistanceLabel" destination="3QJ-Nd-xSQ" id="tL3-FT-Jp4"/>
+                        <outlet property="travelTimeLabel" destination="906-rE-8Lz" id="iCV-DV-ylQ"/>
                         <segue destination="HIC-64-TNV" kind="push" identifier="exploreSegue" id="3xM-4e-b2D"/>
                     </connections>
                 </viewController>

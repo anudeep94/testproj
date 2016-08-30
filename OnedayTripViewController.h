@@ -23,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *fromButton;
 @property (weak, nonatomic) IBOutlet UIButton *toButton;
 @property (weak, nonatomic) IBOutlet UIButton *calenderButton;
+@property (weak, nonatomic) IBOutlet UILabel *travelTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *travelDistanceLabel;
+
 
 @property (nonatomic) UIBarButtonItem *rightBtn;
 @property (nonatomic) UIDatePicker *datePicker;

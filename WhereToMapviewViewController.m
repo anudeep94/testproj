@@ -17,15 +17,16 @@
     UIView *fakeView;
     UITapGestureRecognizer *outTap;
     int i,j;
+    GMSMapView *mapView;
+    UILabel *numChild;
+    UILabel *numAdult;
     
 }
 
 @end
 
 @implementation WhereToMapviewViewController
- GMSMapView *mapView;
-UILabel *numChild;
-UILabel *numAdult;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,8 +47,8 @@ UILabel *numAdult;
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:_fromLocation.coordinate.latitude
                                                             longitude:_fromLocation.coordinate.longitude
                                                                  zoom:8];
-    
-    mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];
+    mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];//old code #
+    mapView.camera = camera;
     mapView.myLocationEnabled = YES;
     [self.view addSubview: mapView];
     
@@ -62,8 +63,30 @@ UILabel *numAdult;
     marker.map = mapView;
     marker2.title = _toPlace.name;
     marker2.userData = @"dest";
+    
+    //marker2.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
+    marker2.icon = [UIImage imageNamed:@"destIcon"];
     marker2.map = mapView;
     mapView.delegate=self;
+    
+    
+    //////**********Drawing PolyLines **************//////
+    
+    
+    //overview_polyline_string
+    
+    NSString *pathString =[[NSUserDefaults standardUserDefaults] objectForKey:@"overview_polyline_string"];
+    GMSPath *path = [GMSPath pathFromEncodedPath:pathString];
+    GMSPolyline *polyline = [GMSPolyline polylineWithPath:path];
+    polyline.strokeWidth = 6.f;
+    polyline.spans = @[[GMSStyleSpan spanWithColor:[UIColor colorWithRed:0.000 green:0.702 blue:0.992 alpha:1.00]]];
+    polyline.geodesic = YES;
+    polyline.map = mapView;
+    
+    
+    
+    
+    [self getPointsOfInterests];
     
 }
 
@@ -72,6 +95,53 @@ UILabel *numAdult;
     // Dispose of any resources that can be recreated.
 }
 
+-(void) getPointsOfInterests{
+
+    NSString *urlString = [NSString stringWithFormat:
+                           @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=dayplanlist&lat=7.55&long=77.55"];
+    
+    NSURL *url = [[NSURL alloc] initWithString:urlString];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:queue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               if (error) {
+                                   NSLog(@"error:%@", error.localizedDescription);
+                               }
+                               else{
+                                   NSError *error = nil;
+                                   NSArray *jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   
+                                   if (error != nil) {
+                                       NSLog(@"Error parsing JSON.");
+                                   }
+                                   else {
+                                       NSLog(@"POI data : %@",jsonDic);
+                                       dispatch_async(dispatch_get_main_queue(), ^{
+                                           
+                                           for (NSDictionary *poiDic in jsonDic) {
+                                               
+                                           
+                                               GMSMarker *poiMarker=    [[GMSMarker alloc] init];
+                                               NSString *poiLatString= [poiDic objectForKey:@"lat"];
+                                               NSString *poiLongString=[poiDic objectForKey:@"long"];
+                                               CLLocationCoordinate2D pinlocation;
+                                               pinlocation.latitude = [poiLatString doubleValue];
+                                               pinlocation.longitude =[poiLongString doubleValue];
+                                               poiMarker.position =  CLLocationCoordinate2DMake(pinlocation.latitude, pinlocation.longitude);
+                                              // poiMarker.icon = [poiMarker.icon scaledToSize:CGSizeMake(3.0f, 3.0f)];
+                                               poiMarker.map = mapView;
+                                           }
+                                           
+                                           
+                                    });
+                                   }
+                               }
+                           }];
+}
 
 -(void)tapped:(UITapGestureRecognizer*) sender
 {
