@@ -59,6 +59,7 @@
         NSData *urlContent = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:urlContent];
         [_bgImageView setImage:img];
+        [[NSUserDefaults standardUserDefaults] setObject:urlContent forKey:@"PCImageURL"];
         _titleLabel.text=[contentDic1 valueForKey:@"heading"];
         _screenNumber.text=[contentDic1 valueForKey:@"mainheading"];
         //[_titleLabel sizeToFit];
@@ -68,8 +69,10 @@
         _descriptLabel.text= [contentDic2 valueForKey:@"content"];
         imageURL= [contentDic2 valueForKey:@"img"];
         NSURL *url = [NSURL URLWithString:imageURL];
+        
         NSData *urlContent = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:urlContent];
+        [[NSUserDefaults standardUserDefaults] setObject:urlContent forKey:@"PCImageURL"];
         [_bgImageView setImage:img];
         _titleLabel.text=[contentDic2 valueForKey:@"heading"];
         _screenNumber.text=[contentDic2 valueForKey:@"mainheading"];
@@ -81,6 +84,7 @@
         NSURL *url = [NSURL URLWithString:imageURL];
         NSData *urlContent = [NSData dataWithContentsOfURL:url];
         UIImage *img = [[UIImage alloc] initWithData:urlContent];
+        [[NSUserDefaults standardUserDefaults] setObject:urlContent forKey:@"PCImageURL"];
         [_bgImageView setImage:img];
         _titleLabel.text=[contentDic3 valueForKey:@"heading"];
         _screenNumber.text=[contentDic3 valueForKey:@"mainheading"];

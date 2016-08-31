@@ -20,6 +20,10 @@
     GMSMapView *mapView;
     UILabel *numChild;
     UILabel *numAdult;
+    NSDictionary *poiDic, *poiDic2;
+    NSArray *jsonDic;
+    GMSMarker *markerSource, *markerDest;
+    NSString *imageURL;
     
 }
 
@@ -46,27 +50,28 @@
    
     GMSCameraPosition *camera = [GMSCameraPosition cameraWithLatitude:_fromLocation.coordinate.latitude
                                                             longitude:_fromLocation.coordinate.longitude
-                                                                 zoom:8];
+                                                                 zoom:9];
     mapView = [GMSMapView mapWithFrame:self.view.frame camera:camera];//old code #
     mapView.camera = camera;
     mapView.myLocationEnabled = YES;
     [self.view addSubview: mapView];
     
     // Creates a marker in the center of the map.
-    GMSMarker *marker = [[GMSMarker alloc] init];
-    marker.position = CLLocationCoordinate2DMake(_fromLocation.coordinate.latitude, _fromLocation.coordinate.longitude);
-    GMSMarker *marker2 = [[GMSMarker alloc] init];
-    marker2.position = CLLocationCoordinate2DMake(_toPlace.coordinate.latitude, _toPlace.coordinate.longitude);
+    markerSource = [[GMSMarker alloc] init];
+    markerSource.position = CLLocationCoordinate2DMake(_fromLocation.coordinate.latitude, _fromLocation.coordinate.longitude);
+    markerSource.icon = [UIImage imageNamed:@"soruceIcon"];
+    markerDest = [[GMSMarker alloc] init];
+    markerDest.position = CLLocationCoordinate2DMake(_toPlace.coordinate.latitude, _toPlace.coordinate.longitude);
     
-    marker.title = _fromPlace.name;
-    marker.userData = @"source";
-    marker.map = mapView;
-    marker2.title = _toPlace.name;
-    marker2.userData = @"dest";
+    markerSource.title = _fromPlace.name;
+    markerSource.userData = @"source";
+    markerSource.map = mapView;
+    markerDest.title = _toPlace.name;
+    markerDest.userData = @"dest";
     
     //marker2.icon = [GMSMarker markerImageWithColor:[UIColor blackColor]];
-    marker2.icon = [UIImage imageNamed:@"destIcon"];
-    marker2.map = mapView;
+    markerDest.icon = [UIImage imageNamed:@"destIcon"];
+    markerDest.map = mapView;
     mapView.delegate=self;
     
     
@@ -83,7 +88,7 @@
     polyline.geodesic = YES;
     polyline.map = mapView;
     
-    
+    poiDic2=[[NSUserDefaults standardUserDefaults] objectForKey:@"POI"];
     
     
     [self getPointsOfInterests];
@@ -113,7 +118,7 @@
                                }
                                else{
                                    NSError *error = nil;
-                                   NSArray *jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
                                    
                                    if (error != nil) {
                                        NSLog(@"Error parsing JSON.");
@@ -122,25 +127,96 @@
                                        NSLog(@"POI data : %@",jsonDic);
                                        dispatch_async(dispatch_get_main_queue(), ^{
                                            
-                                           for (NSDictionary *poiDic in jsonDic) {
+                                           for (poiDic in jsonDic) {
                                                
-                                           
+                                               
+                                                   
+                                               [[NSUserDefaults standardUserDefaults] setObject:poiDic forKey:@"POI"];
                                                GMSMarker *poiMarker=    [[GMSMarker alloc] init];
                                                NSString *poiLatString= [poiDic objectForKey:@"lat"];
                                                NSString *poiLongString=[poiDic objectForKey:@"long"];
                                                CLLocationCoordinate2D pinlocation;
                                                pinlocation.latitude = [poiLatString doubleValue];
                                                pinlocation.longitude =[poiLongString doubleValue];
+                                               //poiMarker.position =  CLLocationCoordinate2DMake(pinlocation.latitude, pinlocation.longitude);
+                                               CLLocation *positionPin=[[CLLocation alloc] initWithLatitude:pinlocation.latitude longitude:pinlocation.longitude];
+                                               NSString *type = [poiDic  objectForKey:@"type"];
+                                               
+//                                               if ([poiMarker.userData isEqualToString:@""])
+//                                               {
+                                               
+                                               
                                                poiMarker.position =  CLLocationCoordinate2DMake(pinlocation.latitude, pinlocation.longitude);
+                                               
+                                               CLLocation *fromLocation = [[CLLocation alloc] initWithLatitude:_fromPlace.coordinate.latitude longitude:_fromPlace.coordinate.longitude];
+                                               float distance = [fromLocation distanceFromLocation:positionPin];
+                                               float threshold = 50; // Or whatever you like
+                                               if(distance <= threshold) {
+                                                   // You are at the bonus location.
+                                                   poiMarker.position =  CLLocationCoordinate2DMake(pinlocation.latitude+.0001, pinlocation.longitude);                                               }
+                                               CLLocation *toLocation = [[CLLocation alloc] initWithLatitude:_toPlace.coordinate.latitude longitude:_toPlace.coordinate.longitude];
+                                               distance = [toLocation distanceFromLocation:positionPin];
+                                               if(distance <= threshold) {
+                                                   // You are at the bonus location.
+                                                   poiMarker.position =  CLLocationCoordinate2DMake(pinlocation.latitude+.0001, pinlocation.longitude);
+                                               }
+                                               
+                                               if([type isEqualToString:@"place"]){
+                                               
+                                                   poiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
+                                                   poiMarker.map = mapView;
+                                                   poiMarker.userData=type;
+
+                                               }
+                                              else if([type isEqualToString:@"event"])
+                                               {
+                                                   poiMarker.icon = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
+                                                   poiMarker.map = mapView;
+                                                   poiMarker.userData=type;
+                                                   
+                                               }
+                                              else if ([type isEqualToString:@"activity"]){
+                                                  poiMarker.icon = [GMSMarker markerImageWithColor:[UIColor yellowColor]];
+                                                  poiMarker.map = mapView;
+                                                  poiMarker.userData=type;
+                                              }
+                                               
+                                               }
                                               // poiMarker.icon = [poiMarker.icon scaledToSize:CGSizeMake(3.0f, 3.0f)];
-                                               poiMarker.map = mapView;
-                                           }
+                                                                                             //poiMarker.icon = [self image:poiMarker.icon scaledToSize:CGSizeMake(10.0f, 10.0f)];
+                                        
+                                           //}
                                            
                                            
                                     });
                                    }
                                }
                            }];
+}
+
+
+//////***************Method to scale image*****************//
+
+- (UIImage *)image:(UIImage*)originalImage scaledToSize:(CGSize)size
+{
+    //avoid redundant drawing
+    if (CGSizeEqualToSize(originalImage.size, size))
+    {
+        return originalImage;
+    }
+    
+    //create drawing context
+    UIGraphicsBeginImageContextWithOptions(size, NO, 0.0f);
+    
+    //draw
+    [originalImage drawInRect:CGRectMake(0.0f, 0.0f, size.width, size.height)];
+    
+    //capture resultant image
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    //return image
+    return image;
 }
 
 -(void)tapped:(UITapGestureRecognizer*) sender
@@ -171,160 +247,247 @@
         UIButton *moreButton = [[UIButton alloc] initWithFrame:CGRectMake(0,250,markerInfoView.frame.size.width/2,45)];
     
     
-    if ([marker.userData isEqualToString:@"source"])
-    {
-        UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
-        UIImageView *overView2 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
-        [overView2 setBackgroundColor:[UIColor blackColor]];
-        overView2.alpha = 0.3;
-        markerInfoImage.image=[UIImage imageNamed:@"KL.jpg"];
-        [markerInfoView addSubview:markerInfoImage];
-        [markerInfoImage addSubview:overView2];
-        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
-        markerInfoView.layer.masksToBounds = NO;
-        markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
-        markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
-        markerInfoView.layer.shadowOpacity = 0.3f;
-        markerInfoView.layer.shadowPath = shadowPath.CGPath;
+        if ([marker.userData isEqualToString:@"source"])
+        {
+            UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
+            UIImageView *overView2 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
+            [overView2 setBackgroundColor:[UIColor blackColor]];
+            overView2.alpha = 0.3;
+            markerInfoImage.image=[UIImage imageNamed:@"KL.jpg"];
+            [markerInfoView addSubview:markerInfoImage];
+            [markerInfoImage addSubview:overView2];
+            UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
+            markerInfoView.layer.masksToBounds = NO;
+            markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
+            markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+            markerInfoView.layer.shadowOpacity = 0.3f;
+            markerInfoView.layer.shadowPath = shadowPath.CGPath;
    
-        [myButton setTitle:@"Add to Trip" forState:UIControlStateNormal];
-        [myButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [markerInfoView addSubview:myButton];
-        [moreButton setTitle:@"More" forState:UIControlStateNormal];
-        [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [markerInfoView addSubview:moreButton];
-        UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,205,markerInfoView.frame.size.width,45)];
-        [markerInfoView addSubview:infoLabel];
-        infoLabel.textAlignment = NSTextAlignmentRight;
-        infoLabel.textColor = [UIColor darkGrayColor];
-        infoLabel.font = [UIFont systemFontOfSize:16];
-        infoLabel.text=@"Opening Time 6am";
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25)];
-        titleLabel.textColor = [UIColor whiteColor];
-        [markerInfoView addSubview:titleLabel];
-        titleLabel.textAlignment = NSTextAlignmentLeft;
-        titleLabel.text=@"Kerala";
-        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
-        subtitleLabel.textColor = [UIColor whiteColor];
-        [markerInfoView addSubview:subtitleLabel];
-        subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
-        subtitleLabel.text=@"4 Days Recommended";
-    } else if([marker.userData isEqualToString:@"dest"]){
+            [myButton setTitle:@"Add to Trip" forState:UIControlStateNormal];
+            [myButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            [markerInfoView addSubview:myButton];
+            [moreButton setTitle:@"More" forState:UIControlStateNormal];
+            [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            [markerInfoView addSubview:moreButton];
+            UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,205,markerInfoView.frame.size.width,45)];
+            [markerInfoView addSubview:infoLabel];
+            infoLabel.textAlignment = NSTextAlignmentRight;
+            infoLabel.textColor = [UIColor darkGrayColor];
+            infoLabel.font = [UIFont systemFontOfSize:16];
+            infoLabel.text=@"Opening Time 6am";
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25)];
+            titleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:titleLabel];
+            titleLabel.textAlignment = NSTextAlignmentLeft;
+            titleLabel.text=@"Kerala";
+            UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
+            subtitleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:subtitleLabel];
+            subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+            subtitleLabel.text=@"4 Days Recommended";
+        }
+    else if([marker.userData isEqualToString:@"dest"]){
     
-//        UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45)];
-//        UIImageView *overView1 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45)];
-//        [overView1 setBackgroundColor:[UIColor blackColor]];
-//        overView1.alpha = 0.3;
-//        markerInfoImage.image=[UIImage imageNamed:@"Pulikali.jpg"];
-//        [markerInfoView addSubview:markerInfoImage];
-//        [markerInfoImage addSubview:overView1];
-//        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
-//        markerInfoView.layer.masksToBounds = NO;
-//        markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
-//        markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
-//        markerInfoView.layer.shadowOpacity = 0.3f;
-//        markerInfoView.layer.shadowPath = shadowPath.CGPath;
-//        [myButton setTitle:@"Take a Snap" forState:UIControlStateNormal];
-//        [myButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-//        [markerInfoView addSubview:myButton];
-//        [moreButton setTitle:@"More" forState:UIControlStateNormal];
-//        [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-//        [markerInfoView addSubview:moreButton];
-//        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoImage.frame.origin.x,markerInfoImage.frame.origin.y,markerInfoImage.frame.size.width,25)];
-//        titleLabel.textColor = [UIColor whiteColor];
-//        [markerInfoView addSubview:titleLabel];
-//        titleLabel.textAlignment = NSTextAlignmentLeft;
-//        titleLabel.text=@"Pulikali";
-//        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
-//        subtitleLabel.textColor = [UIColor whiteColor];
-//        [markerInfoView addSubview:subtitleLabel];
-//        subtitleLabel.font = [UIFont systemFontOfSize:13];
-//        subtitleLabel.text=@"Event";
+//          UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45)];
+//          UIImageView *overView1 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45)];
+//          [overView1 setBackgroundColor:[UIColor blackColor]];
+//          overView1.alpha = 0.3;
+//          markerInfoImage.image=[UIImage imageNamed:@"Pulikali.jpg"];
+//          [markerInfoView addSubview:markerInfoImage];
+//          [markerInfoImage addSubview:overView1];
+//          UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
+//          markerInfoView.layer.masksToBounds = NO;
+//          markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
+//          markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+//          markerInfoView.layer.shadowOpacity = 0.3f;
+//          markerInfoView.layer.shadowPath = shadowPath.CGPath;
+//          [myButton setTitle:@"Take a Snap" forState:UIControlStateNormal];
+//          [myButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+//          [markerInfoView addSubview:myButton];
+//          [moreButton setTitle:@"More" forState:UIControlStateNormal];
+//          [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+//          [markerInfoView addSubview:moreButton];
+//          UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoImage.frame.origin.x,markerInfoImage.frame.origin.y,markerInfoImage.frame.size.width,25)];
+//          titleLabel.textColor = [UIColor whiteColor];
+//          [markerInfoView addSubview:titleLabel];
+//          titleLabel.textAlignment = NSTextAlignmentLeft;
+//          titleLabel.text=@"Pulikali";
+//          UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
+//          subtitleLabel.textColor = [UIColor whiteColor];
+//          [markerInfoView addSubview:subtitleLabel];
+//          subtitleLabel.font = [UIFont systemFontOfSize:13];
+//          subtitleLabel.text=@"Event";
         
         //New PopUP
-        UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
-         UIImageView *overView =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
-        [overView setBackgroundColor:[UIColor blackColor]];
-        overView.alpha = 0.3;
-        markerInfoImage.image=[UIImage imageNamed:@"KL.jpg"];
-        [markerInfoView addSubview:markerInfoImage];
-        [markerInfoImage addSubview:overView];
-        numChild = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-40, 230, 25, 25)];
-        numChild.text=@"0";
-        [markerInfoView addSubview:numChild];
-        numChild.textColor=[UIColor lightGrayColor];
-        UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
-        markerInfoView.layer.masksToBounds = NO;
-        markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
-        markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
-        markerInfoView.layer.shadowOpacity = 0.3f;
-        markerInfoView.layer.shadowPath = shadowPath.CGPath;
-        numAdult = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+70, 230, 25, 25)];
-        numAdult.text=@"0";
-        [markerInfoView addSubview:numAdult];
-        numAdult.textColor=[UIColor lightGrayColor];
-        numAdult.textAlignment = NSTextAlignmentCenter;
-        numChild.textAlignment = NSTextAlignmentCenter;
-        UIImageView *numChildImage =[[UIImageView alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-42, 200, 30, 30)];
-        UIImageView *numadultImage =[[UIImageView alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+68, 200, 30, 30)];
-         numChildImage.image=[UIImage imageNamed:@"child"];
-         numadultImage.image=[UIImage imageNamed:@"adult"];
-        [markerInfoView addSubview:numadultImage];
-        [markerInfoView addSubview:numChildImage];
-        UILabel *seperator = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.size.width/2, 203,1, 47)];
-        [seperator setBackgroundColor:[UIColor colorWithRed:0.937 green:0.941 blue:0.945 alpha:1.00]];
-        [markerInfoView addSubview:seperator];
-        UIButton *plusButton1 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-15, 232, 20, 20)];
-         UIButton *mButton1 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-65, 232, 20, 20)];
-        UIButton *plusButton2 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+95, 232, 20, 20)];
-        UIButton *mButton2 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+45, 232, 20, 20)];
-        [plusButton1 setBackgroundImage:[UIImage imageNamed:@"ForwardArrow"] forState:UIControlStateNormal];
-        [mButton1 setBackgroundImage:[UIImage imageNamed:@"BackArrow"] forState:UIControlStateNormal];
-        [plusButton2 setBackgroundImage:[UIImage imageNamed:@"ForwardArrow"] forState:UIControlStateNormal];
-        [mButton2 setBackgroundImage:[UIImage imageNamed:@"BackArrow"] forState:UIControlStateNormal];
-        [markerInfoView addSubview:plusButton1];
-        [markerInfoView addSubview:mButton1];
-        [markerInfoView addSubview:plusButton2];
-        [markerInfoView addSubview:mButton2];
-        plusButton1.tag=111;
-        plusButton2.tag=333;
-        mButton1.tag=222;
-        mButton2.tag=444;
-        [myButton setTitle:@"Book Now" forState:UIControlStateNormal];
-        [myButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
-        [markerInfoView addSubview:myButton];
-        [moreButton setTitle:@"More" forState:UIControlStateNormal];
-        [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
-        [markerInfoView addSubview:moreButton];
-        [plusButton1 addTarget:self
-                   action:@selector(addNum:)
-         forControlEvents:UIControlEventTouchUpInside];
-        [plusButton2 addTarget:self
-                   action:@selector(addNum:)
-         forControlEvents:UIControlEventTouchUpInside];
-        [mButton1 addTarget:self
-                   action:@selector(minusNum:)
-         forControlEvents:UIControlEventTouchUpInside];
-        [mButton2 addTarget:self
-                   action:@selector(minusNum:)
-         forControlEvents:UIControlEventTouchUpInside];
-        plusButton1.alpha=0.05f;
-        mButton1.alpha=0.05f;
-        plusButton2.alpha=0.05f;
-        mButton2.alpha=0.05f;
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25)];
-        titleLabel.textColor = [UIColor whiteColor];
-        [markerInfoView addSubview:titleLabel];
-        titleLabel.textAlignment = NSTextAlignmentLeft;
-        titleLabel.text=@"Kerala";
-        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
-        subtitleLabel.textColor = [UIColor whiteColor];
-        [markerInfoView addSubview:subtitleLabel];
-        subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
-        subtitleLabel.numberOfLines = 0;
-        subtitleLabel.text=@"₹300/Head\nActivites";
+            UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
+            UIImageView *overView =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
+            [overView setBackgroundColor:[UIColor blackColor]];
+            overView.alpha = 0.3;
+            markerInfoImage.image=[UIImage imageNamed:@"KL.jpg"];
+            [markerInfoView addSubview:markerInfoImage];
+            [markerInfoImage addSubview:overView];
+            numChild = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-40, 230, 25, 25)];
+            numChild.text=@"0";
+            [markerInfoView addSubview:numChild];
+            numChild.textColor=[UIColor lightGrayColor];
+            UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
+            markerInfoView.layer.masksToBounds = NO;
+            markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
+            markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+            markerInfoView.layer.shadowOpacity = 0.3f;
+            markerInfoView.layer.shadowPath = shadowPath.CGPath;
+            numAdult = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+70, 230, 25, 25)];
+            numAdult.text=@"0";
+            [markerInfoView addSubview:numAdult];
+            numAdult.textColor=[UIColor lightGrayColor];
+            numAdult.textAlignment = NSTextAlignmentCenter;
+            numChild.textAlignment = NSTextAlignmentCenter;
+            UIImageView *numChildImage =[[UIImageView alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-42, 200, 30, 30)];
+            UIImageView *numadultImage =[[UIImageView alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+68, 200, 30, 30)];
+            numChildImage.image=[UIImage imageNamed:@"child"];
+            numadultImage.image=[UIImage imageNamed:@"adult"];
+            [markerInfoView addSubview:numadultImage];
+            [markerInfoView addSubview:numChildImage];
+            UILabel *seperator = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.size.width/2, 203,1, 47)];
+            [seperator setBackgroundColor:[UIColor colorWithRed:0.937 green:0.941 blue:0.945 alpha:1.00]];
+            [markerInfoView addSubview:seperator];
+            UIButton *plusButton1 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-15, 232, 20, 20)];
+            UIButton *mButton1 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-65, 232, 20, 20)];
+            UIButton *plusButton2 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+95, 232, 20, 20)];
+            UIButton *mButton2 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+45, 232, 20, 20)];
+            [plusButton1 setBackgroundImage:[UIImage imageNamed:@"ForwardArrow"] forState:UIControlStateNormal];
+            [mButton1 setBackgroundImage:[UIImage imageNamed:@"BackArrow"] forState:UIControlStateNormal];
+            [plusButton2 setBackgroundImage:[UIImage imageNamed:@"ForwardArrow"] forState:UIControlStateNormal];
+            [mButton2 setBackgroundImage:[UIImage imageNamed:@"BackArrow"] forState:UIControlStateNormal];
+            [markerInfoView addSubview:plusButton1];
+            [markerInfoView addSubview:mButton1];
+            [markerInfoView addSubview:plusButton2];
+            [markerInfoView addSubview:mButton2];
+            plusButton1.tag=111;
+            plusButton2.tag=333;
+            mButton1.tag=222;
+            mButton2.tag=444;
+            [myButton setTitle:@"Book Now" forState:UIControlStateNormal];
+            [myButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+            [markerInfoView addSubview:myButton];
+            [moreButton setTitle:@"More" forState:UIControlStateNormal];
+            [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            [markerInfoView addSubview:moreButton];
+            [plusButton1 addTarget:self action:@selector(addNum:) forControlEvents:UIControlEventTouchUpInside];
+            [plusButton2 addTarget:self action:@selector(addNum:) forControlEvents:UIControlEventTouchUpInside];
+            [mButton1 addTarget:self action:@selector(minusNum:) forControlEvents:UIControlEventTouchUpInside];
+            [mButton2 addTarget:self action:@selector(minusNum:) forControlEvents:UIControlEventTouchUpInside];
+            plusButton1.alpha=0.05f;
+            mButton1.alpha=0.05f;
+            plusButton2.alpha=0.05f;
+            mButton2.alpha=0.05f;
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25)];
+            titleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:titleLabel];
+            titleLabel.textAlignment = NSTextAlignmentLeft;
+            titleLabel.text=@"Kerala";
+            UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
+            subtitleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:subtitleLabel];
+            subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+            subtitleLabel.numberOfLines = 0;
+            subtitleLabel.text=@"₹300/Head\nActivites";
         
-    }
+            }
+        else if ([marker.userData isEqualToString:@"place"]){
+            
+        
+            }
+        else if ([marker.userData isEqualToString:@"event"]){
+            
+            
+        }
+
+        else if ([marker.userData isEqualToString:@"activity"]){
+            
+            UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
+            UIImageView *overView =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
+            [overView setBackgroundColor:[UIColor blackColor]];
+            overView.alpha = 0.3;
+            //markerInfoImage.image=[UIImage imageNamed:@"KL.jpg"];
+            imageURL= [poiDic2 valueForKey:@"img"];
+            NSURL *url = [NSURL URLWithString:imageURL];
+            NSData *urlContent = [NSData dataWithContentsOfURL:url];
+            UIImage *img = [[UIImage alloc] initWithData:urlContent];
+            //[_bgImageView setImage:img];
+            [markerInfoImage setImage:img];
+
+            [markerInfoView addSubview:markerInfoImage];
+            [markerInfoImage addSubview:overView];
+            numChild = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-40, 230, 25, 25)];
+            numChild.text=@"0";
+            [markerInfoView addSubview:numChild];
+            numChild.textColor=[UIColor lightGrayColor];
+            UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
+            markerInfoView.layer.masksToBounds = NO;
+            markerInfoView.layer.shadowColor = [UIColor blackColor].CGColor;
+            markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
+            markerInfoView.layer.shadowOpacity = 0.3f;
+            markerInfoView.layer.shadowPath = shadowPath.CGPath;
+            numAdult = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+70, 230, 25, 25)];
+            numAdult.text=@"0";
+            [markerInfoView addSubview:numAdult];
+            numAdult.textColor=[UIColor lightGrayColor];
+            numAdult.textAlignment = NSTextAlignmentCenter;
+            numChild.textAlignment = NSTextAlignmentCenter;
+            UIImageView *numChildImage =[[UIImageView alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-42, 200, 30, 30)];
+            UIImageView *numadultImage =[[UIImageView alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+68, 200, 30, 30)];
+            numChildImage.image=[UIImage imageNamed:@"child"];
+            numadultImage.image=[UIImage imageNamed:@"adult"];
+            [markerInfoView addSubview:numadultImage];
+            [markerInfoView addSubview:numChildImage];
+            UILabel *seperator = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.size.width/2, 203,1, 47)];
+            [seperator setBackgroundColor:[UIColor colorWithRed:0.937 green:0.941 blue:0.945 alpha:1.00]];
+            [markerInfoView addSubview:seperator];
+            UIButton *plusButton1 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-15, 232, 20, 20)];
+            UIButton *mButton1 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-65, 232, 20, 20)];
+            UIButton *plusButton2 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+95, 232, 20, 20)];
+            UIButton *mButton2 = [[UIButton alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+45, 232, 20, 20)];
+            [plusButton1 setBackgroundImage:[UIImage imageNamed:@"ForwardArrow"] forState:UIControlStateNormal];
+            [mButton1 setBackgroundImage:[UIImage imageNamed:@"BackArrow"] forState:UIControlStateNormal];
+            [plusButton2 setBackgroundImage:[UIImage imageNamed:@"ForwardArrow"] forState:UIControlStateNormal];
+            [mButton2 setBackgroundImage:[UIImage imageNamed:@"BackArrow"] forState:UIControlStateNormal];
+            [markerInfoView addSubview:plusButton1];
+            [markerInfoView addSubview:mButton1];
+            [markerInfoView addSubview:plusButton2];
+            [markerInfoView addSubview:mButton2];
+            plusButton1.tag=111;
+            plusButton2.tag=333;
+            mButton1.tag=222;
+            mButton2.tag=444;
+            [myButton setTitle:@"Book Now" forState:UIControlStateNormal];
+            [myButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+            [markerInfoView addSubview:myButton];
+            [moreButton setTitle:@"More" forState:UIControlStateNormal];
+            [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+            [markerInfoView addSubview:moreButton];
+            [plusButton1 addTarget:self action:@selector(addNum:) forControlEvents:UIControlEventTouchUpInside];
+            [plusButton2 addTarget:self action:@selector(addNum:) forControlEvents:UIControlEventTouchUpInside];
+            [mButton1 addTarget:self action:@selector(minusNum:) forControlEvents:UIControlEventTouchUpInside];
+            [mButton2 addTarget:self action:@selector(minusNum:) forControlEvents:UIControlEventTouchUpInside];
+            plusButton1.alpha=0.05f;
+            mButton1.alpha=0.05f;
+            plusButton2.alpha=0.05f;
+            mButton2.alpha=0.05f;
+            UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25)];
+            titleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:titleLabel];
+            titleLabel.textAlignment = NSTextAlignmentLeft;
+           // titleLabel.text=@"Kerala";
+            UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
+            subtitleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:subtitleLabel];
+            subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+            subtitleLabel.numberOfLines = 0;
+           // subtitleLabel.text=@"₹300/Head\nActivites";
+            
+        }
+
     }
     
     

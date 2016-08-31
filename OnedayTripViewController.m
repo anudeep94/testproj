@@ -19,7 +19,7 @@
     UILabel* smallDate;
     NSString *toAddress, *fromAddress;
     NSDictionary* jsonDic;
-
+    
     
     
 }
@@ -48,9 +48,12 @@ int tagFlag=0;
 //    [formatter setDateFormat: @"EEE\nMMM'/'yy"];
 //    [_monthLabel setText:[formatter stringFromDate:now]];
     
+    
     smallDate=[[UILabel alloc] init];
-    UIImage *img1 = [UIImage imageNamed:@"KL.jpg"];
-    [_onedayBGImage setImage:img1];
+    
+    NSData *urlContent = [[NSUserDefaults standardUserDefaults] objectForKey:@"PCImageURL"];
+    UIImage *img = [[UIImage alloc] initWithData:urlContent];
+    [_onedayBGImage setImage:img];
     UIImage *img2= [UIImage imageNamed:@"Circled Right 2-50.png"];
     [_arrowImage setImage:img2];
     
@@ -66,6 +69,20 @@ int tagFlag=0;
    // fromLat.coordinate.latitude= [[CLLocation alloc] initWithLatitude:coordinate longitude:-36.6462520];
 //    fromLat.coordinate.latitude=coordinate;
 //    fromLat.coordinate.longitude=[fromloc objectForKey:@"lng"];
+//    NSString *value =[NSString stringWithFormat:@"Kochi"/*@"0x00007fbfa1c2fdd0"*/];
+//    NSString* value2=@"Thrissur";
+//    [_fromButton setTitle: value forState: UIControlStateNormal];
+//    [_toButton setTitle: value2 forState: UIControlStateNormal];
+//    NSData *placeNSData=[[NSUserDefaults standardUserDefaults]objectForKey:@"Sour"];
+//    GMSPlace *defultFrom =[NSKeyedUnarchiver unarchiveObjectWithData:placeNSData];
+//    placeNSData=[[NSUserDefaults standardUserDefaults] objectForKey:@"Dest"];
+//    GMSPlace *defultTo=[NSKeyedUnarchiver unarchiveObjectWithData:placeNSData];
+//    
+//    [_fromButton setTitle: defultFrom.name forState: UIControlStateNormal];
+//    [_toButton setTitle:defultTo.name forState: UIControlStateNormal];
+//    if((defultTo != nil) || (defultFrom !=nil)){tagFlag=2;
+//    [self fetchDistanceFromGoogleAPI];
+//    }
     
 }
 
@@ -237,14 +254,13 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     [self dismissViewControllerAnimated:YES completion:nil];
     // Do something with the selected place.
     pickedPlace= place.name;
+//    NSData *placeNSData = [NSKeyedArchiver archivedDataWithRootObject:place];
+//    [[NSUserDefaults standardUserDefaults] setObject:placeNSData forKey:@"Sour"];
     if(viewController.view.tag ==121){
         [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _fromPlace=place;
         fromAddress=place.formattedAddress;
         pickedPlace2=pickedPlace;
-        //_fromSnippet=place.snippet;
-//        _fromCoordinates.coordinate.latitude = place.coordinate.latitude ;
-//        _fromCoordinates.coordinate.longitude = place.coordinate.longitude ;
         _location = [[CLLocation alloc] initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
 
         
@@ -252,13 +268,14 @@ didAutocompleteWithPlace:(GMSPlace *)place {
     if(viewController.view.tag ==122){
         [_toButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _toPlace=place;
+//        NSData *placeNSData = [NSKeyedArchiver archivedDataWithRootObject:place];
+//        [[NSUserDefaults standardUserDefaults] setObject:placeNSData forKey:@"Dest"];
         toAddress=place.formattedAddress;
         _location2 = [[CLLocation alloc] initWithLatitude:place.coordinate.latitude longitude:place.coordinate.longitude];
         [self fetchDistanceFromGoogleAPI];
         
     }
 }
-
 
 -(void) fetchDistanceFromGoogleAPI{
 
