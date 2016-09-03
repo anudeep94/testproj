@@ -56,13 +56,15 @@
     mapView.myLocationEnabled = YES;
     [self.view addSubview: mapView];
     
+    
+    
     // Creates a marker in the center of the map.
     markerSource = [[GMSMarker alloc] init];
     markerSource.position = CLLocationCoordinate2DMake(_fromLocation.coordinate.latitude, _fromLocation.coordinate.longitude);
     markerSource.icon = [UIImage imageNamed:@"soruceIcon"];
     markerDest = [[GMSMarker alloc] init];
     markerDest.position = CLLocationCoordinate2DMake(_toPlace.coordinate.latitude, _toPlace.coordinate.longitude);
-    
+    [self getPointsOfInterests];
     markerSource.title = _fromPlace.name;
     markerSource.userData = @"source";
     markerSource.map = mapView;
@@ -87,9 +89,9 @@
     polyline.spans = @[[GMSStyleSpan spanWithColor:[UIColor colorWithRed:0.000 green:0.702 blue:0.992 alpha:1.00]]];
     polyline.geodesic = YES;
     polyline.map = mapView;
-
     
-    [self getPointsOfInterests];
+    
+   
     
 }
 
@@ -136,6 +138,7 @@
                                                //poiMarker.position =  CLLocationCoordinate2DMake(pinlocation.latitude, pinlocation.longitude);
                                                CLLocation *positionPin=[[CLLocation alloc] initWithLatitude:pinlocation.latitude longitude:pinlocation.longitude];
                                                NSString *type = [poiDic  objectForKey:@"type"];
+                                               NSString *locationID = [poiDic objectForKey:@"id"];
                                                
 //                                               if ([poiMarker.userData isEqualToString:@""])
 //                                               {
@@ -160,20 +163,20 @@
                                                
                                                    poiMarker.icon = [GMSMarker markerImageWithColor:[UIColor greenColor]];
                                                    poiMarker.map = mapView;
-                                                   poiMarker.userData=type;
+                                                   poiMarker.userData=locationID;
 
                                                }
                                               else if([type isEqualToString:@"event"])
                                                {
                                                    poiMarker.icon = [GMSMarker markerImageWithColor:[UIColor orangeColor]];
                                                    poiMarker.map = mapView;
-                                                   poiMarker.userData=type;
+                                                   poiMarker.userData=locationID;
                                                    
                                                }
                                               else if ([type isEqualToString:@"activity"]){
                                                   poiMarker.icon = [GMSMarker markerImageWithColor:[UIColor yellowColor]];
                                                   poiMarker.map = mapView;
-                                                  poiMarker.userData=type;
+                                                  poiMarker.userData=locationID;
                                               }
                                                
                                                }
@@ -259,12 +262,26 @@
         UILabel *seperator = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.size.width/2, 203,1, 47)];
         UILabel *infoLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,205,markerInfoView.frame.size.width,45)];
         
+        int z;
+        z=0;
+        NSString *locID;
         for (poiDic2 in jsonDic) {
             
-            poiDic2 = [jsonDic objectAtIndex:0];
+//            poiDic2 = [jsonDic objectAtIndex:0];
+            if ([marker.userData compare:[poiDic2 objectForKey:@"id"]])
+            {
+                z++;
+                
+                locID =[poiDic2 objectForKey:@"id"];
+                NSLog(@"%d ///// %@",z,locID);
+                break;
+            }
+                 }
+            NSString *placeString;
+           
+            placeString = [NSString stringWithFormat:@"%@",[poiDic2 objectForKey:@"type"]];
             
-            
-        if ([marker.userData isEqualToString:@"source"])
+        if ([marker.title isEqualToString:_fromPlace.name])
         {
             [overView2 setBackgroundColor:[UIColor blackColor]];
             overView2.alpha = 0.3;
@@ -301,7 +318,7 @@
             subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
             subtitleLabel.text=@"4 Days Recommended";
         }
-    else if([marker.userData isEqualToString:@"dest"]){
+    else if([marker.title isEqualToString:_toPlace.name]){
     
 //          UIImageView *markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45)];
 //          UIImageView *overView1 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45)];
@@ -404,7 +421,11 @@
             subtitleLabel.text=@"₹300/Head\nActivites";
         
             }
-        else if ([marker.userData isEqualToString:@"place"]){
+            //NSLog(@"UserData : %@",marker.userData);
+            
+            
+
+         if ([@"place" isEqualToString:placeString]){
             
             markerInfoImage.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
             overView.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
@@ -438,7 +459,7 @@
             
         
             }
-        else if ([marker.userData isEqualToString:@"event"]){
+        else if ([@"event" isEqualToString:placeString]){
             
             markerInfoImage.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
             overView.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
@@ -473,7 +494,7 @@
             
         }
 
-        else if ([marker.userData isEqualToString:@"activity"]){
+        else if ([@"activity" isEqualToString:placeString]){
             
             markerInfoImage.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
            overView.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
@@ -573,8 +594,7 @@
            // subtitleLabel.text=@"₹300/Head\nActivites";
             
             }
-
-        }
+       
     }
     
     return YES;
