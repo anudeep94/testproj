@@ -257,6 +257,7 @@ didAutocompleteWithPlace:(GMSPlace *)place {
 //    NSData *placeNSData = [NSKeyedArchiver archivedDataWithRootObject:place];
 //    [[NSUserDefaults standardUserDefaults] setObject:placeNSData forKey:@"Sour"];
     if(viewController.view.tag ==121){
+        
         [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
         _fromPlace=place;
         fromAddress=place.formattedAddress;
