@@ -15,6 +15,7 @@
 		8443499D1D5300E000CBDCF3 /* GoogleMaps.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 8443499C1D5300E000CBDCF3 /* GoogleMaps.bundle */; };
 		844349A11D5319A100CBDCF3 /* WhereToMapviewViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */; };
 		844349A31D53258A00CBDCF3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844349A21D53258A00CBDCF3 /* MapKit.framework */; };
+		844488251D7EBA8B0087DE2A /* MoreInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844488241D7EBA8B0087DE2A /* MoreInfoViewController.m */; };
 		84459F751D5AF13D00D72171 /* Pulikali.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84459F741D5AF13D00D72171 /* Pulikali.jpg */; };
 		8448AB521D45F8A900486EA2 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8448AB511D45F8A900486EA2 /* TableViewCell.m */; };
 		844A9FEB1D68301B005F6312 /* FirstPGViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844A9FEA1D68301B005F6312 /* FirstPGViewController.m */; };
@@ -80,6 +81,8 @@
 		8443499F1D5319A100CBDCF3 /* WhereToMapviewViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WhereToMapviewViewController.h; path = ../WhereToMapviewViewController.h; sourceTree = "<group>"; };
 		844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WhereToMapviewViewController.m; path = ../WhereToMapviewViewController.m; sourceTree = "<group>"; };
 		844349A21D53258A00CBDCF3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		844488231D7EBA8B0087DE2A /* MoreInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MoreInfoViewController.h; path = ../MoreInfoViewController.h; sourceTree = "<group>"; };
+		844488241D7EBA8B0087DE2A /* MoreInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MoreInfoViewController.m; path = ../MoreInfoViewController.m; sourceTree = "<group>"; };
 		84459F741D5AF13D00D72171 /* Pulikali.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Pulikali.jpg; path = ../../../Downloads/Pulikali.jpg; sourceTree = "<group>"; };
 		8448AB501D45F8A900486EA2 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableViewCell.h; path = ../TableViewCell.h; sourceTree = "<group>"; };
 		8448AB511D45F8A900486EA2 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableViewCell.m; path = ../TableViewCell.m; sourceTree = "<group>"; };
@@ -298,6 +301,8 @@
 				844349A01D5319A100CBDCF3 /* WhereToMapviewViewController.m */,
 				84FD276D1D5B41EE008B83D5 /* OverViewTableViewController.h */,
 				84FD276E1D5B41EE008B83D5 /* OverViewTableViewController.m */,
+				844488231D7EBA8B0087DE2A /* MoreInfoViewController.h */,
+				844488241D7EBA8B0087DE2A /* MoreInfoViewController.m */,
 				84F769101D2E559000DEF5FC /* LaunchScreen.storyboard */,
 				84F769131D2E559000DEF5FC /* Info.plist */,
 				84F7690B1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld */,
@@ -411,6 +416,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				84FD276F1D5B41EE008B83D5 /* OverViewTableViewController.m in Sources */,
+				844488251D7EBA8B0087DE2A /* MoreInfoViewController.m in Sources */,
 				84F7691E1D2E5CBD00DEF5FC /* SignupViewController.m in Sources */,
 				84F7690D1D2E559000DEF5FC /* GetStrongTryout.xcdatamodeld in Sources */,
 				84FBBE6C1D422C6F00CF1A31 /* ChallengeViewController.m in Sources */,

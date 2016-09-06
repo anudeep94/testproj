@@ -1339,6 +1339,55 @@
             </objects>
             <point key="canvasLocation" x="2072" y="736"/>
         </scene>
+        <!--More Info View Controller-->
+        <scene sceneID="3eo-yb-TeP">
+            <objects>
+                <viewController storyboardIdentifier="MoreInfoViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="FN7-8V-Hon" customClass="MoreInfoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BSj-0f-TCw">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" id="qBK-Nd-2hQ">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <items>
+                                    <navigationItem title="Title" id="DIt-HC-co6">
+                                        <barButtonItem key="leftBarButtonItem" image="BackArrow" id="GvT-nM-udT"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="pMc-tE-ozB">
+                                <rect key="frame" x="14" y="59" width="292" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" id="ZhC-6r-Usb">
+                                <rect key="frame" x="0.0" y="236" width="320" height="332"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Va4-dy-qlX">
+                                <rect key="frame" x="0.0" y="44" width="320" height="192"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="poiDetailsText" destination="ZhC-6r-Usb" id="A1N-E5-9sU"/>
+                        <outlet property="poiImageView" destination="Va4-dy-qlX" id="DQD-P9-jYi"/>
+                        <outlet property="poiTitleLabel" destination="pMc-tE-ozB" id="jiN-3u-tFw"/>
+                        <segue destination="HIC-64-TNV" kind="push" id="Igu-A6-Qe1"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="idc-wZ-yue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2429" y="736"/>
+        </scene>
         <!--Overview-->
         <scene sceneID="wn2-f9-hbC">
             <objects>
@@ -1710,6 +1759,7 @@
     </scenes>
     <resources>
         <image name="Back-50.png" width="50" height="50"/>
+        <image name="BackArrow" width="25" height="25"/>
         <image name="CircleArrow" width="25" height="25"/>
         <image name="Forward-50.png" width="50" height="50"/>
         <image name="Pulikali.jpg" width="700" height="467"/>
@@ -1722,7 +1772,8 @@
         <image name="phoneIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="wWH-J8-Xcd"/>
         <segue reference="Exi-DH-r0c"/>
-        <segue reference="nNe-Wo-Hm4"/>
+        <segue reference="Igu-A6-Qe1"/>
     </inferredMetricsTieBreakers>
 </document>

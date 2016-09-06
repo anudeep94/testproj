@@ -10,6 +10,7 @@
 #import <GoogleMaps/GoogleMaps.h>
 #import "OnedayTripViewController.h"
 #import <CoreGraphics/CoreGraphics.h>
+#import "MoreInfoViewController.h"
 #import "SWRevealViewController.h"
 
 @interface WhereToMapviewViewController ()<GMSMapViewDelegate>{
@@ -252,7 +253,7 @@
         markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
         overView2 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
          titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25)];
-        subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,50)];
+        subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(markerInfoView.frame.origin.x-20,markerInfoImage.frame.origin.y+45,markerInfoImage.frame.size.width-20,60)];
         overView =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115)];
         numChild = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/3)-40, 230, 25, 25)];
          numAdult = [[UILabel alloc] initWithFrame:CGRectMake((markerInfoView.frame.size.width/2)+70, 230, 25, 25)];
@@ -314,14 +315,20 @@
             infoLabel.textAlignment = NSTextAlignmentRight;
             infoLabel.textColor = [UIColor darkGrayColor];
             infoLabel.font = [UIFont systemFontOfSize:16];
-            infoLabel.text=@"Opening Time 6am";
+            infoLabel.text=@"Opening Time";
            
+            //titleLabel.frame = CGRectMake(markerInfoView.frame.origin.x -20,markerInfoImage.frame.origin.y+20,markerInfoImage.frame.size.width-20,25);
+            titleLabel.textColor = [UIColor whiteColor];
+            [markerInfoView addSubview:titleLabel];
+            titleLabel.textAlignment = NSTextAlignmentLeft;
             titleLabel.text=@"Kerala";
             
             subtitleLabel.textColor = [UIColor whiteColor];
             [markerInfoView addSubview:subtitleLabel];
             subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
             subtitleLabel.text=@"4 Days Recommended";
+            subtitleLabel.textAlignment=NSTextAlignmentLeft;
+            [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
         }
     else if([marker.title isEqualToString:_toPlace.name]){
     
@@ -425,6 +432,8 @@
             subtitleLabel.numberOfLines = 0;
             subtitleLabel.text=@"₹300/Head\nActivites";
         
+        [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
+        
             }
     else{
         
@@ -438,6 +447,14 @@
 }
 
 
+-(void) morePressed:(UIButton *)sender{
+    
+    //UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MoreInfoViewController *vC = [self. storyboard instantiateViewControllerWithIdentifier:@"MoreInfoViewController"];
+    vC.poiDetails= poiDic2;
+    [self.navigationController pushViewController:vC animated:YES];
+    
+}
 
 -(void)otherMarker:(GMSMarker *)marker{
 
@@ -464,7 +481,7 @@
             dispatch_sync(dispatch_get_main_queue(), ^(void) {
                 UIImage *img = [[UIImage alloc] initWithData:urlContent];
                 [markerInfoImage setImage:img];
-                bookable=[poiDic2 objectForKey:@"bookable"];
+                //bookable=[poiDic2 objectForKey:@"bookable"];
                 [markerInfoView addSubview:markerInfoImage];
                 [markerInfoImage addSubview:overView];
                 UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
@@ -473,6 +490,23 @@
                 markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
                 markerInfoView.layer.shadowOpacity = 0.3f;
                 markerInfoView.layer.shadowPath = shadowPath.CGPath;
+                
+                [markerInfoView addSubview:infoLabel];
+                infoLabel.textAlignment = NSTextAlignmentRight;
+                infoLabel.textColor = [UIColor darkGrayColor];
+                infoLabel.font = [UIFont systemFontOfSize:16];
+                infoLabel.text=@"Opening Time";
+               UILabel *sepLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,250,markerInfoView.frame.size.width,1)];
+                sepLabel.backgroundColor= [UIColor lightGrayColor];
+                sepLabel.alpha=0.2f;
+                [markerInfoView addSubview:sepLabel];
+                
+                subtitleLabel.textColor = [UIColor whiteColor];
+                [markerInfoView addSubview:subtitleLabel];
+                subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+                subtitleLabel.text=[NSString stringWithFormat:@"%@\n%@",[poiDic2 objectForKey:@"category"],[poiDic2 objectForKey:@"type"]];
+                [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
+
                 [self loadPlaceMarkerInfoContent:marker];
                 
             });
@@ -482,7 +516,7 @@
     
     else if ([[poiDic2 objectForKey:@"type"] isEqualToString:@"event"]) {
         markerInfoImage.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
-        overView.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 115);
+        overView.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45);
         [overView setBackgroundColor:[UIColor blackColor]];
         overView.alpha = 0.3;
         
@@ -496,7 +530,8 @@
             dispatch_sync(dispatch_get_main_queue(), ^(void) {
                 UIImage *img = [[UIImage alloc] initWithData:urlContent];
                 [markerInfoImage setImage:img];
-                bookable=[poiDic2 objectForKey:@"bookable"];
+                markerInfoImage.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45);
+                //bookable=[poiDic2 objectForKey:@"bookable"];
                 [markerInfoView addSubview:markerInfoImage];
                 [markerInfoImage addSubview:overView];
                 UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
@@ -505,6 +540,13 @@
                 markerInfoView.layer.shadowOffset = CGSizeMake(5.0f, 5.0f);
                 markerInfoView.layer.shadowOpacity = 0.3f;
                 markerInfoView.layer.shadowPath = shadowPath.CGPath;
+                
+                subtitleLabel.textColor = [UIColor whiteColor];
+                [markerInfoView addSubview:subtitleLabel];
+                subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+                subtitleLabel.text=[NSString stringWithFormat:@"%@ '\n'%@",[poiDic2 objectForKey:@"category"],[poiDic2 objectForKey:@"type"]];
+                [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
+                
                 [self loadOtherMarkerInfoContent:marker];
             });
         });
@@ -526,7 +568,8 @@
             dispatch_sync(dispatch_get_main_queue(), ^(void) {
                 UIImage *img = [[UIImage alloc] initWithData:urlContent];
                 [markerInfoImage setImage:img];
-                bookable=[poiDic2 objectForKey:@"bookable"];
+                 bookable=[[poiDic2 objectForKey:@"bookable"]boolValue];
+                //NSLog(@"BOOK : %@",book);
                 [markerInfoView addSubview:markerInfoImage];
                 [markerInfoImage addSubview:overView];
                 UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRect:markerInfoView.bounds];
@@ -545,10 +588,21 @@
                 [markerInfoView addSubview:myButton];
                 [moreButton setTitle:@"More" forState:UIControlStateNormal];
                 [moreButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+                
+                subtitleLabel.textColor = [UIColor whiteColor];
+                [markerInfoView addSubview:subtitleLabel];
+                subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
+                subtitleLabel.text=[NSString stringWithFormat:@"%@\n%@",[poiDic2 objectForKey:@"category"],[poiDic2 objectForKey:@"type"]];
                 [markerInfoView addSubview:moreButton];
+                [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
 
                 if(bookable){
                     [self bookableActivityContent:marker];
+                }
+                else{
+                    markerInfoImage.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45);
+                    overView.frame =CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 45);
+                
                 }
             });
         });
