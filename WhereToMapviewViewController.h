@@ -29,6 +29,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *sideButton;
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 

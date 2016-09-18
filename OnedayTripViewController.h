@@ -30,6 +30,8 @@
 @property (nonatomic) UIBarButtonItem *rightBtn;
 @property (nonatomic) UIDatePicker *datePicker;
 
+@property (nonatomic) NSDictionary *chummaTest;
+
 @property(nonatomic) GMSPlace *fromPlace;
 @property(nonatomic)GMSPlace *toPlace;
 @property (nonatomic)CLLocation *location;

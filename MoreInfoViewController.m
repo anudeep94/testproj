@@ -32,6 +32,7 @@
     NSData *urlContent = [NSData dataWithContentsOfURL:url];
     UIImage *img = [[UIImage alloc] initWithData:urlContent];
     [_poiImageView setImage:img];
+    cookie=[[NSUserDefaults standardUserDefaults] objectForKey:@"cookie"];
     [self getmoreInfoFromSite];
     
     
@@ -47,33 +48,59 @@
 -(void) getmoreInfoFromSite{
     
     
-    cookie=[[NSUserDefaults standardUserDefaults] objectForKey:@"cookie"];
-    NSString *urlString = [NSString stringWithFormat:
-                           @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_moredetails&postid=%@&auth=%@",[_poiDetails objectForKey:@"id"],cookie];
-     NSString *percentEscapedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    cookie=[[NSUserDefaults standardUserDefaults] valueForKey:@"cookie"];
+   /* NSString *urlString = [NSString stringWithFormat:
+                           @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_moredetails&postid=%@&auth=%@",[_poiDetails objectForKey:@"id"],cookie];*/
+//     NSString *percentEscapedString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+//    
+//    NSURL *url = [[NSURL alloc] initWithString:percentEscapedString];
+//    
+//    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+//    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
+//    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+//    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+//                               if (error) {
+//                                   NSLog(@"error:%@", error.localizedDescription);
+//                               }
+//                               else{
+//                                   NSError *error = nil;
+//                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+//                                   
+//                                   if (error != nil) {
+//                                       NSLog(@"Error parsing JSON.");
+//                                   }
+//                                   else {
+//                                       NSLog(@"Response :%@",jsonDic);
+//                                       }
+//                                 
+//                                   }
+//                           }];
     
-    NSURL *url = [[NSURL alloc] initWithString:percentEscapedString];
+    NSString *strupload=[NSString stringWithFormat:@"postid=%@",[_poiDetails objectForKey:@"id"]];
+    NSString *strurl=[NSString stringWithFormat:
+                      @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_moredetails"];
+    //NSString *strpostlength=[NSString stringWithFormat:@"%d",[strupload length]];
+    NSMutableURLRequest *urlrequest=[[NSMutableURLRequest alloc]init];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
-    //connection = [[NSURLConnection alloc] initWithRequest:request delegate:self startImmediately:YES];
-    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
-    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
-                               if (error) {
-                                   NSLog(@"error:%@", error.localizedDescription);
-                               }
-                               else{
-                                   NSError *error = nil;
-                                   jsonDic = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-                                   
-                                   if (error != nil) {
-                                       NSLog(@"Error parsing JSON.");
-                                   }
-                                   else {
-                                       NSLog(@"Response :%@",jsonDic);
-                                       }
-                                 
-                                   }
-                           }];
+    [urlrequest setURL:[NSURL URLWithString:strurl]];
+    [urlrequest setHTTPMethod:@"GET"];
+    [urlrequest setValue:cookie forHTTPHeaderField:@"Authorization"];
+    [urlrequest setHTTPBody:[strupload dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    [NSURLConnection sendAsynchronousRequest:urlrequest queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         NSError *error1;
+         NSDictionary *res=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableLeaves error:&error1];
+         
+         NSLog(@"POI INFO response: %@",res);
+         
+//         dispatch_async(dispatch_get_main_queue(), ^{
+//             
+//             
+//         });
+     }];
+    
+    
 }
 
 

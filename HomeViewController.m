@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "SWRevealViewController.h"
 #import "AppChildViewController.h"
+#import "OnedayTripViewController.h"
 
 @interface HomeViewController ()<UIPageViewControllerDelegate> {
     NSInteger currentIndex;
@@ -69,6 +70,10 @@ BOOL buttonCurrentStatus;
     // self.screenTitle.text = [NSString stringWithFormat:@"%@", _pageTitles[(long)self.index]];
     
     
+    //OnedayTripViewController *vC = [self. storyboard instantiateViewControllerWithIdentifier:@"OneDayTripViewController"];
+    //vC.poiDetails= poiDic2;
+    
+    
     NSString *urlString = [NSString stringWithFormat:
                            @"https://www.yatramantra.com/kerala/wp-admin/admin-ajax.php?action=androidapp_init"];
     
@@ -124,6 +129,7 @@ BOOL buttonCurrentStatus;
                                                //NSLog(@" !!****** %@",value1);
                                            
                                            [[NSUserDefaults standardUserDefaults] setObject:dataArray forKey:@"AppInitData"];
+                                           //vC.chummaTest=jsonDic;
                                            
                                                //NSLog(@"SubKey : %@, SubValue = %@", aSubKey, aSubValue);
                                            //}

@@ -19,6 +19,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *needBUtton;
 @property (weak, nonatomic) IBOutlet UIView *rateView;
 
+@property (weak, nonatomic) IBOutlet UIButton *otherButton;
 
 
 

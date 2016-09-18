@@ -92,6 +92,14 @@
     flag++;
      [fakeView removeFromSuperview];
 }
+- (IBAction)otherPressed:(id)sender {
+
+    rateSelected =[_otherButton titleForState:UIControlStateNormal];
+    [_ratingButton setTitle: rateSelected forState: UIControlStateNormal];
+    flag++;
+    [fakeView removeFromSuperview];
+    
+}
 - (IBAction)sentPressed:(id)sender {
     
     if (flag==0) {

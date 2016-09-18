@@ -19,6 +19,7 @@
     UILabel* smallDate;
     NSString *toAddress, *fromAddress;
     NSDictionary* jsonDic;
+    UIButton *myCancel, *myButton;
     
     
     
@@ -64,6 +65,11 @@ int tagFlag=0;
     
     NSDictionary *fromloc=[[NSUserDefaults standardUserDefaults] objectForKey:@"StartLocation"];
     NSLog(@"StartLocation = %@",fromloc);
+    
+    
+    NSLog(@"CHUMMA : %@",_chummaTest);
+    
+    
 //    CLLocation *fromLat=[[CLLocation alloc]init];
 //    NSData *coordinate=[fromloc objectForKey:@"lat"];
    // fromLat.coordinate.latitude= [[CLLocation alloc] initWithLatitude:coordinate longitude:-36.6462520];
@@ -83,6 +89,20 @@ int tagFlag=0;
 //    if((defultTo != nil) || (defultFrom !=nil)){tagFlag=2;
 //    [self fetchDistanceFromGoogleAPI];
 //    }
+    
+    
+    if ([_monthLabel.text isEqualToString:@"MM/YY"]) {
+        NSDate *now = [NSDate date];
+        NSDateFormatter *formatter = nil;
+        formatter = [[NSDateFormatter alloc] init];
+        //[formatter setDateStyle:NSDateFormatterMediumStyle];
+        [formatter setDateFormat:@"d"];
+        
+        [_dateLabel setText:[formatter stringFromDate:now]];
+        [formatter setDateFormat: @"EEE\nMMM'/'yy"];
+        [_monthLabel setText:[formatter stringFromDate:now]];
+    }
+    
     
 }
 
@@ -104,6 +124,8 @@ int tagFlag=0;
             [alert show];
             
         }
+    
+
     
     [self googleMapRouteDrawing];
     
@@ -258,7 +280,8 @@ didAutocompleteWithPlace:(GMSPlace *)place {
 //    [[NSUserDefaults standardUserDefaults] setObject:placeNSData forKey:@"Sour"];
     if(viewController.view.tag ==121){
         
-        [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
+        [_fromButton setTitle: pickedPlace forState: UIControlStateNormal];
+        tagFlag++;
         _fromPlace=place;
         fromAddress=place.formattedAddress;
         pickedPlace2=pickedPlace;
@@ -267,7 +290,8 @@ didAutocompleteWithPlace:(GMSPlace *)place {
         
     }
     if(viewController.view.tag ==122){
-        [_toButton setTitle: pickedPlace forState: UIControlStateNormal];tagFlag++;
+        [_toButton setTitle: pickedPlace forState: UIControlStateNormal];
+        tagFlag++;
         _toPlace=place;
 //        NSData *placeNSData = [NSKeyedArchiver archivedDataWithRootObject:place];
 //        [[NSUserDefaults standardUserDefaults] setObject:placeNSData forKey:@"Dest"];
@@ -368,11 +392,18 @@ didFailAutocompleteWithError:(NSError *)error {
     {
         //CGRect markerInfoViewFrame;
         
-        datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, self.view.frame.size.height)];
+        datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 150, self.view.frame.size.width, self.view.frame.size.height)];
+        myCancel = [[UIButton alloc] initWithFrame:CGRectMake(0,250,datePickerView.frame.size.width/2,50)];
+        myButton = [[UIButton alloc] initWithFrame:CGRectMake(datePickerView.frame.size.width/2,250,datePickerView.frame.size.width/2,50)];
+        
         
     }
     else{
-        datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 300)];}
+        datePickerView = [[UIView alloc] initWithFrame:CGRectMake(0, 250, self.view.frame.size.width, 300)];
+        myCancel = [[UIButton alloc] initWithFrame:CGRectMake(0,250,datePickerView.frame.size.width/2,50)];
+        myButton = [[UIButton alloc] initWithFrame:CGRectMake(datePickerView.frame.size.width/2,250,datePickerView.frame.size.width/2,50)];
+    
+    }
     _datePicker=[[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, datePickerView.frame.size.width, 250)];
     
     datePickerView.backgroundColor = [UIColor whiteColor];
@@ -381,6 +412,7 @@ didFailAutocompleteWithError:(NSError *)error {
     _datePicker.datePickerMode = UIDatePickerModeDate;
     _datePicker.hidden = NO;
     _datePicker.date = [NSDate date];
+    [_datePicker setMinimumDate: [NSDate date]];
     [_datePicker setBackgroundColor:[UIColor whiteColor]];
     [_datePicker clipsToBounds];
     
@@ -395,14 +427,14 @@ didFailAutocompleteWithError:(NSError *)error {
 //    _rightBtn=[[UIBarButtonItem alloc]initWithTitle:@"Done" style:UIBarButtonItemStyleDone target:self action:@selector(save:)];
 //    self.navigationItem.rightBarButtonItem=_rightBtn;
     
-    UIButton *myButton = [[UIButton alloc] initWithFrame:CGRectMake(datePickerView.frame.size.width/2,250,datePickerView.frame.size.width/2,50)];
+    
     [datePickerView addSubview:myButton];
     [myButton setBackgroundColor:[UIColor colorWithRed:0.404 green:0.867 blue:0.510 alpha:1.00]];
     [myButton setTitle:@"Ok" forState:UIControlStateNormal];
     [myButton addTarget:self action:@selector(save:) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIButton *myCancel = [[UIButton alloc] initWithFrame:CGRectMake(0,250,datePickerView.frame.size.width/2,50)];
+    
     [datePickerView addSubview:myCancel];
     [myCancel setBackgroundColor:[UIColor whiteColor]];
     [myCancel setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
@@ -424,16 +456,13 @@ didFailAutocompleteWithError:(NSError *)error {
     NSDateFormatter *df2 = [[NSDateFormatter alloc] init];
     [df2 setDateFormat:@"d MMM"];
     smallDate.text = [NSString stringWithFormat:@"%@",[df2 stringFromDate:_datePicker.date]];
-    
-
-
-    
-    
+    tagFlag++;
     
 }
 -(void)save:(id)sender
 {   //UIDatePicker *datePicker = [[UIDatePicker alloc] init];
     //self.navigationItem.rightBarButtonItem=nil;
+    
     [datePickerView removeFromSuperview];
     //[_keyboardToolbar removeFromSuperview];
 }
@@ -444,6 +473,7 @@ didFailAutocompleteWithError:(NSError *)error {
         formatter = [[NSDateFormatter alloc] init];
         //[formatter setDateStyle:NSDateFormatterMediumStyle];
         [formatter setDateFormat:@"d"];
+        tagFlag++;
     
         [_dateLabel setText:[formatter stringFromDate:now]];
         [formatter setDateFormat: @"EEE\nMMM'/'yy"];

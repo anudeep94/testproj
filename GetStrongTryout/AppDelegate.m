@@ -10,7 +10,8 @@
 @import GooglePlacePicker;
 @import GoogleMaps;
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
-//#import "LoginViewController.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 
 @interface AppDelegate () <UINavigationControllerDelegate>
@@ -23,6 +24,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
 
+    [Fabric with:@[[Crashlytics class]]];
     if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isLogin"]) {
         
         UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];

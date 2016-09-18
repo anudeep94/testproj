@@ -24,6 +24,8 @@
 		84B2F8BF1D3F3BFA004D6B95 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8BE1D3F3BFA004D6B95 /* SWRevealViewController.m */; };
 		84B2F8C51D3F3DDA004D6B95 /* SidebarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */; };
 		84BAB2F41D54518E00D25C56 /* Calendar-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84BAB2F31D54518E00D25C56 /* Calendar-50.png */; };
+		84D1947A1D7FEF0A00A9F57C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D194781D7FEF0A00A9F57C /* Fabric.framework */; };
+		84D1947B1D7FEF0A00A9F57C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84D194791D7FEF0A00A9F57C /* Crashlytics.framework */; };
 		84E078001D51BE90001C6105 /* OnedayTripViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */; };
 		84E078021D51D03E001C6105 /* Circled Right 2-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E078011D51D03E001C6105 /* Circled Right 2-50.png */; };
 		84E6AE9B1D4B2748006368F9 /* KL.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 84E6AE9A1D4B2748006368F9 /* KL.jpg */; };
@@ -97,6 +99,8 @@
 		84B2F8C31D3F3DDA004D6B95 /* SidebarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SidebarViewController.h; path = ../SidebarViewController.h; sourceTree = "<group>"; };
 		84B2F8C41D3F3DDA004D6B95 /* SidebarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SidebarViewController.m; path = ../SidebarViewController.m; sourceTree = "<group>"; };
 		84BAB2F31D54518E00D25C56 /* Calendar-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Calendar-50.png"; path = "../../../Downloads/Calendar-50.png"; sourceTree = "<group>"; };
+		84D194781D7FEF0A00A9F57C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		84D194791D7FEF0A00A9F57C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		84E077FE1D51BE90001C6105 /* OnedayTripViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OnedayTripViewController.h; path = ../OnedayTripViewController.h; sourceTree = "<group>"; };
 		84E077FF1D51BE90001C6105 /* OnedayTripViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OnedayTripViewController.m; path = ../OnedayTripViewController.m; sourceTree = "<group>"; };
 		84E078011D51D03E001C6105 /* Circled Right 2-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Circled Right 2-50.png"; sourceTree = "<group>"; };
@@ -163,6 +167,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84D1947A1D7FEF0A00A9F57C /* Fabric.framework in Frameworks */,
+				84D1947B1D7FEF0A00A9F57C /* Crashlytics.framework in Frameworks */,
 				844349A31D53258A00CBDCF3 /* MapKit.framework in Frameworks */,
 				8443499B1D53001600CBDCF3 /* GoogleMaps.framework in Frameworks */,
 				84F975F41D5200A600CC5391 /* libc++.1.dylib in Frameworks */,
@@ -251,6 +257,8 @@
 		84F768F31D2E559000DEF5FC = {
 			isa = PBXGroup;
 			children = (
+				84D194781D7FEF0A00A9F57C /* Fabric.framework */,
+				84D194791D7FEF0A00A9F57C /* Crashlytics.framework */,
 				84F768FE1D2E559000DEF5FC /* GetStrongTryout */,
 				84F768FD1D2E559000DEF5FC /* Products */,
 			);
@@ -342,6 +350,7 @@
 				84F768F81D2E559000DEF5FC /* Sources */,
 				84F768F91D2E559000DEF5FC /* Frameworks */,
 				84F768FA1D2E559000DEF5FC /* Resources */,
+				84D194771D7FED5000A9F57C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -363,6 +372,7 @@
 				TargetAttributes = {
 					84F768FB1D2E559000DEF5FC = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = YDJDEMX7QA;
 					};
 				};
 			};
@@ -409,6 +419,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		84D194771D7FED5000A9F57C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run ea554fcfa1943496676e2036b3baeb9157d70e42 28852d0a43263d3e2344d85c1064672720171f5fdeba358b873ef36b1f3d1b76";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84F768F81D2E559000DEF5FC /* Sources */ = {
@@ -480,7 +506,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abin George Varghese (39WY5233M4)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -502,6 +528,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "7c86a499-3797-4eed-86d8-bf2c1d938e7e";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -524,7 +551,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Abin George Varghese (YDJDEMX7QA)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -539,6 +566,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "5932d675-8204-4245-a045-72cd036dc244";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -548,6 +576,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Abin George Varghese (39WY5233M4)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GetStrongTryout",
@@ -559,6 +589,8 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "7c86a499-3797-4eed-86d8-bf2c1d938e7e";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -566,6 +598,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Abin George Varghese (YDJDEMX7QA)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/GetStrongTryout",
@@ -577,6 +611,8 @@
 				"OTHER_LDFLAGS[arch=*]" = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = com.pytenlabs.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "5932d675-8204-4245-a045-72cd036dc244";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

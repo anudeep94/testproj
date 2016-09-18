@@ -43,6 +43,8 @@
         [self.view addGestureRecognizer:self.revealViewController.panGestureRecognizer];
     }
     
+    
+    NSLog(@" added POI: %@",_poiDetails);
 
 }
 
