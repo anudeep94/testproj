@@ -19,7 +19,8 @@
     int i,j;
     UILabel *adultCountLabel;
     UILabel *childCountLabel;
-    
+    BOOL bookable;
+    NSString *imageURL;
     
 }
 
@@ -45,6 +46,7 @@
     
     
     NSLog(@" added POI: %@",_poiDetails);
+    bookable=[[_poiDetails objectForKey:@"bookable"]boolValue];
 
 }
 
@@ -92,6 +94,8 @@
     {
         cellIdentifier=@"activities";
         cell=[_tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (bookable) {
+            
         
         UIButton *plusButton1 = [[UIButton alloc] initWithFrame:CGRectMake(304, 75, 15, 15)];
         UIButton *minusButton1 = [[UIButton alloc] initWithFrame:CGRectMake(261, 75, 15, 15)];
@@ -135,6 +139,16 @@
 //        UIImageView *taggedLargeImageView = (UIImageView*) [cell viewWithTag:102];// Event ImageViewLarge
 //        UIImageView *taggedAdultIconView = (UIImageView*) [cell viewWithTag:103];//Adult Icon
 //        UIImageView *taggedChildIconView = (UIImageView*) [cell viewWithTag:104];//child Icon
+        }
+        UIImageView *activityImageView =(UIImageView*) [cell viewWithTag:102];
+        imageURL= [_poiDetails valueForKey:@"image"];
+        NSURL *url = [NSURL URLWithString:imageURL];
+        NSData *urlContent = [NSData dataWithContentsOfURL:url];
+        
+        
+        UIImage *img = [[UIImage alloc] initWithData:urlContent];
+        [activityImageView setImage:img];
+
          UILabel *taggedSmallDateLabel =(UILabel*) [cell viewWithTag:205];
         taggedSmallDateLabel.text=_smallDateLabel.text;
         

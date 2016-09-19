@@ -243,7 +243,7 @@
         [self.view addSubview:fakeView];
         [fakeView addSubview:markerInfoView];
         [fakeView addGestureRecognizer:tapGesture];
-        myButton = [[UIButton alloc] initWithFrame:CGRectMake(100,200,markerInfoView.frame.size.width/2,45)];
+        myButton = [[UIButton alloc] initWithFrame:CGRectMake(110,200,markerInfoView.frame.size.width/2,45)];
         moreButton = [[UIButton alloc] initWithFrame:CGRectMake(0,200,markerInfoView.frame.size.width/2,45)];
         markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 35)];
         overView2 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
@@ -274,7 +274,7 @@
         [self.view addSubview:fakeView];
         [fakeView addSubview:markerInfoView];
         [fakeView addGestureRecognizer:tapGesture];
-        myButton = [[UIButton alloc] initWithFrame:CGRectMake(100,250,markerInfoView.frame.size.width/2,45)];
+        myButton = [[UIButton alloc] initWithFrame:CGRectMake(110,250,markerInfoView.frame.size.width/2,45)];
         moreButton = [[UIButton alloc] initWithFrame:CGRectMake(0,250,markerInfoView.frame.size.width/2,45)];
         markerInfoImage =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
         overView2 =[[UIImageView alloc] initWithFrame:CGRectMake(0,0,markerInfoView.frame.size.width,markerInfoView.frame.size.height - 90)];
@@ -368,6 +368,7 @@
         subtitleLabel.textAlignment=NSTextAlignmentLeft;
         [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
         [myButton addTarget:self action:@selector(myButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [myButton setUserInteractionEnabled:YES];
     }
     else if([marker.title isEqualToString:_toPlace.name]){
         
@@ -471,6 +472,7 @@
         subtitleLabel.numberOfLines = 0;
         subtitleLabel.text=@"₹300/Head\nActivites";
         
+        [myButton setUserInteractionEnabled:YES];
         [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
         [myButton addTarget:self action:@selector(myButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -488,7 +490,8 @@
     vC.poiDetails= poiDic2;
     vC.numChild=numChild.text;
     vC.numAdult=numAdult.text;
-    [self.navigationController pushViewController:vC animated:YES];
+    //vC.bookable =bookable;
+    //[self.navigationController pushViewController:vC animated:YES];
 
 }
 
@@ -557,6 +560,7 @@
                 subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
                 subtitleLabel.text=[NSString stringWithFormat:@"%@\n%@",[poiDic2 objectForKey:@"category"],[poiDic2 objectForKey:@"type"]];
                 [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
+                [myButton addTarget:self action:@selector(myButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [self loadPlaceMarkerInfoContent:marker];
                 
@@ -603,6 +607,7 @@
                 subtitleLabel.font = [UIFont fontWithName:@"Helvetica-Bold" size:13];
                 subtitleLabel.text=[NSString stringWithFormat:@"%@ '\n'%@",[poiDic2 objectForKey:@"category"],[poiDic2 objectForKey:@"type"]];
                 [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
+                [myButton addTarget:self action:@selector(myButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [self loadOtherMarkerInfoContent:marker];
             });
@@ -659,6 +664,7 @@
                 subtitleLabel.text=[NSString stringWithFormat:@"%@\n%@",[poiDic2 objectForKey:@"category"],[poiDic2 objectForKey:@"type"]];
                 [markerInfoView addSubview:moreButton];
                 [moreButton addTarget:self action:@selector(morePressed:) forControlEvents:UIControlEventTouchUpInside];
+                [myButton addTarget:self action:@selector(myButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
                 [_activityIndicator stopAnimating];
                 if(bookable){
                     [self bookableActivityContent:marker];

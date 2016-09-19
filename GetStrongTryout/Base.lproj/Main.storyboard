@@ -1606,7 +1606,7 @@
                                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pulikali.jpg" id="jVM-Ht-4al">
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="102" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="jVM-Ht-4al">
                                                             <rect key="frame" x="17" y="38" width="90" height="90"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <userDefinedRuntimeAttributes>
@@ -1766,6 +1766,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityImage" destination="jVM-Ht-4al" id="k7P-xA-n7v"/>
                         <outlet property="sidebarButton" destination="92Y-gh-WWo" id="bMn-R2-Dg3"/>
                         <outlet property="tableView" destination="sVP-pv-QvS" id="dv7-b6-aZ6"/>
                     </connections>
@@ -1780,7 +1781,6 @@
         <image name="BackArrow" width="25" height="25"/>
         <image name="CircleArrow" width="25" height="25"/>
         <image name="Forward-50.png" width="50" height="50"/>
-        <image name="Pulikali.jpg" width="700" height="467"/>
         <image name="adult" width="50" height="50"/>
         <image name="binocular" width="30" height="30"/>
         <image name="calender" width="25" height="25"/>

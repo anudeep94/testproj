@@ -25,7 +25,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *eventLabel;
 @property (nonatomic) NSDictionary *poiDetails;
 @property (nonatomic) NSString *numChild, *numAdult;
-//@property (weak, nonatomic) IBOutlet UIImageView *activityIconImage;
+@property (weak, nonatomic) IBOutlet UIImageView *activityIconImage;
 //@property (weak, nonatomic) IBOutlet UILabel *rateLabel;
 //@property (weak, nonatomic) IBOutlet UIImageView *adultIconImage;
 //@property (weak, nonatomic) IBOutlet UIImageView *childIconImage;
